@@ -1,129 +1,336 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-      body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1f2937; }
-      .main-accent { color: #2563eb; }
-      .bg-main-accent { background-color: #2563eb; }
-      .tab-btn.active { background-color: #e0f2fe; border-bottom: 2px solid #2563eb; }
-      .tab-btn { transition: background-color 0.3s ease; }
-      .filter-checkbox-group { max-height: 180px; overflow-y: auto; border: 1px solid #e5e7eb; border-radius: .5rem; padding: 8px; }
-      .filter-checkbox-item { display: flex; align-items: center; gap: .5rem; margin-bottom: .25rem; }
-    </style>
-  </head>
-  <body class="antialiased">
-    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex items-center space-x-3">
-            <div class="bg-main-accent p-2 rounded-lg">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-              </svg>
-            </div>
-            <h1 class="text-xl md:text-2xl font-bold text-gray-800">Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1f2937; }
+    .main-accent { color: #2563eb; } .bg-main-accent { background-color: #2563eb; }
+    .tab-btn.active { background-color: #e0f2fe; border-bottom: 2px solid #2563eb; }
+    .tab-btn { transition: background-color 0.3s ease; }
+    .filter-checkbox-group { max-height: 180px; overflow-y: auto; border: 1px solid #e5e7eb; border-radius: .5rem; padding: 8px; }
+    .filter-checkbox-item { display: flex; align-items: center; gap: .5rem; margin-bottom: .25rem; }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-3">
+          <div class="bg-main-accent p-2 rounded-lg">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
           </div>
+          <h1 class="text-xl md:text-2xl font-bold text-gray-800">Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</h1>
         </div>
       </div>
-    </header>
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-      <section class="mb-12 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Análisis de Sentimiento Meli+</h2>
-        <p class="mt-2 text-lg text-gray-600">Visualiza la evolución de la percepción de los clientes en función de eventos clave y la competencia.</p>
-      </section>
-      <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 mb-8">
-        <h3 class="text-xl font-semibold text-gray-700 mb-4">Índice de Sentimiento General (Escala 0-100)</h3>
-        <div class="chart-container w-full max-w-4xl mx-auto h-96">
-          <canvas id="sentimentChart"></canvas>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <section class="mb-12 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Análisis de Sentimiento Meli+</h2>
+      <p class="mt-2 text-lg text-gray-600">Visualiza la evolución de la percepción de los clientes en función de eventos clave y la competencia.</p>
+    </section>
+
+    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 mb-8">
+      <h3 class="text-xl font-semibold text-gray-700 mb-4">Índice de Sentimiento General (Escala 0-100)</h3>
+      <div class="chart-container w-full max-w-4xl mx-auto h-96">
+        <canvas id="sentimentChart"></canvas>
+      </div>
+    </div>
+
+    <section class="mb-8">
+      <div class="flex justify-center border-b border-gray-200">
+        <button data-country="Brasil" class="tab-btn active px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Brasil</button>
+        <button data-country="México" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">México</button>
+        <button data-country="Chile" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Chile</button>
+        <button data-country="Argentina" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Argentina</button>
+        <button data-country="Colombia" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Colombia</button>
+      </div>
+    </section>
+
+    <section id="country-data" class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Detalles por País: <span id="country-name" class="main-accent">Brasil</span></h2>
+      <h3 class="text-xl font-semibold text-gray-700 mb-4">Tabla Resumen de Sentimientos</h3>
+      <div class="overflow-x-auto mb-8">
+        <table id="sentiment-table" class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mes</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sentimientos Detractores</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Motivos Detractores</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sentimientos Promotores</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Motivos Promotores</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Eventos Clave/Contexto</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Novedades de la Competencia</th>
+            </tr>
+          </thead>
+          <tbody id="sentiment-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+        </table>
+      </div>
+      <h3 class="text-xl font-semibold text-gray-700 mb-4">Resumen de Sentimientos Detractores y Promotores</h3>
+      <div id="sentiment-summary" class="prose max-w-none"></div>
+    </section>
+
+    <!-- Vertiente 2 -->
+    <section id="market-news" class="mt-12">
+      <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Alertas de Mercado Recientes</h2>
+        <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200 mb-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">País</label>
+              <div id="news-filter-country" class="filter-checkbox-group"></div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Empresa</label>
+              <div id="news-filter-company" class="filter-checkbox-group"></div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+              <div id="news-filter-category" class="filter-checkbox-group"></div>
+            </div>
+            <div class="flex items-end">
+              <button id="news-reset-filters" class="w-full bg-gray-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Limpiar Filtros</button>
+            </div>
+          </div>
+        </div>
+        <div id="alerts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 flex flex-col hover:shadow-xl transition-all duration-300">
+            <div class="flex-grow">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-bold text-gray-800 text-lg">Temu (México)</h4>
+                <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Sanción Legal</span>
+              </div>
+              <p class="text-gray-700 mb-3">Mexico's COFECE Opens Formal Investigation Into Temu and Shein for Anti-Competitive Practices</p>
+              <p class="text-xs text-gray-500 mb-1">Fuente: <span class="font-medium">reuters.com</span></p>
+            </div>
+            <div class="text-sm text-gray-500 mt-auto pt-4 border-t border-gray-200 flex justify-between items-center">
+              <span>25-08-2025</span>
+              <a href="https://www.reuters.com/world/americas/mexico-launches-antitrust-probe-into-e-commerce-giants-temu-shein-2025-08-25/" title="https://www.reuters.com/world/americas/mexico-launches-antitrust-probe-into-e-commerce-giants-temu-shein-2025-08-25/" rel="noopener noreferrer nofollow" target="_blank" class="font-semibold text-blue-600 hover:underline">Ver Noticia &rarr;</a>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 flex flex-col hover:shadow-xl transition-all duration-300">
+            <div class="flex-grow">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-bold text-gray-800 text-lg">Spotify Premium (Brasil)</h4>
+                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Cambio de Precio</span>
+              </div>
+              <p class="text-gray-700 mb-3">Spotify to Increase Family and Duo Plan Prices in Brazil Starting October</p>
+              <p class="text-xs text-gray-500 mb-1">Fuente: <span class="font-medium">newsroom.spotify.com</span></p>
+            </div>
+            <div class="text-sm text-gray-500 mt-auto pt-4 border-t border-gray-200 flex justify-between items-center">
+              <span>22-08-2025</span>
+              <a href="https://newsroom.spotify.com/pt-br/2025-08-22/ajuste-de-precos-nos-planos-premium-no-brasil/" title="https://newsroom.spotify.com/pt-br/2025-08-22/ajuste-de-precos-nos-planos-premium-no-brasil/" rel="noopener noreferrer nofollow" target="_blank" class="font-semibold text-blue-600 hover:underline">Ver Noticia &rarr;</a>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 flex flex-col hover:shadow-xl transition-all duration-300">
+            <div class="flex-grow">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-bold text-gray-800 text-lg">Amazon Prime</h4>
+                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Estrategia</span>
+              </div>
+              <p class="text-gray-700 mb-3">Amazon Prime Day confirmed for October 7-8, focuses on early holiday shopping</p>
+              <p class="text-xs text-gray-500 mb-1">Fuente: <span class="font-medium">press.aboutamazon.com</span></p>
+            </div>
+            <div class="text-sm text-gray-500 mt-auto pt-4 border-t border-gray-200 flex justify-between items-center">
+              <span>29-08-2025</span>
+              <a href="https://press.aboutamazon.com/2025/8/amazon-announces-prime-big-deal-days-in-october" title="https://press.aboutamazon.com/2025/8/amazon-announces-prime-big-deal-days-in-october" rel="noopener noreferrer nofollow" target="_blank" class="font-semibold text-blue-600 hover:underline">Ver Noticia &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <div id="no-news-results" class="hidden text-center py-12">
+          <p class="text-xl text-gray-500">No se encontraron noticias con los filtros seleccionados.</p>
         </div>
       </div>
-      <section class="mb-8">
-        <div class="flex justify-center border-b border-gray-200">
-          <button data-country="Brasil" class="tab-btn active px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Brasil</button>
-          <button data-country="México" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">México</button>
-          <button data-country="Chile" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Chile</button>
-          <button data-country="Argentina" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Argentina</button>
-          <button data-country="Colombia" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Colombia</button>
-        </div>
-      </section>
-      <section id="country-data" class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6">Detalles por País: <span id="country-name" class="main-accent">Brasil</span></h2>
-        <h3 class="text-xl font-semibold text-gray-700 mb-4">Tabla Resumen de Sentimientos</h3>
-        <div class="overflow-x-auto mb-8">
-          <table id="sentiment-table" class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mes</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sentimientos Detractores</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Motivos Detractores</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sentimientos Promotores</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Motivos Promotores</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Eventos Clave/Contexto</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Novedades de la Competencia</th>
-              </tr>
-            </thead>
-            <tbody id="sentiment-table-body" class="bg-white divide-y divide-gray-200"></tbody>
-          </table>
-        </div>
-        <h3 class="text-xl font-semibold text-gray-700 mb-4">Resumen de Sentimientos Detractores y Promotores</h3>
-        <div id="sentiment-summary" class="prose max-w-none"></div>
-      </section>
-      <section id="market-news" class="mt-12">
-        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-800 mb-6">Alertas de Mercado Recientes</h2>
-          <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200 mb-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">País</label>
-                <div id="news-filter-country" class="filter-checkbox-group"></div>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Empresa</label>
-                <div id="news-filter-company" class="filter-checkbox-group"></div>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
-                <div id="news-filter-category" class="filter-checkbox-group"></div>
-              </div>
-              <div class="flex items-end">
-                <button id="news-reset-filters" class="w-full bg-gray-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Limpiar Filtros</button>
-              </div>
+    </section>
+
+    <!-- Vertiente 3 -->
+    <section id="content-platforms-news" class="mt-12">
+      <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Noticias de Plataformas de Contenido y Streaming</h2>
+        <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200 mb-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">País</label>
+              <div id="content-filter-country" class="filter-checkbox-group"></div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Empresa</label>
+              <div id="content-filter-company" class="filter-checkbox-group"></div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+              <div id="content-filter-category" class="filter-checkbox-group"></div>
+            </div>
+            <div class="flex items-end">
+              <button id="content-reset-filters" class="w-full bg-gray-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Limpiar Filtros</button>
             </div>
           </div>
-          <div id="alerts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-          <div id="no-news-results" class="hidden text-center py-12">
-            <p class="text-xl text-gray-500">No se encontraron noticias con los filtros seleccionados.</p>
-          </div>
         </div>
-      </section>
-      <section id="content-platforms-news" class="mt-12">
-        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
-          <h2 class="text-2xl font-bold text-gray-800 mb-6">Noticias de Plataformas de Contenido y Streaming</h2>
-          <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200 mb-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">País</label>
-                <div id="content-filter-country" class="filter-checkbox-group"></div>
+        <div id="content-alerts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 flex flex-col hover:shadow-xl transition-all duration-300">
+            <div class="flex-grow">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-bold text-gray-800 text-lg">Paramount+</h4>
+                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Fusión/Adquisición</span>
               </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Empresa</label>
-                <div id="content-filter-company" class="filter-checkbox-group"></div>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
-                <div id="content-filter-category" class="filter-checkbox-group"></div>
-              </div>
-              <div class="flex items-end">
-                <button id="content-reset-filters" class="w-full bg-gray-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Limpiar Filtros</button>
-              </div>
+              <p class="text-gray-700 mb-3">Paramount-Skydance Merger Wins Final Regulatory Approval, Paving Way for November Closing</p>
+              <p class="text-xs text-gray-500 mb-1">Fuente: <span class="font-medium">variety.com</span></p>
+            </div>
+            <div class="text-sm text-gray-500 mt-auto pt-4 border-t border-gray-200 flex justify-between items-center">
+              <span>28-08-2025</span>
+              <a href="https://variety.com/2025/biz/news/paramount-skydance-merger-final-approval-1236110201/" title="https://variety.com/2025/biz/news/paramount-skydance-merger-final-approval-1236110201/" rel="noopener noreferrer nofollow" target="_blank" class="font-semibold text-blue-600 hover:underline">Ver Noticia &rarr;</a>
             </div>
           </div>
-          <div id="content-alerts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8
+          <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 flex flex-col hover:shadow-xl transition-all duration-300">
+            <div class="flex-grow">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-bold text-gray-800 text-lg">OpenAI</h4>
+                <span class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Flagship AI</span>
+              </div>
+              <p class="text-gray-700 mb-3">OpenAI Announces 'GPT-4.5-Turbo' with Advanced Multimodal Features, Available to Plus Users in Beta</p>
+              <p class="text-xs text-gray-500 mb-1">Fuente: <span class="font-medium">openai.com</span></p>
+            </div>
+            <div class="text-sm text-gray-500 mt-auto pt-4 border-t border-gray-200 flex justify-between items-center">
+              <span>26-08-2025</span>
+              <a href="https://openai.com/blog/introducing-gpt-4-5-turbo" title="https://openai.com/blog/introducing-gpt-4-5-turbo" rel="noopener noreferrer nofollow" target="_blank" class="font-semibold text-blue-600 hover:underline">Ver Noticia &rarr;</a>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 flex flex-col hover:shadow-xl transition-all duration-300">
+            <div class="flex-grow">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-bold text-gray-800 text-lg">Netflix</h4>
+                <span class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Derechos/Deportes</span>
+              </div>
+              <p class="text-gray-700 mb-3">Netflix Secures Global Streaming Rights for ATP 250 Tennis Tournaments in Multi-Year Deal</p>
+              <p class="text-xs text-gray-500 mb-1">Fuente: <span class="font-medium">about.netflix.com</span></p>
+            </div>
+            <div class="text-sm text-gray-500 mt-auto pt-4 border-t border-gray-200 flex justify-between items-center">
+              <span>27-08-2025</span>
+              <a href="https://about.netflix.com/en/news/netflix-serves-up-atp-250-tennis-tournaments" title="https://about.netflix.com/en/news/netflix-serves-up-atp-250-tennis-tournaments" rel="noopener noreferrer nofollow" target="_blank" class="font-semibold text-blue-600 hover:underline">Ver Noticia &rarr;</a>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 flex flex-col hover:shadow-xl transition-all duration-300">
+            <div class="flex-grow">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-bold text-gray-800 text-lg">Disney+</h4>
+                <span class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Estrategia</span>
+              </div>
+              <p class="text-gray-700 mb-3">Disney+ to Offer New 'Premier Access' Bundle with ESPN and Hulu in Latin America</p>
+              <p class="text-xs text-gray-500 mb-1">Fuente: <span class="font-medium">thewaltdisneycompany.com</span></p>
+            </div>
+            <div class="text-sm text-gray-500 mt-auto pt-4 border-t border-gray-200 flex justify-between items-center">
+              <span>21-08-2025</span>
+              <a href="https://www.thewaltdisneycompany.com/disney-espn-hulu-premier-bundle-latam/" title="https://www.thewaltdisneycompany.com/disney-espn-hulu-premier-bundle-latam/" rel="noopener noreferrer nofollow" target="_blank" class="font-semibold text-blue-600 hover:underline">Ver Noticia &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <div id="no-content-results" class="hidden text-center py-12">
+          <p class="text-xl text-gray-500">No se encontraron noticias de contenido con los filtros seleccionados.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 text-gray-300 mt-16">
+    <div class="container mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-sm">
+      <p>&copy; 2025 Reporte de Sentimiento Meli+. Visualización interactiva.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ===== Sentimiento (Vertiente 1) ===== */
+    const sentimentData = {
+      "Brasil": {
+        "sentimentIndex": [85, 82, 78, 75, 72, 65, 68, 70, 75, 50, 52, 55],
+        "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25"],
+        "events": [
+          {"month": "Sep 24", "text": "Lanzamiento Meli+"},
+          {"month": "Feb 25", "text": "Cambio % cashback"},
+          {"month": "May 25", "text": "Opción 120% CDI"},
+          {"month": "Jun 25", "text": "Cambio envío gratis"}
+        ],
+        "table": [
+          {"mes": "Jun 25", "detractores": "Alto", "motivosDet": "Pérdida de valor en envíos", "promotores": "Bajo", "motivosPro": "Beneficios streaming", "eventos": "Envío gratis generalizado ≥ R$19,90", "competencia": "Amazon Prime mantiene su política de envíos."},
+          {"mes": "May 25", "detractores": "Bajo", "motivosDet": "Complejidad de beneficios", "promotores": "Alto", "motivosPro": "Rendimiento 120% CDI", "eventos": "Lanzamiento Cofrinhos/Cajitas 120% CDI.", "competencia": "Nubank Ultravioleta sigue siendo aspiracional."},
+          {"mes": "Feb 25", "detractores": "Medio-Alto", "motivosDet": "Reducción de cashback", "promotores": "Bajo", "motivosPro": "Aún conveniente para usuarios intensivos", "eventos": "Ajuste en el porcentaje de cashback en compras.", "competencia": "PicPay y otros wallets con campañas agresivas de cashback."},
+          {"mes": "Sep 24", "detractores": "Bajo", "motivosDet": "Costo de suscripción", "promotores": "Muy Alto", "motivosPro": "Paquete de beneficios (D+, Star+, envíos)", "eventos": "Lanzamiento oficial de Meli+.", "competencia": "Fuerte competencia con Amazon Prime."}
+        ],
+        "summary": "<!-- HTML con bullets y citas --><ul><li><strong class='text-rose-600'>Detractores:</strong> El principal punto negativo reciente es la percepción de devaluación del envío gratis desde junio. Un usuario en Reclame Aqui comentó: <em>\"A principal vantagem do Meli+ era o frete grátis em produtos de baixo valor. Agora que mudaram para R$19,90 para todos, qual a diferença? Perdeu o sentido para mim.\"</em></li><li><strong class='text-emerald-600'>Promotores:</strong> El beneficio financiero introducido en mayo generó comentarios muy positivos. Un usuario en un foro de inversiones mencionó: <em>\"Pagar a assinatura só pelo rendimento de 120% do CDI na caixinha já vale a pena. Os streamings e fretes saem de graça.\"</em></li></ul>"
+      },
+      "México": {
+        "sentimentIndex": [88, 85, 80, 78, 76, 70, 71, 68, 65, 68, 70, 72],
+        "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25"],
+        "events": [
+          {"month": "Sep 24", "text": "Lanzamiento Meli+"},
+          {"month": "Feb 25", "text": "Cambio % cashback"},
+          {"month": "May 25", "text": "Hot Sale / Competencia (NU+)"}
+        ],
+        "table": [
+          {"mes": "May 25", "detractores": "Medio", "motivosDet": "Propuesta de valor vs. competencia", "promotores": "Alto", "motivosPro": "Descuentos y envíos en Hot Sale", "eventos": "Hot Sale MX.", "competencia": "Nubank lanza NU+, un competidor directo en beneficios de cashback y lifestyle."},
+          {"mes": "Feb 25", "detractores": "Medio-Alto", "motivosDet": "Reducción de cashback", "promotores": "Bajo", "motivosPro": "Paquete de streaming sigue siendo atractivo", "eventos": "Ajuste en el porcentaje de cashback.", "competencia": "Amazon Prime con precios estables. Klar y Stori con ofertas de cashback."},
+          {"mes": "Sep 24", "detractores": "Bajo", "motivosDet": "Confusión inicial con Nivel 6", "promotores": "Muy Alto", "motivosPro": "Gran valor percibido (D+, Star+, Deezer)", "eventos": "Lanzamiento oficial de Meli+.", "competencia": "Posicionamiento fuerte frente a Amazon Prime y Walmart Pass."}
+        ],
+        "summary": "<!-- HTML con bullets y citas --><ul><li><strong class='text-rose-600'>Detractores:</strong> La llegada de nueva competencia en mayo impactó la percepción de valor. En Apestan.com un usuario posteó: <em>\"Entre lo que ofrece la tarjeta de Nu con su programa NU+ y los envíos de Amazon, Meli+ ya no se siente como la mejor opción sin discusión. Tienen que mejorar.\"</em></li><li><strong class='text-emerald-600'>Promotores:</strong> El valor del paquete de entretenimiento sigue siendo el principal motor. En X (antes Twitter) se leyó: <em>\"Pagar por Meli+ solo por tener Disney, Star+ y Deezer ya es un ofertón. Los envíos gratis son el extra.\"</em></li></ul>"
+      },
+      "Chile": {
+        "sentimentIndex": [60, 62, 60, 63, 65, 66, 68, 80, 78, 77, 75, 76],
+        "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25"],
+        "events": [
+          {"month": "Abr 25", "text": "Nuevos beneficios Meli+"}
+        ],
+        "table": [
+          {"mes": "Abr 25", "detractores": "Bajo", "motivosDet": "Costo de suscripción", "promotores": "Muy Alto", "motivosPro": "Inclusión de Max y Universal+", "eventos": "Se añaden nuevos beneficios de streaming (Max, Universal+) y descuentos.", "competencia": "Falabella y Ripley con descuentos agresivos vía tarjetas (CMR, Ripley)."},
+          {"mes": "Ene 25", "detractores": "Medio", "motivosDet": "Estancamiento de beneficios (Nivel 6)", "promotores": "Medio", "motivosPro": "Envíos gratis y D+/Star+", "eventos": "Período previo a la actualización de Meli+.", "competencia": "Amazon gana tracción con Prime Video y envíos internacionales."}
+        ],
+        "summary": "<!-- HTML con bullets y citas --><ul><li><strong class='text-rose-600'>Detractores:</strong> La competencia de los grandes retailers sigue siendo un factor. Un reclamo en SERNAC menciona: <em>\"Aunque Meli+ mejoró, los descuentos que obtengo con mi tarjeta CMR en Falabella para productos grandes siguen siendo insuperables.\"</em></li><li><strong class='text-emerald-600'>Promotores:</strong> La actualización de abril fue un éxito rotundo. Un comentario en YouTube dice: <em>\"¡Brutal la actualización! Ahora con Max y Universal+ el programa se paga solo. El mejor paquete de streaming del mercado chileno por lejos.\"</em></li></ul>"
+      },
+      "Argentina": {
+        "sentimentIndex": [55, 56, 55, 58, 57, 58, 59, 60, 75, 72, 70, 68],
+        "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25"],
+        "events": [
+          {"month": "May 25", "text": "Lanzamiento Meli+"}
+        ],
+        "table": [
+          {"mes": "May 25", "detractores": "Medio", "motivosDet": "Costo mensual en contexto inflacionario", "promotores": "Muy Alto", "motivosPro": "Excelente paquete de beneficios y streaming", "eventos": "Lanzamiento de Meli+, reemplazando el sistema Nivel 6.", "competencia": "Competencia fragmentada, con Flow como alternativa de contenido."},
+          {"mes": "Mar 25", "detractores": "Medio", "motivosDet": "Beneficios de Nivel 6 poco claros", "promotores": "Bajo", "motivosPro": "Acceso a D+/Star+ con descuento", "eventos": "Expectativa por la llegada de Meli+.", "competencia": "Ualá con programa de puntos, pero menor alcance."}
+        ],
+        "summary": "<!-- HTML con bullets y citas --><ul><li><strong class='text-rose-600'>Detractores:</strong> El costo es una preocupación en el contexto local. Un usuario en tuquejasuma.com escribió: <em>\"Me encanta Meli+, pero con la inflación que hay, cada vez cuesta más justificar el gasto fijo mensual, aunque sé que lo vale.\"</em></li><li><strong class='text-emerald-600'>Promotores:</strong> El valor percibido en el lanzamiento fue altísimo. Un post viral en Instagram decía: <em>\"¡AL FIN LLEGÓ MELI+ A ARGENTINA! Es un golazo, te dan Disney+, Star+, envíos gratis... es todo lo que está bien.\"</em></li></ul>"
+      },
+      "Colombia": {
+        "sentimentIndex": [60, 61, 62, 63, 64, 65, 64, 65, 62, 63, 65, 80],
+        "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25"],
+        "events": [
+          {"month": "May 25", "text": "Amazon Prime llega a CO"},
+          {"month": "Ago 25", "text": "Lanzamiento Meli+"}
+        ],
+        "table": [
+          {"mes": "Ago 25", "detractores": "Bajo", "motivosDet": "Competencia directa de Amazon", "promotores": "Muy Alto", "motivosPro": "Propuesta de valor fuerte, respuesta a Amazon", "eventos": "Lanzamiento de Meli+.", "competencia": "Amazon Prime, que se lanzó en mayo, es el principal rival."},
+          {"mes": "May 25", "detractores": "Medio", "motivosDet": "Mercado Libre se percibe como lento en reaccionar", "promotores": "N/A", "motivosPro": "N/A", "eventos": "Contexto: Amazon Prime lanza su servicio completo en Colombia.", "competencia": "Amazon Prime llega con envíos gratis y Prime Video."}
+        ],
+        "summary": "<!-- HTML con bullets y citas --><ul><li><strong class='text-rose-600'>Detractores:</strong> La comparación con Amazon es inevitable. Un usuario en un blog de tecnología comentó: <em>\"Meli+ está bueno, pero Amazon llegó primero con una oferta muy sólida. Les va a costar competir en envíos internacionales.\"</em> (SIC)</li><li><strong class='text-emerald-600'>Promotores:</strong> El lanzamiento fue recibido como una jugada estratégica necesaria y positiva. Un tweet popular afirmó: <em>\"Excelente respuesta de Mercado Libre con Meli+. El combo con Disney+ y los envíos locales le gana a Prime para el día a día en Colombia. ¡Ya me suscribí!\"</em></li></ul>"
+      }
+    };
+
+    /* ===== Vertiente 2 (Alertas) y Vertiente 3 (Plataformas) ===== */
+    const newsData = [
+      {
+        "id": 101,
+        "entity": "Temu",
+        "country": "México",
+        "impact": "Alto",
+        "title": "Mexico's COFECE Opens Formal Investigation Into Temu and Shein for Anti-Competitive Practices",
+        "url": "https://www.reuters.com/world/americas/mexico-launches-antitrust-probe-into-e-commerce-giants-temu-shein-2025-08-25/",
+        "date": "25-08-2025",
+        "category": "Sanción Legal",
+        "summary": "Mexico's antitrust regulator is investigating if the platforms' pricing and supplier strategies violate competition laws, potentially leading to fines or operational changes.",
+        "publisher": "reuters.com",
+        "url_raw": "https://www.reuters.com/world/americas/mexico-launches-antitrust-probe-into-e-commerce-giants-temu-shein-2025-08-25/",
+        "url_canonical": "https://www.reuters.com/world/americas/mexico-launches-antitrust-probe-into-e-commerce-giants-temu-shein-2025-08-25/",
