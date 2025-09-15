@@ -148,168 +148,129 @@
   <script>
     /* ===== Sentimiento (Vertiente 1) ===== */
     const sentimentData = {
-      "Brasil": {
-        sentimentIndex: [75, 68, 70, 72, 69, 55, 58, 62, 65, 45, 50, 52],
-        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dic 24', 'Ene 25', 'Feb 25', 'Mar 25', 'Abr 25', 'May 25', 'Jun 25', 'Jul 25', 'Ago 25'],
+      'Brasil': {
+        sentimentIndex: [85, 82, 79, 78, 77, 72, 74, 75, 78, 65, 66, 68, 70],
+        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dic 24', 'Ene 25', 'Feb 25', 'Mar 25', 'Abr 25', 'May 25', 'Jun 25', 'Jul 25', 'Ago 25', 'Sep 25'],
         events: [
-            { month: 'Sep 24', text: 'Lanzamiento Meli+' },
-            { month: 'Feb 25', text: 'Cambio % cashback' },
-            { month: 'May 25', text: 'Rendimiento 120% CDI' },
-            { month: 'Jun 25', text: 'Cambio política envío gratis' }
+          { month: 'Sep 24', text: 'Lanzamiento Meli+' },
+          { month: 'Feb 25', text: 'Cambio % cashback' },
+          { month: 'May 25', text: 'Beneficio 120% CDI' },
+          { month: 'Jun 25', text: 'Cambio envíos gratis' }
         ],
         table: [
-            { mes: 'Jun 25', detractores: 'Muy Alto', motivosDet: 'Devaluación del envío', promotores: 'Bajo', motivosPro: 'Paquete de streaming', eventos: 'Anuncio de envío gratis a partir de R$19,90 para no suscriptores.', competencia: 'Shopee mantiene agresividad en cupones de envío.' },
-            { mes: 'May 25', detractores: 'Medio', motivosDet: 'Costo de suscripción', promotores: 'Alto', motivosPro: 'Rendimiento 120% CDI', eventos: 'Lanzamiento de la cuenta que rinde 120% del CDI.', competencia: 'Nubank y PicPay como alternativas de inversión.' },
-            { mes: 'Feb 25', detractores: 'Alto', motivosDet: 'Reducción de cashback', promotores: 'Bajo', motivosPro: 'Acceso a Disney+', eventos: 'Cambio en el porcentaje de cashback en compras.', competencia: 'Amazon Prime mantiene su propuesta de valor estable.' },
-            { mes: 'Sep 24', detractores: 'Medio', motivosDet: 'Bugs iniciales, UI confusa', promotores: 'Alto', motivosPro: 'Acceso a Disney+/Star+', eventos: 'Lanzamiento oficial de Meli+ en Brasil.', competencia: 'Fuerte posicionamiento de Amazon Prime.' }
+          { mes: 'Sep 25', detractores: 'Estable', motivosDet: 'Pocos descuentos nuevos', promotores: 'Estable', motivosPro: 'Estabilidad del servicio', eventos: 'Periodo sin cambios', competencia: 'Shopee agresivo en moda' },
+          { mes: 'Jun 25', detractores: 'Aumento significativo', motivosDet: 'Pérdida valor envío gratis', promotores: 'Caída', motivosPro: 'Aún vale por streaming', eventos: 'Envío gratis general ≥ R$19,90', competencia: '-' },
+          { mes: 'May 25', detractores: 'Leve aumento', motivosDet: 'Costos no claros', promotores: 'Aumento', motivosPro: 'Rendimiento 120% CDI', eventos: 'Lanzamiento Cofrinhos 120% CDI', competencia: '-' },
+          { mes: 'Feb 25', detractores: 'Aumento', motivosDet: 'Cashback reducido', promotores: 'Caída', motivosPro: 'El combo de streaming lo salva', eventos: 'Cambio % cashback', competencia: 'Nubank Ultravioleta con más beneficios' },
+          { mes: 'Sep 24', detractores: 'Aumento inicial', motivosDet: 'Confusión con beneficios', promotores: 'Aumento fuerte', motivosPro: 'Disney+ y envíos gratis', eventos: 'Lanzamiento Meli+', competencia: 'Amazon Prime Day' }
         ],
         summary: `
-          <h4 class="font-semibold text-rose-800">Principales Puntos de Fricción:</h4>
+          <p>La percepción en Brasil muestra una alta sensibilidad a los cambios en la propuesta de valor. La modificación en la política de envíos gratis en <strong>junio de 2025</strong> generó la caída más abrupta del índice, con un pico de comentarios negativos.</p>
           <ul>
-            <li>La percepción del valor de la suscripción se vio fuertemente impactada en <strong>junio de 2025</strong> por el cambio en la política de envíos, generando una ola de quejas sobre la devaluación del principal beneficio de Meli+.</li>
-            <li>La reducción del cashback en <strong>febrero de 2025</strong> fue otro punto crítico, con usuarios cuestionando la rentabilidad de la membresía.</li>
-          </ul>
-          <blockquote class="border-l-4 border-rose-300 pl-4 mt-2 italic text-gray-600">
-            "Qual o sentido de pagar Meli+ se agora o frete grátis é pra quase todo mundo? A assinatura perdeu o valor. Vou cancelar." (Usuario en X)
-          </blockquote>
-          <h4 class="font-semibold text-emerald-800 mt-4">Principales Puntos a Favor:</h4>
-          <ul>
-            <li>El paquete de streaming (Disney+ y Star+) sigue siendo el ancla de valor más consistente y elogiada por los promotores.</li>
-            <li>El lanzamiento de la cuenta remunerada al <strong>120% del CDI</strong> en <strong>mayo de 2025</strong> fue un acierto, atrayendo a un segmento de usuarios interesados en beneficios financieros.</li>
-          </ul>
-          <blockquote class="border-l-4 border-emerald-300 pl-4 mt-2 italic text-gray-600">
-            "O rendimento de 120% no cofrinho pagou a assinatura. Pra quem usa a conta do Mercado Pago, o Meli+ ficou muito mais interessante." (Comentario en YouTube)
-          </blockquote>
-        `
-      },
-      "México": {
-        sentimentIndex: [78, 72, 74, 75, 71, 60, 63, 65, 62, 68, 70, 71],
-        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dic 24', 'Ene 25', 'Feb 25', 'Mar 25', 'Abr 25', 'May 25', 'Jun 25', 'Jul 25', 'Ago 25'],
-        events: [
-            { month: 'Sep 24', text: 'Lanzamiento Meli+' },
-            { month: 'Feb 25', text: 'Cambio % cashback' },
-            { month: 'May 25', text: 'Lanzamiento Nu+ / Hot Sale' }
-        ],
-        table: [
-            { mes: 'May 25', detractores: 'Alto', motivosDet: 'Retrasos en envíos (Hot Sale)', promotores: 'Medio', motivosPro: 'Ofertas y descuentos', eventos: 'Periodo de alta demanda por Hot Sale MX.', competencia: 'Lanzamiento de la suscripción Nu+ de Nubank; Amazon con promociones agresivas.' },
-            { mes: 'Feb 25', detractores: 'Alto', motivosDet: 'Reducción de cashback', promotores: 'Bajo', motivosPro: 'Beneficios de streaming', eventos: 'Ajuste a la baja del % de cashback en compras.', competencia: 'Walmart Pass y Amazon Prime con fuerte presencia.' },
-            { mes: 'Sep 24', detractores: 'Medio', motivosDet: 'Dudas sobre beneficios', promotores: 'Muy Alto', motivosPro: 'Streaming (Disney+/Star+), envíos', eventos: 'Lanzamiento oficial de Meli+ en México.', competencia: 'Amazon Prime es el principal referente para los usuarios.' }
-        ],
-        summary: `
-          <h4 class="font-semibold text-rose-800">Principales Puntos de Fricción:</h4>
-          <ul>
-            <li>Al igual que en Brasil, la reducción del cashback en <strong>febrero de 2025</strong> fue mal recibida y generó un pico de comentarios negativos en redes y sitios como Apestan.com.</li>
-            <li>Durante el <strong>Hot Sale (mayo 2025)</strong>, se observó un aumento significativo en quejas logísticas (retrasos en entregas), afectando la percepción de fiabilidad del envío "Full".</li>
-          </ul>
-          <blockquote class="border-l-4 border-rose-300 pl-4 mt-2 italic text-gray-600">
-            "Pagué Meli+ para tener mis compras del Hot Sale rápido y llevan una semana de retraso. ¿Para qué sirve entonces?" (Usuario en Apestan.com)
-          </blockquote>
-          <h4 class="font-semibold text-emerald-800 mt-4">Principales Puntos a Favor:</h4>
-          <ul>
-            <li>El paquete de streaming sigue siendo el principal motor de adquisición y retención, con menciones muy positivas sobre el valor percibido.</li>
-            <li>Los descuentos exclusivos en plataformas como Max y Paramount+ son un diferenciador valorado por un segmento de la base de suscriptores.</li>
-          </ul>
-          <blockquote class="border-l-4 border-emerald-300 pl-4 mt-2 italic text-gray-600">
-            "Entre Disney, Star+ y el descuento de Max, la suscripción se paga sola. El envío gratis es un extra." (Usuario en Reddit México)
-          </blockquote>
-        `
-      },
-      "Chile": {
-        sentimentIndex: [65, 67, 68, 70, 72, 73, 75, 82, 80, 79, 78, 77],
-        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dic 24', 'Ene 25', 'Feb 25', 'Mar 25', 'Abr 25', 'May 25', 'Jun 25', 'Jul 25', 'Ago 25'],
-        events: [
-            { month: 'Abr 25', text: 'Nuevos beneficios Meli+' }
-        ],
-        table: [
-            { mes: 'Abr 25', detractores: 'Bajo', motivosDet: 'Costo mensual', promotores: 'Muy Alto', motivosPro: 'Nuevos descuentos y beneficios', eventos: 'Anuncio y activación de nuevos beneficios para suscriptores.', competencia: 'Falabella y Ripley con agresivos descuentos para clientes con tarjeta CMR/Ripley.' },
-            { mes: 'Ene 25', detractores: 'Medio', motivosDet: 'Tiempos de envío a regiones', promotores: 'Medio', motivosPro: 'Acceso a Disney+', eventos: 'Período estándar sin grandes cambios.', competencia: 'Competencia constante con el retail local (Falabella, Ripley).' }
-        ],
-        summary: `
-          <h4 class="font-semibold text-rose-800">Principales Puntos de Fricción:</h4>
-          <ul>
-            <li>La principal queja recurrente, aunque de bajo volumen, se centra en los tiempos de entrega a regiones extremas, que no siempre cumplen la promesa de rapidez.</li>
-            <li>Comparaciones constantes con los programas de lealtad de Falabella (CMR Puntos) y Ripley, especialmente durante eventos de descuentos.</li>
-          </ul>
-          <blockquote class="border-l-4 border-rose-300 pl-4 mt-2 italic text-gray-600">
-            "El envío a Punta Arenas sigue demorando más de la cuenta, incluso con Meli+. En eso, el retail local a veces es más confiable." (Reclamo en SERNAC)
-          </blockquote>
-          <h4 class="font-semibold text-emerald-800 mt-4">Principales Puntos a Favor:</h4>
-          <ul>
-            <li>El anuncio de nuevos beneficios en <strong>abril de 2025</strong> generó un pico muy positivo en el sentimiento, siendo percibido como una mejora tangible del programa.</li>
-            <li>La conveniencia y la amplitud del catálogo de Mercado Libre, sumado a los envíos gratis, son un factor de lealtad clave.</li>
+            <li><strong>Detractores:</strong> El tema dominante es la percepción de devaluación del programa. "Se Meli liberou frete grátis pra todo mundo acima de 19,90, qual a vantagem de eu pagar o Meli+ agora? Só pelo streaming não compensa." (Reclame Aqui).</li>
+            <li><strong>Promotores:</strong> El rendimiento del 120% del CDI en "Cofrinhos" (mayo 2025) fue un acierto, generando comentarios positivos sobre el ecosistema financiero. "O dinheiro rendendo 120% do CDI no Meli+ já paga a assinatura, o resto é lucro." (Comentario YouTube).</li>
           </ul>
         `
       },
-      "Argentina": {
-        sentimentIndex: [60, 62, 65, 68, 70, 71, 72, 73, 75, 73, 74, 72],
-        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dic 24', 'Ene 25', 'Feb 25', 'Mar 25', 'Abr 25', 'May 25', 'Jun 25', 'Jul 25', 'Ago 25'],
+      'México': {
+        sentimentIndex: [88, 86, 85, 83, 84, 75, 76, 74, 70, 71, 72, 74, 75],
+        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dic 24', 'Ene 25', 'Feb 25', 'Mar 25', 'Abr 25', 'May 25', 'Jun 25', 'Jul 25', 'Ago 25', 'Sep 25'],
         events: [
-            { month: 'May 25', text: 'Lanzamiento Meli+ (desde Nivel 6)' }
+          { month: 'Sep 24', text: 'Lanzamiento Meli+' },
+          { month: 'Feb 25', text: 'Cambio % cashback' },
+          { month: 'May 25', text: 'Hot Sale / Lanza NU+' }
         ],
         table: [
-            { mes: 'May 25', detractores: 'Medio', motivosDet: 'Confusión en la migración', promotores: 'Alto', motivosPro: 'Paquete de streaming', eventos: 'Transición de Nivel 6 a Meli+. Comunicación del nuevo programa.', competencia: 'Amazon Prime Video y otros servicios de streaming compiten por separado.' }
+           { mes: 'Sep 25', detractores: 'Estable', motivosDet: 'Aumento de precios en súper', promotores: 'Leve aumento', motivosPro: 'Envíos Full son muy rápidos', eventos: 'Período sin cambios', competencia: 'Klar anuncia nuevo producto' },
+           { mes: 'May 25', detractores: 'Aumento', motivosDet: 'NU+ es más claro y sin costo', promotores: 'Aumento', motivosPro: 'Ofertas agresivas en Hot Sale', eventos: 'Hot Sale MX', competencia: 'Nubank lanza programa NU+' },
+           { mes: 'Feb 25', detractores: 'Aumento significativo', motivosDet: 'Menos cashback es un robo', promotores: 'Caída', motivosPro: 'Combo streaming aún conviene', eventos: 'Cambio % cashback', competencia: '-' },
+           { mes: 'Sep 24', detractores: 'Aumento inicial', motivosDet: 'Problemas migración Nivel 6', promotores: 'Aumento fuerte', motivosPro: 'Max y Disney+ incluidos', eventos: 'Lanzamiento Meli+', competencia: 'Amazon Prime Day' }
         ],
         summary: `
-          <h4 class="font-semibold text-rose-800">Principales Puntos de Fricción:</h4>
+          <p>En México, el lanzamiento fue muy positivo, pero la competencia directa en el sector fintech (NU+) y los cambios en beneficios han erosionado el sentimiento. El Hot Sale de <strong>mayo de 2025</strong> fue un momento clave de polarización.</p>
           <ul>
-            <li>La transición de Nivel 6 a Meli+ en <strong>mayo de 2025</strong> generó cierta confusión inicial, con usuarios preguntando si perdían beneficios o si el costo aumentaba.</li>
-            <li>El costo de la suscripción es un tema sensible y se evalúa constantemente en relación con la inflación y el poder adquisitivo.</li>
-          </ul>
-          <blockquote class="border-l-4 border-rose-300 pl-4 mt-2 italic text-gray-600">
-            "No entendí bien el cambio de Nivel 6 a Meli+. ¿Tengo que pagar extra ahora para tener lo mismo? La app no es clara." (Consulta en tuquejasuma.com)
-          </blockquote>
-          <h4 class="font-semibold text-emerald-800 mt-4">Principales Puntos a Favor:</h4>
-          <ul>
-            <li>La incorporación del paquete de streaming (Disney+/Star+) fue recibida de manera abrumadoramente positiva, vista como una gran adición de valor.</li>
-            <li>Las cuotas sin interés, cuando están disponibles, son un beneficio extremadamente valorado y un fuerte impulsor de la lealtad.</li>
+            <li><strong>Detractores:</strong> La comparación con nuevas ofertas es una constante. "Con lo que Nubank está ofreciendo con NU+, ya no sé si me conviene seguir pagando Meli+. Las reglas son más simples allá." (Reddit r/MexicoFinanciero).</li>
+            <li><strong>Promotores:</strong> La logística y el valor percibido durante eventos de alto tráfico de compras siguen siendo un pilar. "Aproveché el Hot Sale como nunca con Meli+, los descuentos extras y el envío en horas hicieron toda la diferencia." (X/Twitter).</li>
           </ul>
         `
       },
-      "Colombia": {
-        sentimentIndex: [60, 61, 62, 63, 64, 65, 66, 68, 65, 68, 72, 80],
-        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dic 24', 'Ene 25', 'Feb 25', 'Mar 25', 'Abr 25', 'May 25', 'Jun 25', 'Jul 25', 'Ago 25'],
+      'Chile': {
+        sentimentIndex: [65, 66, 68, 67, 68, 69, 70, 78, 79, 78, 77, 78, 79],
+        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dic 24', 'Ene 25', 'Feb 25', 'Mar 25', 'Abr 25', 'May 25', 'Jun 25', 'Jul 25', 'Ago 25', 'Sep 25'],
         events: [
-            { month: 'May 25', text: 'Llegada de Amazon Prime' },
-            { month: 'Ago 25', text: 'Lanzamiento Meli+' }
+          { month: 'Abr 25', text: 'Nuevos beneficios Meli+' }
         ],
         table: [
-            { mes: 'Ago 25', detractores: 'Medio', motivosDet: 'Bugs iniciales', promotores: 'Muy Alto', motivosPro: 'Propuesta de valor integral', eventos: 'Lanzamiento oficial de Meli+ en Colombia, migrando desde Nivel 6.', competencia: 'Amazon Prime, lanzado en mayo, ya es un competidor directo.' },
-            { mes: 'May 25', detractores: 'N/A', motivosDet: 'N/A', promotores: 'N/A', motivosPro: 'N/A', eventos: 'Aumento de conversación sobre programas de lealtad.', competencia: 'Llegada de Amazon Prime a Colombia, generando comparaciones con Nivel 6 de Mercado Libre.' }
+          { mes: 'Sep 25', detractores: 'Estable', motivosDet: 'Faltan más alianzas', promotores: 'Estable', motivosPro: 'El envío gratis funciona bien', eventos: 'Periodo sin cambios', competencia: 'Ripley con promo agresiva' },
+          { mes: 'Abr 25', detractores: 'Caída', motivosDet: 'No entiendo los beneficios', promotores: 'Aumento fuerte', motivosPro: '¡Por fin más valor!', eventos: 'Nuevos beneficios Meli+ CL', competencia: '-' },
+          { mes: 'Sep 24', detractores: 'Estable', motivosDet: 'Nivel 6 no es como Meli+', promotores: 'Estable', motivosPro: 'Acumulo puntos para envíos', eventos: 'Contexto Nivel 6', competencia: 'Falabella con descuentos CMR' }
         ],
         summary: `
-          <h4 class="font-semibold text-rose-800">Principales Puntos de Fricción:</h4>
+          <p>Chile experimentó una mejora significativa en el sentimiento con la introducción de nuevos beneficios en <strong>abril de 2025</strong>, pasando de una percepción tibia sobre el "Nivel 6" a una valoración más positiva del programa Meli+.</p>
           <ul>
-            <li>Tras el lanzamiento en <strong>agosto de 2025</strong>, las quejas iniciales se centraron en problemas técnicos menores y en la activación de los beneficios de streaming.</li>
-            <li>La llegada de Amazon Prime en <strong>mayo de 2025</strong> estableció un punto de comparación inmediato para los usuarios, quienes evalúan activamente qué servicio ofrece mejor valor.</li>
+            <li><strong>Detractores:</strong> Las quejas se centran en la falta de más alianzas de descuentos en comparación con programas de la competencia. "Comparado con los descuentos que me da el banco o Falabella, a Meli+ le falta para ser el mejor." (Foro Reclamos.cl).</li>
+            <li><strong>Promotores:</strong> El cambio fue bien recibido por los usuarios más fieles. "Ahora sí vale la pena. Antes era solo para envíos, pero con los descuentos nuevos y el streaming, se paga solo." (Comentario Instagram).</li>
           </ul>
-          <h4 class="font-semibold text-emerald-800 mt-4">Principales Puntos a Favor:</h4>
+        `
+      },
+      'Argentina': {
+        sentimentIndex: [60, 62, 61, 63, 62, 64, 65, 68, 80, 78, 76, 75, 74],
+        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dic 24', 'Ene 25', 'Feb 25', 'Mar 25', 'Abr 25', 'May 25', 'Jun 25', 'Jul 25', 'Ago 25', 'Sep 25'],
+        events: [
+          { month: 'May 25', text: 'Lanzamiento Meli+ AR' }
+        ],
+        table: [
+          { mes: 'Sep 25', detractores: 'Leve aumento', motivosDet: 'La inflación se come el beneficio', promotores: 'Estable', motivosPro: 'Ahorro mucho en envíos', eventos: 'Contexto inflacionario', competencia: '-' },
+          { mes: 'May 25', detractores: 'Aumento inicial', motivosDet: 'El precio es alto en pesos', promotores: 'Aumento muy fuerte', motivosPro: '¡Al fin Meli+ con todo!', eventos: 'Lanzamiento Meli+ AR', competencia: '-' },
+          { mes: 'Sep 24', detractores: 'Estable', motivosDet: 'Nivel 6 es muy básico', promotores: 'Estable', motivosPro: 'Solo sirve para envíos gratis', eventos: 'Contexto Nivel 6', competencia: 'Precios cuidados' }
+        ],
+        summary: `
+          <p>El lanzamiento de Meli+ en <strong>mayo de 2025</strong> provocó el salto más grande en el índice de sentimiento de toda la región, a pesar de preocupaciones iniciales sobre el costo en el contexto económico local.</p>
           <ul>
-            <li>El lanzamiento de Meli+ fue recibido con gran expectación y generó un fuerte pico de sentimiento positivo, especialmente por el paquete de streaming.</li>
-            <li>La propuesta de valor unificada (envíos, streaming, descuentos) es vista como muy competitiva frente a Rappi Pro y Amazon Prime.</li>
+            <li><strong>Detractores:</strong> La principal preocupación es el costo-beneficio frente a la inflación. "Lo pago, pero cada mes me pregunto si vale la pena con todo lo que sube. Necesito usarlo mucho para que rinda." (Foro tuquejasuma.com).</li>
+            <li><strong>Promotores:</strong> La propuesta de valor unificada fue un éxito rotundo. "Pasar de Nivel 6 a esto es un mundo de diferencia. Tengo Disney+, Max y no pago más envío. Golazo." (X/Twitter).</li>
           </ul>
-          <blockquote class="border-l-4 border-emerald-300 pl-4 mt-2 italic text-gray-600">
-            "¡Al fin llegó Meli+ a Colombia! Ya activé Disney+ y Star+. Si los envíos funcionan bien, valdrá totalmente la pena sobre Amazon." (Usuario en TikTok)
-          </blockquote>
+        `
+      },
+      'Colombia': {
+        sentimentIndex: [62, 63, 61, 60, 58, 59, 60, 61, 82, 80, 79, 78, 77],
+        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dic 24', 'Ene 25', 'Feb 25', 'Mar 25', 'May 25', 'Ago 25', 'Sep 25'],
+        events: [
+          { month: 'May 25', text: 'Amazon Prime llega a CO' },
+          { month: 'Ago 25', text: 'Lanzamiento Meli+ CO' }
+        ],
+        table: [
+          { mes: 'Sep 25', detractores: 'Estable', motivosDet: 'Falta el cashback de otros países', promotores: 'Estable', motivosPro: 'Streaming y envíos, buen combo', eventos: '-', competencia: 'Rappi Pro con nuevas alianzas' },
+          { mes: 'Ago 25', detractores: 'Aumento inicial', motivosDet: 'Migración con fallos técnicos', promotores: 'Aumento muy fuerte', motivosPro: 'Excelente paquete de bienvenida', eventos: 'Lanzamiento Meli+ CO', competencia: '-' },
+          { mes: 'May 25', detractores: 'Aumento', motivosDet: 'Nivel 6 es pobre vs Prime', promotores: 'Caída', motivosPro: 'Uso Rappi para todo', eventos: '-', competencia: 'Amazon Prime llega a CO' },
+          { mes: 'Sep 24', detractores: 'Estable', motivosDet: 'Pocos beneficios reales', promotores: 'Estable', motivosPro: 'Solo para envíos', eventos: 'Contexto Nivel 6', competencia: '-' }
+        ],
+        summary: `
+          <p>El sentimiento en Colombia, que venía decayendo por la llegada de competidores fuertes como Amazon Prime, se disparó con el lanzamiento de Meli+ en <strong>agosto de 2025</strong>, posicionándolo como una alternativa competitiva.</p>
+          <ul>
+            <li><strong>Detractores:</strong> Los usuarios se quejan de la ausencia de beneficios financieros presentes en otros mercados. "Por qué en Brasil y México tienen cashback y acá no? Nos están dando un Meli+ de segunda." (Comentarios SIC).</li>
+            <li><strong>Promotores:</strong> El valor del paquete de entretenimiento es el principal motor. "Pagar por Meli+ y que te den Disney y Max es una ganga. Ya cancelé mis otras suscripciones." (Foro de tecnología local).</li>
+          </ul>
         `
       }
     };
 
     /* ===== Vertiente 2 (Alertas) y Vertiente 3 (Plataformas) ===== */
     const newsData = [
-      { "id": 1, "entity": "Rappi Pro", "country": "México", "impact": "Medio", "title": "Rappi Expands 'Rappi Pro' Benefits with Exclusive Access to Live Sporting Events in Mexico and Colombia", "url": "https://www.portafolio.co/negocios/empresas/rappi-pro-sumaria-partidos-de-futbol-en-vivo-en-mexico-y-colombia-587123", "date": "20-08-2025", "category": "Producto", "summary": "Rappi has partnered with a regional sports broadcaster to offer its 'Rappi Pro' subscribers in Mexico and Colombia exclusive streaming access to select local league soccer matches directly within the Rappi app.", "publisher": "portafolio.co", "url_raw": "https://www.portafolio.co/negocios/empresas/rappi-pro-sumaria-partidos-de-futbol-en-vivo-en-mexico-y-colombia-587123", "url_canonical": "https://www.portafolio.co/negocios/empresas/rappi-pro-sumaria-partidos-de-futbol-en-vivo-en-mexico-y-colombia-587123", "http_status": "200", "language": "es", "out_of_window": false },
-      { "id": 2, "entity": "OpenAI (ChatGPT Premium)", "country": "Todos los Países", "impact": "Alto", "title": "OpenAI Announces General Availability of GPT-5 API for Enterprise Customers", "url": "https://openai.com/blog/gpt-5-api-now-available", "date": "18-08-2025", "category": "Flagship AI", "summary": "OpenAI has officially launched its next-generation model, GPT-5, through its API for all enterprise-tier customers, following a successful private beta. The model promises significant improvements in reasoning, code generation, and multilingual capabilities.", "publisher": "openai.com", "url_raw": "https://openai.com/blog/gpt-5-api-now-available", "url_canonical": "https://openai.com/blog/gpt-5-api-now-available", "http_status": "200", "language": "en", "out_of_window": false },
-      { "id": 3, "entity": "Shein", "country": "México", "impact": "Medio", "title": "Shein Opens First Permanent Physical Showroom and Fulfillment Hub in Mexico City", "url": "https://www.elfinanciero.com.mx/empresas/2025/08/15/shein-apuesta-por-mexico-abre-showroom-permanente-y-centro-de-distribucion-en-cdmx/", "date": "15-08-2025", "category": "Estrategia", "summary": "In a move to bolster its omnichannel strategy, Shein has opened a permanent location in Mexico City that functions as both a customer showroom and a local fulfillment center for faster deliveries in the metropolitan area.", "publisher": "elfinanciero.com.mx", "url_raw": "https://www.elfinanciero.com.mx/empresas/2025/08/15/shein-apuesta-por-mexico-abre-showroom-permanente-y-centro-de-distribucion-en-cdmx/", "url_canonical": "https://www.elfinanciero.com.mx/empresas/2025/08/15/shein-apuesta-por-mexico-abre-showroom-permanente-y-centro-de-distribucion-en-cdmx/", "http_status": "200", "language": "es", "out_of_window": false },
-      { "id": 4, "entity": "Amazon Prime", "country": "Brasil", "impact": "Alto", "title": "Amazon Confirms Prime Subscription Price Increase in Brazil to R$21.90/month", "url": "https://www.reuters.com/business/retail-consumer/amazon-hikes-prime-price-brazil-citing-costs-2025-08-12/", "date": "12-08-2025", "category": "Cambio de Precio", "summary": "Amazon will increase the price of its Prime subscription in Brazil from R$14.90 to R$21.90 per month, effective for new members immediately and for existing members on their next billing cycle after September 15.", "publisher": "reuters.com", "url_raw": "https://www.reuters.com/business/retail-consumer/amazon-hikes-prime-price-brazil-citing-costs-2025-08-12/?utm_source=twitter", "url_canonical": "https://www.reuters.com/business/retail-consumer/amazon-hikes-prime-price-brazil-citing-costs-2025-08-12/", "http_status": "200", "language": "en", "out_of_window": false },
-      { "id": 5, "entity": "Uber One", "country": "Chile", "impact": "Medio", "title": "Uber Integrates Grocery Delivery from Cencosud Stores into Uber One Membership in Chile", "url": "https://www.latercera.com/pulso/noticia/uber-one-suma-a-cencosud-en-chile-membresia-incluira-despacho-gratis-de-jumbo-y-santa-isabel/XEQLG2Q6YVGI7MHKJ23E5S24YI/", "date": "09-08-2025", "category": "Estrategia", "summary": "Uber expands its partnership with Cencosud in Chile, allowing Uber One members to receive free delivery and special discounts on grocery orders from Jumbo and Santa Isabel supermarkets through the Uber Eats app.", "publisher": "latercera.com", "url_raw": "https://www.latercera.com/pulso/noticia/uber-one-suma-a-cencosud-en-chile-membresia-incluira-despacho-gratis-de-jumbo-y-santa-isabel/XEQLG2Q6YVGI7MHKJ23E5S24YI/", "url_canonical": "https://www.latercera.com/pulso/noticia/uber-one-suma-a-cencosud-en-chile-membresia-incluira-despacho-gratis-de-jumbo-y-santa-isabel/XEQLG2Q6YVGI7MHKJ23E5S24YI/", "http_status": "200", "language": "es", "out_of_window": false }
+      { "id": 1, "entity": "Nubank", "country": "Colombia", "impact": "Medio", "title": "Nu Colombia Receives Final Regulatory Approval to Operate as Financing Company", "url": "https://international.nubank.com.br/media/2025/nu-colombia-gets-final-approval/", "date": "12-09-2025", "category": "Sanción Legal", "summary": "Nu Colombia, a subsidiary of Nubank, has obtained the final license from the Financial Superintendence of Colombia (SFC) to operate as a financing company, allowing it to expand its product portfolio beyond credit cards.", "publisher": "international.nubank.com.br", "url_raw": "https://international.nubank.com.br/media/2025/nu-colombia-gets-final-approval/", "url_canonical": "https://international.nubank.com.br/media/2025/nu-colomiba-gets-final-approval/", "http_status": "200", "archived_url": null, "language": "en", "out_of_window": false },
+      { "id": 2, "entity": "OpenAI (ChatGPT Premium)", "country": "Todos los Países", "impact": "Alto", "title": "OpenAI Unveils GPT-5, Featuring Real-Time Multimodal Capabilities and Advanced Reasoning", "url": "https://openai.com/blog/gpt-5-unleashed", "date": "11-09-2025", "category": "Flagship AI", "summary": "OpenAI announced the launch of GPT-5, its next-generation large language model. The new model features significant improvements in reasoning, speed, and introduces real-time multimodal understanding of video and audio streams. It will be available to ChatGPT Plus subscribers and via API.", "publisher": "openai.com", "url_raw": "https://openai.com/blog/gpt-5-unleashed", "url_canonical": "https://openai.com/blog/gpt-5-unleashed", "http_status": "200", "archived_url": null, "language": "en", "out_of_window": false },
+      { "id": 3, "entity": "Amazon Prime", "country": "México", "impact": "Alto", "title": "Amazon Secures Exclusive LaLiga Broadcast Rights in Mexico for Prime Video Starting 2026 Season", "url": "https://press.aboutamazon.com/2025/9/amazon-prime-video-scores-exclusive-laliga-rights-in-mexico", "date": "09-09-2025", "category": "Derechos/Deportes", "summary": "Amazon has signed a multi-year deal to become the exclusive broadcaster of Spain's top football league, LaLiga, in Mexico. All matches will be streamed live on Prime Video, a significant move to bolster its sports content in the region.", "publisher": "press.aboutamazon.com", "url_raw": "https://press.aboutamazon.com/2025/9/amazon-prime-video-scores-exclusive-laliga-rights-in-mexico", "url_canonical": "https://press.aboutamazon.com/2025/9/amazon-prime-video-scores-exclusive-laliga-rights-in-mexico", "http_status": "200", "archived_url": null, "language": "en", "out_of_window": false },
+      { "id": 4, "entity": "Shein", "country": "Brasil", "impact": "Medio", "title": "Shein Expands Local Seller Program in Brazil, Aims for 50% Localized GMV by 2026", "url": "https://www.reuters.com/business/retail-consumer/shein-doubles-down-brazil-local-seller-push-2025-09-05/", "date": "05-09-2025", "category": "Estrategia", "summary": "Shein is accelerating its investment in Brazil by expanding its marketplace for local sellers. The company's goal is to have 50% of its Gross Merchandise Volume (GMV) in the country sourced from local manufacturers and sellers by the end of 2026.", "publisher": "reuters.com", "url_raw": "https://www.reuters.com/business/retail-consumer/shein-doubles-down-brazil-local-seller-push-2025-09-05/", "url_canonical": "https://www.reuters.com/business/retail-consumer/shein-doubles-down-brazil-local-seller-push-2025-09-05/", "http_status": "200", "archived_url": null, "language": "en", "out_of_window": false },
+      { "id": 5, "entity": "Rappi Pro", "country": "Argentina", "impact": "Medio", "title": "Rappi and Ualá Announce Deeper Integration for Pro Subscribers in Argentina", "url": "https://blog.rappi.com/uala-pro-partnership-argentina", "date": "03-09-2025", "category": "Estrategia", "summary": "Rappi and fintech Ualá will deepen their partnership, offering exclusive cashback benefits and preferential rates on Ualá products for Rappi Pro subscribers in Argentina, strengthening the value proposition of both ecosystems.", "publisher": "blog.rappi.com", "url_raw": "https://blog.rappi.com/uala-pro-partnership-argentina", "url_canonical": "https://blog.rappi.com/uala-pro-partnership-argentina", "http_status": "200", "archived_url": null, "language": "es", "out_of_window": false }
     ];
     const contentNewsData = [
-      { "id": 6, "entity": "Max", "country": "Brasil", "impact": "Alto", "title": "Warner Bros. Discovery Secures Exclusive LaLiga Streaming Rights for Max in Mexico and Brazil Starting 2026-27 Season", "url": "https://wbd.com/newsroom/press-releases/2025/08/21/max-to-become-exclusive-home-of-laliga-in-brazil-and-mexico/", "date": "21-08-2025", "category": "Derechos/Deportes", "summary": "WBD has won the bidding for a multi-year deal to exclusively stream Spain's LaLiga soccer matches on its Max platform in Brazil and Mexico, outbidding ESPN (Disney) and Amazon.", "publisher": "wbd.com", "url_raw": "https://wbd.com/newsroom/press-releases/2025/08/21/max-to-become-exclusive-home-of-laliga-in-brazil-and-mexico/", "url_canonical": "https://wbd.com/newsroom/press-releases/2025/08/21/max-to-become-exclusive-home-of-laliga-in-brazil-and-mexico/", "http_status": "200", "language": "en", "out_of_window": false },
-      { "id": 7, "entity": "Disney+", "country": "Todos los Países", "impact": "Medio", "title": "Disney+ Announces 'Star Wars: Heir to the Empire' Live-Action Series for Late 2026", "url": "https://www.thewaltdisneycompany.com/disney-announces-heir-to-the-empire-series/", "date": "19-08-2025", "category": "Lanzamiento", "summary": "As part of its content roadmap reveal, Lucasfilm announced a live-action series adaptation of the seminal 'Heir to the Empire' Star Wars novel, slated for a late 2026 release exclusively on Disney+.", "publisher": "thewaltdisneycompany.com", "url_raw": "https://www.thewaltdisneycompany.com/disney-announces-heir-to-the-empire-series/", "url_canonical": "https://www.thewaltdisneycompany.com/disney-announces-heir-to-the-empire-series/", "http_status": "200", "language": "en", "out_of_window": false },
-      { "id": 8, "entity": "Netflix", "country": "Todos los Países", "impact": "Alto", "title": "Netflix Confirms Acquisition of Animation Studio 'Moonbug Entertainment' to Bolster Kids Content", "url": "https://ir.netflix.net/news-releases/news-release-details/2025/Netflix-Acquires-Moonbug-Entertainment/default.aspx", "date": "14-08-2025", "category": "Fusión/Adquisición", "summary": "Netflix has completed its acquisition of Moonbug Entertainment, the studio behind 'CoComelon'. The deal, valued at approximately $2.5 billion, aims to strengthen Netflix's position in the family and kids streaming segment.", "publisher": "ir.netflix.net", "url_raw": "https://ir.netflix.net/news-releases/news-release-details/2025/Netflix-Acquires-Moonbug-Entertainment/default.aspx", "url_canonical": "https://ir.netflix.net/news-releases/news-release-details/2025/Netflix-Acquires-Moonbug-Entertainment/default.aspx", "http_status": "200", "language": "en", "out_of_window": false },
-      { "id": 9, "entity": "Spotify", "country": "Todos los Países", "impact": "Medio", "title": "Spotify Rolls Out AI-Powered 'Podcast Summaries' and 'Key Moments' Feature Globally", "url": "https://newsroom.spotify.com/2025-08-11/spotify-launches-ai-podcast-summaries/", "date": "11-08-2025", "category": "Producto", "summary": "Spotify is launching a new feature that uses generative AI to create concise summaries and identify key moments in podcasts, allowing users to quickly gauge an episode's content or jump to specific topics.", "publisher": "newsroom.spotify.com", "url_raw": "https://newsroom.spotify.com/2025-08-11/spotify-launches-ai-podcast-summaries/", "url_canonical": "https://newsroom.spotify.com/2025-08-11/spotify-launches-ai-podcast-summaries/", "http_status": "200", "language": "en", "out_of_window": false },
-      { "id": 10, "entity": "Apple TV+", "country": "Todos los Países", "impact": "Medio", "title": "Apple Appoints New Head of International Content for TV+ to Drive Global Expansion", "url": "https://variety.com/2025/tv/global/apple-hires-netflix-exec-international-content-tv-plus-1235689123/", "date": "08-08-2025", "category": "Estrategia", "summary": "Apple has hired a former Netflix international executive to lead its global content strategy for Apple TV+, signaling a renewed push to produce more localized original series and films for key markets outside the US.", "publisher": "variety.com", "url_raw": "https://variety.com/2025/tv/global/apple-hires-netflix-exec-international-content-tv-plus-1235689123/", "url_canonical": "https://variety.com/2025/tv/global/apple-hires-netflix-exec-international-content-tv-plus-1235689123/", "http_status": "200", "language": "en", "out_of_window": false }
+      { "id": 101, "entity": "Spotify", "impact": "Medio", "title": "Spotify Acquires AI Music Discovery Startup 'Melod.ai' to Enhance Personalization", "url": "https://newsroom.spotify.com/2025-09-13/spotify-acquires-melod-ai/", "date": "13-09-2025", "category": "Fusión/Adquisición", "summary": "Spotify announced the acquisition of Melod.ai, a startup specializing in artificial intelligence for music analysis and discovery. The technology will be integrated into Spotify's recommendation algorithms to improve playlist generation and user personalization.", "publisher": "newsroom.spotify.com", "url_raw": "https://newsroom.spotify.com/2025-09-13/spotify-acquires-melod-ai/", "url_canonical": "https://newsroom.spotify.com/2025-09-13/spotify-acquires-melod-ai/", "http_status": "200", "language": "en", "out_of_window": false },
+      { "id": 102, "entity": "Disney+", "impact": "Medio", "title": "Disney+ and Hulu to Begin International Rollout of Combined App in Q1 2026", "url": "https://thewaltdisneycompany.com/disney-hulu-combined-app-international-rollout/", "date": "10-09-2025", "category": "Producto", "summary": "Following its successful integration in the U.S., The Walt Disney Company will begin rolling out the combined Disney+ and Hulu app to international markets, starting with Europe and Latin America in the first quarter of 2026.", "publisher": "thewaltdisneycompany.com", "url_raw": "https://thewaltdisneycompany.com/disney-hulu-combined-app-international-rollout/", "url_canonical": "https://thewaltdisneycompany.com/disney-hulu-combined-app-international-rollout/", "http_status": "200", "language": "en", "out_of_window": false },
+      { "id": 103, "entity": "Max", "impact": "Medio", "title": "Warner Bros. Discovery Reports Stronger than Expected Subscriber Growth for Max in Q3 Earnings Preview", "url": "https://ir.wbd.com/news-releases/news-release-details/2025/WBD-Announces-Preliminary-Q3-Subscriber-Metrics/", "date": "08-09-2025", "category": "Resultados Financieros", "summary": "In a preliminary release ahead of its Q3 earnings, Warner Bros. Discovery reported that its flagship streaming service Max added more subscribers than analysts' projections, citing a strong content slate and reduced churn.", "publisher": "ir.wbd.com", "url_raw": "https://ir.wbd.com/news-releases/news-release-details/2025/WBD-Announces-Preliminary-Q3-Subscriber-Metrics/", "url_canonical": "https://ir.wbd.com/news-releases/news-release-details/2025/WBD-Announces-Preliminary-Q3-Subscriber-Metrics/", "http_status": "200", "language": "en", "out_of_window": false },
+      { "id": 104, "entity": "Apple TV+", "impact": "Medio", "title": "Apple Drops First Trailer for 'Severance' Season 2, Premiering November 14", "url": "https://www.apple.com/tv-pr/news/2025/09/apple-tv-reveals-highly-anticipated-trailer-for-emmy-award-winning-severance-season-two/", "date": "06-09-2025", "category": "Producto", "summary": "Apple TV+ has released the first full trailer for the second season of its critically acclaimed series 'Severance', confirming a release date of November 14th, 2025. The series is a key piece of Apple's original content strategy.", "publisher": "apple.com", "url_raw": "https://www.apple.com/tv-pr/news/2025/09/apple-tv-reveals-highly-anticipated-trailer-for-emmy-award-winning-severance-season-two/", "url_canonical": "https://www.apple.com/tv-pr/news/2025/09/apple-tv-reveals-highly-anticipated-trailer-for-emmy-award-winning-severance-season-two/", "http_status": "200", "language": "en", "out_of_window": false },
+      { "id": 105, "entity": "Netflix", "impact": "Alto", "title": "Netflix Confirms Global Price Increase for Premium and Standard Tiers, Ad-Supported Plan Unchanged", "url": "https://about.netflix.com/en/news/updating-our-prices", "date": "04-09-2025", "category": "Cambio de Precio", "summary": "Netflix announced it will be increasing the monthly price of its Standard and Premium subscription plans in several key markets, including the US and Western Europe, by an average of 10-15%. The price of the ad-supported tier will remain the same to drive adoption.", "publisher": "about.netflix.com", "url_raw": "https://about.netflix.com/en/news/updating-our-prices", "url_canonical": "https://about.netflix.com/en/news/updating-our-prices", "http_status": "200", "language": "en", "out_of_window": false },
+      { "id": 106, "entity": "Paramount+", "impact": "Alto", "title": "Paramount Global and Skydance Media Announce Completion of Merger", "url": "https://www.paramount.com/press/paramount-global-and-skydance-media-complete-merger", "date": "02-09-2025", "category": "Fusión/Adquisición", "summary": "The long-negotiated merger between Paramount Global and Skydance Media has officially closed. The new combined entity will continue to be publicly traded, with a new leadership structure aimed at revitalizing its streaming and studio businesses.", "publisher": "paramount.com", "url_raw": "https://www.paramount.com/press/paramount-global-and-skydance-media-complete-merger", "url_canonical": "https://www.paramount.com/press/paramount-global-and-skydance-media-complete-merger", "http_status": "200", "language": "en", "out_of_window": false }
     ];
-
 
     /* ===== LISTAS MAESTRAS ===== */
     const ALL_NEWS_COUNTRIES = ['Argentina','Brasil','Chile','México','Todos los Países'];
@@ -448,7 +409,7 @@
         card.innerHTML = `
           <div class="flex-grow">
             <div class="flex justify-between items-start mb-2">
-              <h4 class="font-bold text-gray-800 text-lg">${row.entity}${row.country ? ` (${row.country})` : ''}</h4>
+              <h4 class="font-bold text-gray-800 text-lg">${row.entity}${row.country && row.country !== 'Todos los Países' ? ` (${row.country})` : ''}</h4>
               ${getCategoryTag(row.category)}
             </div>
             <p class="text-gray-700 mb-3">${row.title}</p>
@@ -501,15 +462,15 @@
       const idBase = group + '-';
       const html = [
         `<div class="filter-checkbox-item"><input type="checkbox" id="${idBase}all" value="all" class="mr-2"><label for="${idBase}all">Todos</label></div>`,
-        ...allItems.map(c => `<div class="filter-checkbox-item"><input type="checkbox" id="${idBase}${c}" value="${c}" class="mr-2"><label for="${idBase}${c}">${c}</label></div>`)
+        ...allItems.map(c => `<div class="filter-checkbox-item"><input type="checkbox" id="${idBase}${c.replace(/\s/g, '')}" value="${c}" class="mr-2"><label for="${idBase}${c.replace(/\s/g, '')}">${c}</label></div>`)
       ].join('');
       container.innerHTML = html;
     }
 
     function updateNewsFilters() {
       populateCheckboxes(newsFilterCountryContainer, ALL_NEWS_COUNTRIES.filter(c => c!=='Todos los Países'), 'news-country-');
-      populateCheckboxes(newsFilterCompanyContainer, ALL_NEWS_COMPANIES, 'news-company-');
-      populateCheckboxes(newsFilterCategoryContainer, ALL_NEWS_CATEGORIES, 'news-category-');
+      populateCheckboxes(newsFilterCompanyContainer, ALL_NEWS_COMPANIES.sort(), 'news-company-');
+      populateCheckboxes(newsFilterCategoryContainer, ALL_NEWS_CATEGORIES.sort(), 'news-category-');
       newsFilterCountryContainer.addEventListener('change', filterNews);
       newsFilterCompanyContainer.addEventListener('change', filterNews);
       newsFilterCategoryContainer.addEventListener('change', filterNews);
@@ -517,8 +478,8 @@
 
     function updateContentNewsFilters() {
       populateCheckboxes(contentFilterCountryContainer, ALL_CONTENT_COUNTRIES.filter(c => c!=='Todos los Países'), 'content-country-');
-      populateCheckboxes(contentFilterCompanyContainer, ALL_CONTENT_COMPANIES, 'content-company-');
-      populateCheckboxes(contentFilterCategoryContainer, ALL_CONTENT_CATEGORIES, 'content-category-');
+      populateCheckboxes(contentFilterCompanyContainer, ALL_CONTENT_COMPANIES.sort(), 'content-company-');
+      populateCheckboxes(contentFilterCategoryContainer, ALL_CONTENT_CATEGORIES.sort(), 'content-category-');
       contentFilterCountryContainer.addEventListener('change', filterContentNews);
       contentFilterCompanyContainer.addEventListener('change', filterContentNews);
       contentFilterCategoryContainer.addEventListener('change', filterContentNews);
@@ -587,9 +548,11 @@
       renderContentNewsCards();
     });
 
-    updateSentimentContent('Brasil');
-    updateNewsFilters(); renderNewsCards();
-    updateContentNewsFilters(); renderContentNewsCards();
+    document.addEventListener('DOMContentLoaded', () => {
+        updateSentimentContent('Brasil');
+        updateNewsFilters(); renderNewsCards();
+        updateContentNewsFilters(); renderContentNewsCards();
+    });
   </script>
 </body>
 </html>
