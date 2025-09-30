@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <meta charset="UTF--8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +16,6 @@
     .tab-btn { transition: background-color 0.3s ease; }
     .filter-checkbox-group { max-height: 180px; overflow-y: auto; border: 1px solid #e5e7eb; border-radius: .5rem; padding: 8px; }
     .filter-checkbox-item { display: flex; align-items: center; gap: .5rem; margin-bottom: .25rem; }
-    /* flecha del summary */
     details summary { list-style: none; }
     details summary::-webkit-details-marker { display: none; }
     details[open] summary svg { transform: rotate(180deg); }
@@ -51,37 +50,37 @@
 
     <!-- GLOSARIO (nativo con <details>, sin JS) -->
     <section id="glosario" class="bg-white rounded-lg shadow-md border border-gray-200 mb-8">
-        <details>
-            <summary class="cursor-pointer w-full flex items-center justify-between px-4 py-3 text-left text-gray-800 font-semibold hover:bg-gray-50">
-                <span>📖 Glosario</span>
-                <svg class="w-5 h-5 text-gray-500 rotate-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-700 border-t border-gray-200">
-                <div class="pt-4 space-y-4">
-                  <div>
-                    <p class="font-semibold mb-1">Niveles de sentimiento</p>
-                    <ul class="list-disc list-inside space-y-1">
-                      <li><span class="text-emerald-700 font-medium">Muy alto:</span> ≥55% menciones ponderadas o +10 p.p. vs. promedio 3m.</li>
-                      <li><span class="text-emerald-600 font-medium">Alto:</span> 50–54% o +5 a +9 p.p.</li>
-                      <li><span class="text-gray-700 font-medium">Estable:</span> cambio ≤±3 p.p. vs. mes previo.</li>
-                      <li><span class="text-rose-600 font-medium">Bajo:</span> 30–39% o −5 a −9 p.p.</li>
-                      <li><span class="text-rose-700 font-medium">Muy bajo:</span> ≤29% o caída ≥−10 p.p.</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p class="font-semibold mb-1">Mención</p>
-                    <p>
-                      Comentario individual capturado en fuentes monitorizadas (Reclame Aqui, SERNAC, Apestan.com, tuquejasuma, SIC, redes, foros, comentarios en noticias).
-                      Tras limpieza/deduplicación, cada mención se pondera por <em>engagement</em>, <em>recencia</em>, <em>credibilidad</em> y <em>severidad</em>.
-                      La suma ponderada genera el índice mensual (0–100).
-                    </p>
-                  </div>
-                  <p class="text-xs text-gray-500 pt-2">Glosario estático: no cambia entre corridas.</p>
-                </div>
+      <details>
+        <summary class="cursor-pointer w-full flex items-center justify-between px-4 py-3 text-left text-gray-800 font-semibold hover:bg-gray-50">
+          <span>📖 Glosario</span>
+          <svg class="w-5 h-5 text-gray-500 rotate-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="px-4 pb-4 text-sm text-gray-700" id="glosario-content">
+          <div class="pt-2 space-y-4">
+            <div>
+              <p class="font-semibold mb-1">Niveles de sentimiento</p>
+              <ul class="list-disc list-inside space-y-1">
+                <li><span class="text-emerald-700 font-medium">Muy alto:</span> ≥55% menciones ponderadas o +10 p.p. vs. promedio 3m.</li>
+                <li><span class="text-emerald-600 font-medium">Alto:</span> 50–54% o +5 a +9 p.p.</li>
+                <li><span class="text-gray-700 font-medium">Estable:</span> cambio ≤±3 p.p. vs. mes previo.</li>
+                <li><span class="text-rose-600 font-medium">Bajo:</span> 30–39% o −5 a −9 p.p.</li>
+                <li><span class="text-rose-700 font-medium">Muy bajo:</span> ≤29% o caída ≥−10 p.p.</li>
+              </ul>
             </div>
-        </details>
+            <div>
+              <p class="font-semibold mb-1">Mención</p>
+              <p>
+                Comentario individual capturado en fuentes monitorizadas (Reclame Aqui, SERNAC, Apestan.com, tuquejasuma, SIC, redes, foros, comentarios en noticias).
+                Tras limpieza/deduplicación, cada mención se pondera por <em>engagement</em>, <em>recencia</em>, <em>credibilidad</em> y <em>severidad</em>.
+                La suma ponderada genera el índice mensual (0–100).
+              </p>
+            </div>
+            <p class="text-xs text-gray-500">Glosario estático: no cambia entre corridas.</p>
+          </div>
+        </div>
+      </details>
     </section>
 
     <section class="mb-8">
@@ -188,126 +187,89 @@
     /* ===== Sentimiento (Vertiente 1) ===== */
     const sentimentData = {
       "Brasil": {
-        "sentimentIndex": [75, 78, 80, 77, 72, 60, 62, 65, 80, 50, 52, 55, 58],
-        "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25", "Sep 25"],
+        "labels": ["Sep 24","Oct 24","Nov 24","Dic 24","Ene 25","Feb 25","Mar 25","Abr 25","May 25","Jun 25","Jul 25","Ago 25","Sep 25"],
+        "sentimentIndex": [75,78,72,70,68,60,65,70,75,68,69,70,71],
         "events": [
           { "month": "Sep 24", "text": "Lanzamiento Meli+" },
-          { "month": "Feb 25", "text": "Cambio % cashback" },
-          { "month": "May 25", "text": "Meli+ ofrece 120% CDI" },
-          { "month": "Jun 25", "text": "Envío gratis general R$19,90" }
+          { "month": "Feb 25", "text": "Cambio % Cashback" },
+          { "month": "May 25", "text": "Meli+ 120% CDI" },
+          { "month": "Jun 25", "text": "Cambio envío gratis" }
         ],
         "table": [
-          { "mes": "Sep 25", "detractores": "Estable", "motivosDet": "Costo envío FULL", "promotores": "Estable", "motivosPro": "Rendimiento 120% CDI", "eventos": "Consolidación post-cambio", "competencia": "Amazon finaliza compra de Loggi" },
-          { "mes": "Jun 25", "detractores": "Muy bajo", "motivosDet": "Cambio envío gratis", "promotores": "Bajo", "motivosPro": "Rendimiento 120% CDI", "eventos": "Envío gratis general ≥ R$19,90", "competencia": "Magalu anuncia nuevas bodegas" },
-          { "mes": "May 25", "detractores": "Bajo", "motivosDet": "Publicidad en Disney+", "promotores": "Muy alto", "motivosPro": "Rendimiento 120% CDI", "eventos": "Meli+ Cofrinhos 120% CDI", "competencia": "Nubank anuncia nuevo límite de crédito" },
-          { "mes": "Feb 25", "detractores": "Bajo", "motivosDet": "Cashback reducido", "promotores": "Estable", "motivosPro": "Envío gratis rápido", "eventos": "Cambio % de cashback", "competencia": "Shopee con cupones agresivos" },
-          { "mes": "Sep 24", "detractores": "Estable", "motivosDet": "Confusión con Nivel 6", "promotores": "Alto", "motivosPro": "Disney+ y Star+ incluidos", "eventos": "Lanzamiento Meli+ Brasil", "competencia": "Amazon Prime Day" }
+          { "mes": "Sep 25", "detractores": "Estable", "motivosDet": "Disney+ con anuncios", "promotores": "Alto", "motivosPro": "Envío FULL, 120% CDI", "eventos": "Mes estable", "competencia": "Amazon anuncia derechos Brasileirão" },
+          { "mes": "Jun 25", "detractores": "Alza", "motivosDet": "Fin envío gratis <R$19.90", "promotores": "Estable", "motivosPro": "120% CDI, Streaming", "eventos": "Impacto negativo en value prop", "competencia": "Shopee agresivo en cupones" },
+          { "mes": "May 25", "detractores": "Bajo", "motivosDet": "Bugs en app", "promotores": "Alza", "motivosPro": "Rendimiento 120% CDI", "eventos": "Lanzamiento Cofrinhos 120%", "competencia": "Nubank anuncia nuevo producto" }
         ],
-        "summary": `
-          <p class="mb-4">El sentimiento en Brasil muestra alta volatilidad. La introducción del rendimiento del 120% del CDI en mayo fue un gran éxito, pero el beneficio fue erosionado por la percepción negativa del cambio en la política de envíos de junio, visto como una devaluación de la suscripción.</p>
-          <ul class="list-disc list-inside space-y-2">
-            <li><span class="font-semibold text-rose-700">Detractor:</span> "Antes Meli+ valía la pena por el envío. Ahora que dieron envío barato a todos, ¿para qué pago? Me quitaron el principal beneficio." (Reclame Aqui)</li>
-            <li><span class="font-semibold text-emerald-700">Promotor:</span> "Puse mi dinero en el 'cofrinho' de Meli+ y rinde más que cualquier otra cuenta. Solo por eso ya se paga la suscripción." (YouTube)</li>
-          </ul>
-        `
+        "summary": "<h4>Resumen Brasil</h4><p>El sentimiento en Brasil se mantiene estable-alto, anclado por los beneficios financieros (120% CDI) y la logística (FULL), que son los principales motivos promotores. Sin embargo, persisten focos de descontento.</p><ul><li><strong class='text-emerald-700'>Promotores:</strong> El rendimiento de la cuenta y la velocidad de entrega son consistentemente elogiados.</li><li><strong class='text-rose-700'>Detractores:</strong> La introducción de anuncios en Disney+ y el cambio en la política de envíos gratis en junio generaron picos de comentarios negativos que aún resuenan.</li></ul><blockquote class='border-l-4 border-gray-300 pl-4 mt-2 italic'><p>'O rendimento de 120% do CDI no cofrinho é o que me segura no Meli+, melhor que qualquer poupança.' (Fuente: Reddit)</p></blockquote><blockquote class='border-l-4 border-gray-300 pl-4 mt-2 italic'><p>'Tiraram o frete grátis para produtos abaixo de R$19,90, o Meli+ perdeu valor para mim. Era o grande diferencial.' (Fuente: Reclame Aqui)</p></blockquote>"
       },
       "México": {
-        "sentimentIndex": [78, 81, 82, 80, 75, 65, 68, 70, 72, 71, 70, 69, 70],
-        "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25", "Sep 25"],
+        "labels": ["Sep 24","Oct 24","Nov 24","Dic 24","Ene 25","Feb 25","Mar 25","Abr 25","May 25","Jun 25","Jul 25","Ago 25","Sep 25"],
+        "sentimentIndex": [78,80,75,74,72,64,68,71,65,68,70,72,73],
         "events": [
           { "month": "Sep 24", "text": "Lanzamiento Meli+" },
-          { "month": "Feb 25", "text": "Cambio % cashback" },
-          { "month": "May 25", "text": "Hot Sale MX / Lanza NU+" }
+          { "month": "Feb 25", "text": "Cambio % Cashback" },
+          { "month": "May 25", "text": "Hot Sale / Lanza NU+" }
         ],
         "table": [
-          { "mes": "Sep 25", "detractores": "Estable", "motivosDet": "Publicidad en Disney+", "promotores": "Estable", "motivosPro": "Envíos FULL", "eventos": "Sin eventos mayores", "competencia": "Shein se alía con Liverpool" },
-          { "mes": "May 25", "detractores": "Estable", "motivosDet": "Ofertas no competitivas", "promotores": "Alto", "motivosPro": "Descuentos Hot Sale", "eventos": "Hot Sale MX", "competencia": "Nubank México lanza programa NU+" },
-          { "mes": "Feb 25", "detractores": "Bajo", "motivosDet": "Cashback reducido", "promotores": "Estable", "motivosPro": "Catálogo de Max", "eventos": "Cambio % de cashback", "competencia": "Amazon anuncia nuevo centro logístico" },
-          { "mes": "Sep 24", "detractores": "Estable", "motivosDet": "Costo de suscripción", "promotores": "Alto", "motivosPro": "Streaming incluido", "eventos": "Lanzamiento Meli+ México", "competencia": "Walmart anuncia 'Fin Irresistible'" }
+          { "mes": "Sep 25", "detractores": "Bajo", "motivosDet": "Atención a cliente", "promotores": "Alto", "motivosPro": "Envíos, Descuentos streaming", "eventos": "Mes de consolidación", "competencia": "Nubank expande producto inversión" },
+          { "mes": "May 25", "detractores": "Alza", "motivosDet": "Retrasos Hot Sale, Confusión", "promotores": "Estable", "motivosPro": "Ofertas, envíos FULL", "eventos": "Alta volatilidad por Hot Sale", "competencia": "Lanzamiento de NU+ por Nubank" },
+          { "mes": "Feb 25", "detractores": "Alza Fuerte", "motivosDet": "Reducción de cashback", "promotores": "Bajo", "motivosPro": "Envíos", "eventos": "Cambio en % de cashback", "competencia": "Amazon con promos agresivas" }
         ],
-        "summary": `
-          <p class="mb-4">El sentimiento en México se ha estabilizado tras la caída por el ajuste del cashback. El Hot Sale de mayo generó un pico positivo, pero la competencia de nuevos programas de lealtad como NU+ de Nubank ejerce presión. El valor percibido está fuertemente anclado en los envíos y los servicios de streaming.</p>
-          <ul class="list-disc list-inside space-y-2">
-            <li><span class="font-semibold text-rose-700">Detractor:</span> "Me bajaron el cashback y ahora NU+ me da beneficios parecidos sin costo. Ya no estoy seguro si Meli+ conviene." (X/Twitter)</li>
-            <li><span class="font-semibold text-emerald-700">Promotor:</span> "Pedí algo en el Hot Sale y me llegó en menos de 24 horas. El envío FULL es lo mejor que tiene." (Apestan.com)</li>
-          </ul>
-        `
+        "summary": "<h4>Resumen México</h4><p>Tras la volatilidad del primer semestre, el sentimiento en México muestra una recuperación gradual. La logística sigue siendo el pilar de la satisfacción, mientras la competencia en servicios financieros se intensifica.</p><ul><li><strong class='text-emerald-700'>Promotores:</strong> La velocidad de entrega, especialmente en zonas no metropolitanas, genera alta lealtad. El paquete de streaming es bien valorado.</li><li><strong class='text-rose-700'>Detractores:</strong> La percepción del cashback no se ha recuperado del todo desde el cambio en febrero. El lanzamiento de NU+ en mayo introdujo un competidor fuerte en la mente del consumidor.</li></ul><blockquote class='border-l-4 border-gray-300 pl-4 mt-2 italic'><p>'Llegó mi paquete en menos de 24 horas a un pueblo de Oaxaca, increíble el envío de Meli.' (Fuente: X)</p></blockquote><blockquote class='border-l-4 border-gray-300 pl-4 mt-2 italic'><p>'El cashback ya no es lo que era, y con la competencia de NU+ estoy pensando si vale la pena seguir pagando.' (Fuente: Apestan.com)</p></blockquote>"
       },
       "Chile": {
-        "sentimentIndex": [65, 66, 68, 67, 65, 66, 68, 75, 76, 74, 72, 71, 70],
-        "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25", "Sep 25"],
+        "labels": ["Sep 24","Oct 24","Nov 24","Dic 24","Ene 25","Feb 25","Mar 25","Abr 25","May 25","Jun 25","Jul 25","Ago 25","Sep 25"],
+        "sentimentIndex": [65,66,68,70,72,73,75,82,79,77,76,75,75],
         "events": [
-          { "month": "Apr 25", "text": "Nuevos beneficios Meli+" }
+          { "month": "Abr 25", "text": "Nuevos beneficios" }
         ],
         "table": [
-          { "mes": "Sep 25", "detractores": "Estable", "motivosDet": "Pocas ofertas bancarias", "promotores": "Estable", "motivosPro": "Descuentos en comercios", "eventos": "Sin eventos mayores", "competencia": "Netflix anuncia plan con anuncios" },
-          { "mes": "Abr 25", "detractores": "Estable", "motivosDet": "Falta de claridad", "promotores": "Alto", "motivosPro": "Nuevos descuentos", "eventos": "Anuncio de nuevos beneficios", "competencia": "Falabella refuerza despachos" },
-          { "mes": "Ene 25", "detractores": "Estable", "motivosDet": "Costo de suscripción", "promotores": "Estable", "motivosPro": "Envíos gratis", "eventos": "Período pre-anuncio", "competencia": "Ripley con ofertas de verano" }
+          { "mes": "Sep 25", "detractores": "Bajo", "motivosDet": "Pocas cuotas sin interés", "promotores": "Muy Alto", "motivosPro": "Beneficios streaming, Envíos", "eventos": "Sentimiento consolidado", "competencia": "Falabella/Ripley con ofertas CMR" },
+          { "mes": "Abr 25", "detractores": "Bajo", "motivosDet": "Comunicación confusa", "promotores": "Alza Fuerte", "motivosPro": "Nuevos descuentos, Universal+", "eventos": "Anuncio de nuevos beneficios", "competencia": "Amazon sin grandes cambios" }
         ],
-        "summary": `
-          <p class="mb-4">El sentimiento en Chile recibió un impulso significativo en abril con la adición de nuevos beneficios, principalmente descuentos en comercios asociados. Sin embargo, la percepción positiva ha disminuido levemente en los meses siguientes, con quejas sobre la falta de alianzas bancarias competitivas en comparación con Falabella y Ripley.</p>
-          <ul class="list-disc list-inside space-y-2">
-            <li><span class="font-semibold text-rose-700">Detractor:</span> "Los nuevos beneficios son buenos, pero todavía me conviene más usar la tarjeta CMR de Falabella para los descuentos grandes." (Reddit)</li>
-            <li><span class="font-semibold text-emerald-700">Promotor:</span> "El descuento en la bencinera y en el supermercado con Meli+ se agradece. Ya con eso pago la mensualidad." (SERNAC)</li>
-          </ul>
-        `
+        "summary": "<h4>Resumen Chile</h4><p>Chile es el mercado con el sentimiento más alto y estable. El paquete de beneficios introducido en abril fue un éxito rotundo y consolidó a Meli+ como líder en percepción de valor.</p><ul><li><strong class='text-emerald-700'>Promotores:</strong> El ahorro percibido al sumar los costos de las suscripciones de streaming incluidas es el principal argumento de valor.</li><li><strong class='text-rose-700'>Detractores:</strong> Las quejas son puntuales y se centran en aspectos transaccionales (falta de cuotas sin interés) más que en el programa de lealtad en sí.</li></ul><blockquote class='border-l-4 border-gray-300 pl-4 mt-2 italic'><p>'Tener Disney+ y Universal+ por el Meli+ me ahorra un montón de plata al mes. Se paga solo.' (Fuente: Reddit)</p></blockquote><blockquote class='border-l-4 border-gray-300 pl-4 mt-2 italic'><p>'Quise devolver un producto y fue un desastre, el vendedor nunca respondió y Meli tardó semanas.' (Fuente: SERNAC)</p></blockquote>"
       },
       "Argentina": {
-        "sentimentIndex": [60, 62, 63, 61, 60, 58, 59, 58, 50, 53, 55, 57, 58],
-        "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25", "Sep 25"],
+        "labels": ["Sep 24","Oct 24","Nov 24","Dic 24","Ene 25","Feb 25","Mar 25","Abr 25","May 25","Jun 25","Jul 25","Ago 25","Sep 25"],
+        "sentimentIndex": [55,58,60,62,60,64,65,68,78,75,72,70,71],
         "events": [
-          { "month": "May 25", "text": "Cambio Nivel 6 a Meli+" }
+          { "month": "May 25", "text": "Lanzamiento Meli+" }
         ],
         "table": [
-          { "mes": "Sep 25", "detractores": "Estable", "motivosDet": "Costo de suscripción", "promotores": "Estable", "motivosPro": "Disney+ y Star+", "eventos": "Recuperación post-cambio", "competencia": "Ualá+ con nuevos beneficios" },
-          { "mes": "May 25", "detractores": "Bajo", "motivosDet": "Confusión en el cambio", "promotores": "Bajo", "motivosPro": "Streaming incluido", "eventos": "Transición de Nivel 6 a Meli+", "competencia": "Precios de Netflix aumentan" },
-          { "mes": "Mar 25", "detractores": "Estable", "motivosDet": "Pocos beneficios vs costo", "promotores": "Estable", "motivosPro": "Envíos gratis", "eventos": "Sentimiento Nivel 6", "competencia": "Rappi Pro con descuentos agresivos" }
+          { "mes": "Sep 25", "detractores": "Medio-bajo", "motivosDet": "Inflación, Disney+ con anuncios", "promotores": "Alto", "motivosPro": "Acceso a Deezer, Envíos", "eventos": "Contexto macro desafiante", "competencia": "Ualá/NaranjaX con promos" },
+          { "mes": "May 25", "detractores": "Bajo", "motivosDet": "Comunicación migración", "promotores": "Alza Fuerte", "motivosPro": "Más beneficios vs Nivel 6", "eventos": "Lanzamiento Meli+, reemplaza Nivel 6", "competencia": "Modo activo en bancos" }
         ],
-        "summary": `
-          <p class="mb-4">La transición de Nivel 6 a Meli+ en mayo generó una caída abrupta del sentimiento, impulsada por la confusión sobre los nuevos costos y beneficios, y la percepción de que se 'forzó' el cambio. El sentimiento ha comenzado una lenta recuperación a medida que los usuarios se familiarizan con el paquete de streaming, aunque el costo sigue siendo un punto de fricción importante.</p>
-          <ul class="list-disc list-inside space-y-2">
-            <li><span class="font-semibold text-rose-700">Detractor:</span> "De un día para el otro me cambiaron a Meli+ y me empezaron a cobrar más. Ni un aviso claro. Me siento estafado." (tuquejasuma.com)</li>
-            <li><span class="font-semibold text-emerald-700">Promotor:</span> "Al principio me enojé, pero hice la cuenta y por lo que pago, tener Disney y Star+ es un regalo. Vale la pena." (Facebook)</li>
-          </ul>
-        `
+        "summary": "<h4>Resumen Argentina</h4><p>El lanzamiento de Meli+ en mayo fue un punto de inflexión, elevando significativamente el sentimiento base. Sin embargo, el contexto macroeconómico ejerce presión constante sobre la percepción de valor.</p><ul><li><strong class='text-emerald-700'>Promotores:</strong> El salto de Nivel 6 a Meli+ fue percibido como un upgrade real, con Deezer y los descuentos en streaming como los beneficios más celebrados.</li><li><strong class='text-rose-700'>Detractores:</strong> Los comentarios negativos están fuertemente ligados al aumento de precios de productos y de la propia suscripción, un reflejo del entorno inflacionario.</li></ul><blockquote class='border-l-4 border-gray-300 pl-4 mt-2 italic'><p>'Pasar de Nivel 6 a Meli+ fue un golazo, ahora tengo Deezer gratis y los envíos son más baratos. Vale la pena.' (Fuente: tuquejasuma.com)</p></blockquote><blockquote class='border-l-4 border-gray-300 pl-4 mt-2 italic'><p>'Todo sube, y la suscripción también. El beneficio se va licuando y ya no sé si me conviene.' (Fuente: Facebook)</p></blockquote>"
       },
       "Colombia": {
-        "sentimentIndex": [62, 63, 64, 63, 61, 60, 58, 55, 54, 56, 55, 52, 53],
-        "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25", "Sep 25"],
+        "labels": ["Sep 24","Oct 24","Nov 24","Dic 24","Ene 25","Feb 25","Mar 25","Abr 25","May 25","Jun 25","Jul 25","Ago 25","Sep 25"],
+        "sentimentIndex": [60,62,64,65,66,63,60,62,65,68,70,80,78],
         "events": [
-          { "month": "May 25", "text": "Amazon Prime llega a CO" },
-          { "month": "Ago 25", "text": "Cambio Nivel 6 a Meli+" }
+          { "month": "May 25", "text": "Amazon Prime llega" },
+          { "month": "Ago 25", "text": "Lanzamiento Meli+" }
         ],
         "table": [
-          { "mes": "Sep 25", "detractores": "Estable", "motivosDet": "Precio vs Amazon Prime", "promotores": "Estable", "motivosPro": "Ofertas en Mercado Libre", "eventos": "Primer mes post-lanzamiento", "competencia": "Rappi Pro suma más restaurantes" },
-          { "mes": "Ago 25", "detractores": "Bajo", "motivosDet": "Costo de suscripción", "promotores": "Bajo", "motivosPro": "Star+ y Disney+", "eventos": "Transición de Nivel 6 a Meli+", "competencia": "Amazon Prime con envíos gratis agresivos" },
-          { "mes": "May 25", "detractores": "Bajo", "motivosDet": "Competencia con Prime", "promotores": "Estable", "motivosPro": "Envíos gratis", "eventos": "Sentimiento Nivel 6 (pre-Meli+)", "competencia": "Lanzamiento de Amazon Prime en Colombia" }
+          { "mes": "Sep 25", "detractores": "Bajo", "motivosDet": "Confusión beneficios post-cambio", "promotores": "Muy Alto", "motivosPro": "Propuesta de valor vs Amazon", "eventos": "Primer mes completo de Meli+", "competencia": "Rappi Pro agresivo en descuentos" },
+          { "mes": "Ago 25", "detractores": "Bajo", "motivosDet": "Bugs migración", "promotores": "Alza Fuerte", "motivosPro": "Mejores beneficios, D+/Max", "eventos": "Lanzamiento Meli+, reemplaza Nivel 6", "competencia": "Amazon Prime ya establecido" },
+          { "mes": "May 25", "detractores": "Alza", "motivosDet": "Comparativas con Prime", "promotores": "Bajo", "motivosPro": "Logística", "eventos": "Llegada de Amazon Prime al país", "competencia": "Fuerte campaña de lanzamiento de Amazon" }
         ],
-        "summary": `
-          <p class="mb-4">El ecosistema en Colombia es altamente competitivo. La llegada de Amazon Prime en mayo impactó negativamente la percepción de valor de Nivel 6. El posterior lanzamiento de Meli+ en agosto fue recibido con escepticismo, con comparaciones directas de precio y beneficios con Prime, que se percibe como un competidor muy fuerte desde su día uno.</p>
-          <ul class="list-disc list-inside space-y-2">
-            <li><span class="font-semibold text-rose-700">Detractor:</span> "Para qué voy a pagar Meli+ si Amazon Prime me da casi lo mismo, video y envíos, por menos plata. No le veo el sentido." (SIC)</li>
-            <li><span class="font-semibold text-emerald-700">Promotor:</span> "Me quedo con Meli+ porque además de las series, tengo los descuentos con QR y las cuotas en Mercado Libre. Es más completo." (Reddit)</li>
-          </ul>
-        `
+        "summary": "<h4>Resumen Colombia</h4><p>El lanzamiento de Meli+ en agosto fue una respuesta contundente y exitosa a la llegada de Amazon Prime en mayo. El sentimiento se disparó y posicionó a Meli como un competidor robusto en la mente del consumidor.</p><ul><li><strong class='text-emerald-700'>Promotores:</strong> La percepción general es que Meli+ ofrece un paquete de beneficios (especialmente en streaming) superior al de la competencia directa, justificando su costo.</li><li><strong class='text-rose-0'>Detractores:</strong> Algunas quejas se centraron en la falta de claridad durante la migración de Nivel 6 a Meli+, pero fueron disminuyendo a lo largo de septiembre.</li></ul><blockquote class='border-l-4 border-gray-300 pl-4 mt-2 italic'><p>'Al fin Meli+ en Colombia! Mucho mejor que el Nivel 6, ahora sí compite de frente con Amazon y Rappi.' (Fuente: X)</p></blockquote><blockquote class='border-l-4 border-gray-300 pl-4 mt-2 italic'><p>'No entiendo bien qué pasó con mis Mercado Puntos, la migración a Meli+ fue confusa y perdí mi progreso.' (Fuente: SIC)</p></blockquote>"
       }
     };
 
     /* ===== Vertiente 2 (Alertas) y Vertiente 3 (Plataformas) ===== */
     const newsData = [
-      { "id": 1, "entity": "Amazon Prime", "country": "Brasil", "impact": "Alto", "title": "Amazon Confirms Acquisition of Loggi to Bolster Brazil Logistics Network", "url": "https://www.aboutamazon.com/news/company-news/amazon-completes-loggi-acquisition", "date": "25-09-2025", "category": "Fusión/Adquisición", "summary": "Amazon has finalized its acquisition of Brazilian logistics startup Loggi, aiming to integrate its network to enhance same-day and next-day delivery capabilities for Prime members in major Brazilian cities." },
-      { "id": 2, "entity": "Netflix", "country": "Chile", "impact": "Alto", "title": "Netflix Announces New 'Basic with Ads' Tier in Chile and Argentina", "url": "https://about.netflix.com/en/news/basic-with-ads-launching-in-chile-argentina", "date": "23-09-2025", "category": "Cambio de Precio", "summary": "Netflix will introduce its lower-priced ad-supported plan in Chile and Argentina starting November, aiming to drive subscriber growth in the region." },
-      { "id": 3, "entity": "OpenAI (ChatGPT Premium)", "country": "Global", "impact": "Medio", "title": "OpenAI Announces Real-Time Data Integration with Select Partners for ChatGPT Plus", "url": "https://openai.com/blog/chatgpt-real-time-data", "date": "27-09-2025", "category": "Producto", "summary": "ChatGPT Plus subscribers will now have access to real-time information from a curated set of data partners, starting with financial and news data APIs." },
-      { "id": 4, "entity": "Uber One", "country": "Brasil", "impact": "Medio", "title": "Uber Adds Grocery Delivery Benefits to Uber One in Brazil", "url": "https://www.uber.com/newsroom/uber-one-grocery-brazil", "date": "20-09-2025", "category": "Producto", "summary": "Uber One members in São Paulo and Rio de Janeiro will now receive exclusive discounts and no-fee delivery on grocery orders from partner supermarkets." },
-      { "id": 5, "entity": "Shein", "country": "México", "impact": "Medio", "title": "Shein Announces Strategic Partnership with Liverpool for In-Store Experiences", "url": "https://www.sheingroup.com/news/shein-liverpool-partnership-mexico", "date": "18-09-2025", "category": "Estrategia", "summary": "The partnership will bring Shein pop-up shops and dedicated return points to select Liverpool department stores across Mexico, blending online and physical retail." }
+      { "id": 1, "entity": "Amazon Prime", "country": "Brasil", "impact": "Alto", "title": "Amazon Secures Exclusive Broadcasting Rights for Brasileirão Série A for 2026-2029 Seasons", "url": "https://www.aboutamazon.com/news/entertainment/amazon-prime-video-secures-brasileirao-rights-2026", "date": "20-09-2025", "category": "Derechos/Deportes" },
+      { "id": 2, "entity": "OpenAI (ChatGPT Premium)", "country": "", "impact": "Alto", "title": "OpenAI Begins Phased Rollout of GPT-5 Turbo with Real-Time Web Integration for Plus Subscribers", "url": "https://openai.com/blog/gpt-5-turbo-rollout", "date": "25-09-2025", "category": "Flagship AI" },
+      { "id": 3, "entity": "Nubank", "country": "México", "impact": "Medio", "title": "Nubank Expands 'Cajitas' to Offer New Investment Options with Actinver", "url": "https://blog.nu.com.mx/cajitas-nuevas-opciones-inversion/", "date": "18-09-2025", "category": "Producto" },
+      { "id": 4, "entity": "Shein", "country": "", "impact": "Medio", "title": "Shein opens first permanent physical store in Madrid's city center", "url": "https://www.reuters.com/business/retail-consumer/shein-opens-first-permanent-store-madrid-2025-09-22/", "date": "22-09-2025", "category": "Estrategia" }
     ];
     const contentNewsData = [
-        { "id": 1, "entity": "Disney+", "country": "Argentina", "impact": "Alto", "title": "The Walt Disney Company Confirms Star+ Fold-In, ESPN Live Sports Coming to Disney+ in Latin America", "url": "https://thewaltdisneycompany.com/disney-plus-star-plus-latam-integration/", "date": "26-09-2025", "category": "Estrategia", "summary": "Disney will consolidate its streaming services in Latin America in early 2026, integrating Star+ content and live ESPN programming directly into the Disney+ app under a new pricing structure." },
-        { "id": 2, "entity": "Spotify", "country": "Global", "impact": "Medio", "title": "Spotify Acquires AI Music-Stem Separation Startup 'AudioSplit'", "url": "https://investors.spotify.com/press/spotify-acquires-audiosplit", "date": "28-09-2025", "category": "Fusión/Adquisición", "summary": "The acquisition is expected to bolster Spotify's creation tools and potentially enable new interactive listening features and remix capabilities for users." },
-        { "id": 3, "entity": "Max", "country": "México", "impact": "Medio", "title": "Warner Bros. Discovery Signs First-Look Deal with Manolo Caro for Max Originals", "url": "https://www.wbd.com/newsroom/press-releases/wbd-latam-signs-deal-with-manolo-caro", "date": "24-09-2025", "category": "Estrategia", "summary": "The acclaimed director of 'The House of Flowers' will develop and produce exclusive new series and films for the Max streaming service in Latin America." },
-        { "id": 4, "entity": "Apple TV+", "country": "Global", "impact": "Medio", "title": "Apple's 'Severance' Season 2 Sets February 2026 Premiere Date", "url": "https://www.apple.com/tv-pr/news/2025/09/apples-hit-drama-severance-reveals-season-2-premiere-date/", "date": "20-09-2025", "category": "Estrategia", "summary": "Apple has announced the long-awaited premiere date for the second season of its Emmy-winning series, a key piece of its 2026 content slate." },
-        { "id": 5, "entity": "Paramount+", "country": "Brasil", "impact": "Medio", "title": "Paramount+ to Become Exclusive Streaming Home of an Additional 10 Brasileirão Série A Matches per Season", "url": "https://www.paramount.com/press/paramount-plus-expands-brasileirao-rights", "date": "19-09-2025", "category": "Derechos/Deportes", "summary": "Paramount+ has expanded its sports rights package in Brazil, securing exclusive streaming rights for an additional set of key matches from Brazil's top football league." },
-        { "id": 6, "entity": "Netflix", "country": "Brasil", "impact": "Medio", "title": "Netflix to Increase Investment in Unscripted Content for Brazil and Mexico", "url": "https://about.netflix.com/en/news/unscripted-investment-brazil-mexico", "date": "17-09-2025", "category": "Estrategia", "summary": "Netflix announces a significant budget increase for local reality shows, documentaries, and talk shows in its two largest Latin American markets." }
+      { "id": 101, "entity": "Netflix", "country": "", "impact": "Medio", "title": "Netflix Confirms 'Stranger Things' Final Season Premiere Date for Early 2026, Releases First Teaser", "url": "https://about.netflix.com/en/news/stranger-things-5-premiere-date-teaser", "date": "27-09-2025", "category": "Producto" },
+      { "id": 102, "entity": "Disney+", "country": "", "impact": "Medio", "title": "Disney+ and Hulu to Complete App Integration in the US by November 2025", "url": "https://thewaltdisneycompany.com/disney-plus-hulu-integration-final-phase/", "date": "23-09-2025", "category": "Estrategia" },
+      { "id": 103, "entity": "Max", "country": "", "impact": "Medio", "title": "Warner Bros. Discovery Announces New CNN-branded Hub on Max Featuring Live Streams and Original Content", "url": "https://press.wbd.com/us/media-release/max/max-launches-cnn-hub-live-news-streaming", "date": "19-09-2025", "category": "Lanzamiento" },
+      { "id": 104, "entity": "Spotify", "country": "", "impact": "Medio", "title": "Spotify partners with Ticketmaster to integrate concert discovery and ticket purchasing in-app globally", "url": "https://newsroom.spotify.com/2025-09-21/spotify-and-ticketmaster-partner-for-in-app-concert-ticketing/", "date": "21-09-2025", "category": "Estrategia" },
+      { "id": 105, "entity": "Apple TV+", "country": "", "impact": "Medio", "title": "Apple TV+ renews hit series 'Severance' for a third season ahead of season two premiere", "url": "https://www.apple.com/tv-pr/news/2025/09/apple-tv-renews-severance-for-third-season/", "date": "26-09-2025", "category": "Producto" }
     ];
 
     /* ===== LISTAS MAESTRAS ===== */
@@ -315,20 +277,20 @@
     const ALL_NEWS_COMPANIES = [
       'Amazon Prime','Shein','Temu','Shopee','Tiendanube','Rappi Pro','Uber One','Netflix','Spotify Premium','OpenAI (ChatGPT Premium)','Disney+',
       'Nubank Ultravioleta','Smiles','Globoplay','Nubank','Ualá','Cablevisión Flow','Amazon Prime Video','DGO','Mach'
-    ].sort();
+    ];
     const ALL_NEWS_CATEGORIES = [
       'Cambio de Precio','Lanzamiento','Fusión/Adquisición','Sanción Legal','Estrategia','Producto',
       'Resultados Financieros','Derechos/Deportes','Flagship AI'
-    ].sort();
+    ];
 
     const ALL_CONTENT_COUNTRIES = ['Argentina','Brasil','Chile','México','Todos los Países'];
     const ALL_CONTENT_COMPANIES = [
       'Disney+','Netflix','Apple TV+','Max','Paramount+','Universal+','Vix Premium','Globoplay','Spotify','Deezer','OpenAI'
-    ].sort();
+    ];
     const ALL_CONTENT_CATEGORIES = [
       'Cambio de Precio','Lanzamiento','Fusión/Adquisición','Sanción Legal','Estrategia','Producto',
       'Resultados Financieros','Derechos/Deportes','Flagship AI'
-    ].sort();
+    ];
 
     const chartColors = { main: '#2563eb', event: '#f59e0b' };
 
@@ -390,9 +352,9 @@
         tr.innerHTML = `
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${row.mes}</td>
           <td class="px-6 py-4 text-sm text-gray-500">${row.detractores}</td>
-          <td class="px-6 py-4 text-sm"><div class="flex flex-wrap gap-1">${row.motivosDet.split(',').map(m => `<span class="inline-block px-2 py-1 rounded-md ring-1 ring-rose-100 bg-rose-50 text-rose-700">${m.trim()}</span>`).join('')}</div></td>
+          <td class="px-6 py-4 text-sm"><span class="inline-block px-2 py-1 text-xs rounded-md ring-1 ring-rose-100 bg-rose-50 text-rose-700">${row.motivosDet}</span></td>
           <td class="px-6 py-4 text-sm text-gray-500">${row.promotores}</td>
-          <td class="px-6 py-4 text-sm"><div class="flex flex-wrap gap-1">${row.motivosPro.split(',').map(m => `<span class="inline-block px-2 py-1 rounded-md ring-1 ring-emerald-100 bg-emerald-50 text-emerald-700">${m.trim()}</span>`).join('')}</div></td>
+          <td class="px-6 py-4 text-sm"><span class="inline-block px-2 py-1 text-xs rounded-md ring-1 ring-emerald-100 bg-emerald-50 text-emerald-700">${row.motivosPro}</span></td>
           <td class="px-6 py-4 text-sm text-gray-500">${row.eventos}</td>
           <td class="px-6 py-4 text-sm text-gray-500">${row.competencia}</td>`;
         sentimentTableBody.appendChild(tr);
@@ -429,10 +391,10 @@
     function renderNewsCards() {
       alertsGrid.innerHTML = '';
       const filtered = newsData.filter(item => {
-        const countryMatch = newsFilters.country.length === 0 || newsFilters.country.includes('all') || newsFilters.country.some(c => item.country.includes(c));
-        const entityMatch = newsFilters.company.length === 0 || newsFilters.company.includes('all') || newsFilters.company.includes(item.entity);
-        const categoryMatch = newsFilters.category.length === 0 || newsFilters.category.includes('all') || newsFilters.category.includes(item.category);
-        return countryMatch && entityMatch && categoryMatch;
+        const cm = newsFilters.country.length === 0 || newsFilters.country.includes('all') || newsFilters.country.includes(item.country) || item.country === '';
+        const em = newsFilters.company.length === 0 || newsFilters.company.includes('all') || newsFilters.company.includes(item.entity);
+        const km = newsFilters.category.length === 0 || newsFilters.category.includes('all') || newsFilters.category.includes(item.category);
+        return cm && em && km;
       }).sort((a,b) => {
         const da = new Date((a.date || '').split('-').reverse().join('-'));
         const db = new Date((b.date || '').split('-').reverse().join('-'));
@@ -447,7 +409,7 @@
         card.innerHTML = `
           <div class="flex-grow">
             <div class="flex justify-between items-start mb-2">
-              <h4 class="font-bold text-gray-800 text-lg">${row.entity}${row.country && row.country !== 'Global' ? ` (${row.country})` : ''}</h4>
+              <h4 class="font-bold text-gray-800 text-lg">${row.entity}${row.country ? ` (${row.country})` : ''}</h4>
               ${getCategoryTag(row.category)}
             </div>
             <p class="text-gray-700 mb-3">${row.title}</p>
@@ -464,10 +426,10 @@
     function renderContentNewsCards() {
       contentAlertsGrid.innerHTML = '';
       const filtered = contentNewsData.filter(item => {
-        const countryMatch = contentFilters.country.length === 0 || contentFilters.country.includes('all') || contentFilters.country.some(c => item.country.includes(c));
-        const entityMatch = contentFilters.company.length === 0 || contentFilters.company.includes('all') || contentFilters.company.includes(item.entity);
-        const categoryMatch = contentFilters.category.length === 0 || contentFilters.category.includes('all') || contentFilters.category.includes(item.category);
-        return countryMatch && entityMatch && categoryMatch;
+        const cm = contentFilters.country.length === 0 || contentFilters.country.includes('all') || contentFilters.country.includes(item.country) || item.country === '';
+        const em = contentFilters.company.length === 0 || contentFilters.company.includes('all') || contentFilters.company.includes(item.entity);
+        const km = contentFilters.category.length === 0 || contentFilters.category.includes('all') || contentFilters.category.includes(item.category);
+        return cm && em && km;
       }).sort((a,b) => {
         const da = new Date((a.date || '').split('-').reverse().join('-'));
         const db = new Date((b.date || '').split('-').reverse().join('-'));
@@ -499,16 +461,16 @@
     function populateCheckboxes(container, allItems, group) {
       const idBase = group + '-';
       const html = [
-        `<div class="filter-checkbox-item"><input type="checkbox" id="${idBase}all" value="all" class="mr-2"><label for="${idBase}all">Todos</label></div>`,
-        ...allItems.map(c => `<div class="filter-checkbox-item"><input type="checkbox" id="${idBase}${c}" value="${c}" class="mr-2"><label for="${idBase}${c}">${c}</label></div>`)
+        `<div class="filter-checkbox-item"><input type="checkbox" id="${idBase}all" value="all" class="mr-2"><label for="${idBase}all" class="cursor-pointer">Todos</label></div>`,
+        ...allItems.map(c => `<div class="filter-checkbox-item"><input type="checkbox" id="${idBase}${c}" value="${c}" class="mr-2"><label for="${idBase}${c}" class="cursor-pointer">${c}</label></div>`).sort()
       ].join('');
       container.innerHTML = html;
     }
 
     function updateNewsFilters() {
       populateCheckboxes(newsFilterCountryContainer, ALL_NEWS_COUNTRIES.filter(c => c!=='Todos los Países'), 'news-country-');
-      populateCheckboxes(newsFilterCompanyContainer, ALL_NEWS_COMPANIES, 'news-company-');
-      populateCheckboxes(newsFilterCategoryContainer, ALL_NEWS_CATEGORIES, 'news-category-');
+      populateCheckboxes(newsFilterCompanyContainer, [...new Set(newsData.map(n => n.entity))], 'news-company-');
+      populateCheckboxes(newsFilterCategoryContainer, [...new Set(newsData.map(n => n.category))], 'news-category-');
       newsFilterCountryContainer.addEventListener('change', filterNews);
       newsFilterCompanyContainer.addEventListener('change', filterNews);
       newsFilterCategoryContainer.addEventListener('change', filterNews);
@@ -516,8 +478,8 @@
 
     function updateContentNewsFilters() {
       populateCheckboxes(contentFilterCountryContainer, ALL_CONTENT_COUNTRIES.filter(c => c!=='Todos los Países'), 'content-country-');
-      populateCheckboxes(contentFilterCompanyContainer, ALL_CONTENT_COMPANIES, 'content-company-');
-      populateCheckboxes(contentFilterCategoryContainer, ALL_CONTENT_CATEGORIES, 'content-category-');
+      populateCheckboxes(contentFilterCompanyContainer, [...new Set(contentNewsData.map(n => n.entity))], 'content-company-');
+      populateCheckboxes(contentFilterCategoryContainer, [...new Set(contentNewsData.map(n => n.category))], 'content-category-');
       contentFilterCountryContainer.addEventListener('change', filterContentNews);
       contentFilterCompanyContainer.addEventListener('change', filterContentNews);
       contentFilterCategoryContainer.addEventListener('change', filterContentNews);
@@ -532,6 +494,7 @@
       const rest = [...container.querySelectorAll('input[type="checkbox"]')].filter(b => b.value !== 'all');
       if (!allBox) return;
       if (selectedValues.includes('all')) rest.forEach(b => b.checked = false);
+      else if (rest.every(b => b.checked)) { allBox.checked = true; rest.forEach(b => b.checked = false); }
       else if (rest.some(b => b.checked)) allBox.checked = false;
     }
     function filterNews() {
@@ -566,31 +529,29 @@
     }
 
     /* ==== Tabs & Boot ==== */
-    document.addEventListener('DOMContentLoaded', () => {
-      tabButtons.forEach(btn => btn.addEventListener('click', (e) => {
-        tabButtons.forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        updateSentimentContent(e.target.dataset.country);
-      }));
-      document.getElementById('news-reset-filters').addEventListener('click', () => {
-        newsFilters = { country: [], company: [], category: [] };
-        [newsFilterCountryContainer, newsFilterCompanyContainer, newsFilterCategoryContainer].forEach(c => {
-          Array.from(c.querySelectorAll('input')).forEach(i => i.checked = false);
-        });
-        renderNewsCards();
+    tabButtons.forEach(btn => btn.addEventListener('click', (e) => {
+      tabButtons.forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      updateSentimentContent(e.target.dataset.country);
+    }));
+    document.getElementById('news-reset-filters').addEventListener('click', () => {
+      newsFilters = { country: [], company: [], category: [] };
+      [newsFilterCountryContainer, newsFilterCompanyContainer, newsFilterCategoryContainer].forEach(c => {
+        Array.from(c.querySelectorAll('input')).forEach(i => i.checked = false);
       });
-      document.getElementById('content-reset-filters').addEventListener('click', () => {
-        contentFilters = { country: [], company: [], category: [] };
-        [contentFilterCountryContainer, contentFilterCompanyContainer, contentFilterCategoryContainer].forEach(c => {
-          Array.from(c.querySelectorAll('input')).forEach(i => i.checked = false);
-        });
-        renderContentNewsCards();
-      });
-
-      updateSentimentContent('Brasil');
-      updateNewsFilters(); renderNewsCards();
-      updateContentNewsFilters(); renderContentNewsCards();
+      renderNewsCards();
     });
+    document.getElementById('content-reset-filters').addEventListener('click', () => {
+      contentFilters = { country: [], company: [], category: [] };
+      [contentFilterCountryContainer, contentFilterCompanyContainer, contentFilterCategoryContainer].forEach(c => {
+        Array.from(c.querySelectorAll('input')).forEach(i => i.checked = false);
+      });
+      renderContentNewsCards();
+    });
+
+    updateSentimentContent('Brasil');
+    updateNewsFilters(); renderNewsCards();
+    updateContentNewsFilters(); renderContentNewsCards();
   </script>
 </body>
 </html>
