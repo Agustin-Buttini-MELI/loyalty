@@ -29,21 +29,7 @@
           <div class="bg-main-accent p-2 rounded-lg">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
           </div>
-          <!-- contenedor para título + link (vertical) -->
-          <div class="flex flex-col">
-            <h1 class="text-xl md:text-2xl font-bold text-gray-800">Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</h1>
-            <!-- enlace: tiene clase y estilos inline de respaldo -->
-            <a
-              class="chip-link mt-1"
-              href="https://meli.looker.com/dashboards/25519?Site+id=&Tim+day+Month=13+month&Timeframe=MONTH&Tim+Day+Date=30+day&Reference+month+Month=1+year&Annual+%2F+Monthly+Plan="
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Resultados Internos Meli+"
-              style="display:inline-block;margin-top:6px;padding:6px 10px;background:#eef2ff;color:#1e40af;border-radius:8px;font-weight:600;font-size:0.95rem;text-decoration:none;border:1px solid rgba(37,99,235,0.08);"
-            >
-              Resultados Internos Meli+
-            </a>
-          </div>
+          <h1 class="text-xl md:text-2xl font-bold text-gray-800">Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</h1>
         </div>
       </div>
     </div>
@@ -198,363 +184,101 @@
   <script>
     /* ===== Sentimiento (Vertiente 1) ===== */
     const sentimentData = {
-  "Brasil": {
-    "sentimentIndex": [
-      45, 52, 48, 55, 60, 58, 55, 62, 65, 60, 55, 50, 45, 40, 35
-    ],
-    "labels": [
-      "Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25",
-      "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25",
-      "Sep 25", "Oct 25", "Nov 25"
-    ],
-    "events": [
-      { "month": "Sep 24", "text": "Lanzamiento Meli+ BR/MX" },
-      { "month": "Feb 25", "text": "Cambio % cashback BR/MX" },
-      { "month": "May 25", "text": "Meli+ BR 120% CDI" },
-      { "month": "Jun 25", "text": "Envío gratis general ≥ R$19,90" },
-      { "month": "Oct 25", "text": "Meli+ Mega con streamings" }
-    ],
-    "table": [
-      {
-        "mes": "Sep 24",
-        "detractores": 250,
-        "motivosDet": "Altos costos de suscripción",
-        "promotores": 300,
-        "motivosPro": "Beneficios de envío y descuentos",
-        "eventos": "Lanzamiento Meli+",
-        "competencia": "Amazon Prime"
+      'Brasil': {
+        sentimentIndex: [55, 62, 58, 65, 70, 68, 75, 72, 69, 74, 78, 80, 77, 79, 82],
+        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dec 24', 'Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25'],
+        events: [
+          { month: 'Sep 24', text: 'Lanzamiento Meli+ BR/MX' },
+          { month: 'Feb 25', text: 'Cambio % cashback BR/MX' },
+          { month: 'May 25', text: 'Meli+ BR 120% CDI' },
+          { month: 'Jun 25', text: 'Envío gratis general ≥ R$19,90' },
+          { month: 'Oct 25', text: 'Meli+ Mega (Disney+, Netflix, HBO Max, AppleTV)' }
+        ],
+        table: [
+          { mes: 'Sep 24', detractores: 150, motivosDet: 'Altos costos', promotores: 200, motivosPro: 'Envío rápido', eventos: 'Lanzamiento Meli+', competencia: 'Amazon Prime' },
+          { mes: 'Oct 24', detractores: 140, motivosDet: 'Poca variedad de productos', promotores: 210, motivosPro: 'Buen servicio al cliente', eventos: 'Amazon Prime Day', competencia: 'Shopee' },
+          { mes: 'Nov 24', detractores: 130, motivosDet: 'Problemas con la entrega', promotores: 220, motivosPro: 'Descuentos exclusivos', eventos: 'Black Friday', competencia: 'Temu' },
+          { mes: 'Dec 24', detractores: 120, motivosDet: 'Mala calidad de algunos productos', promotores: 230, motivosPro: 'Fácil de usar', eventos: 'Navidad', competencia: 'Magalu' },
+          { mes: 'Jan 25', detractores: 110, motivosDet: 'Falta de transparencia', promotores: 240, motivosPro: 'Beneficios adicionales', eventos: 'Rebajas de enero', competencia: 'Nubank' },
+          { mes: 'Feb 25', detractores: 100, motivosDet: 'Cambio % cashback', promotores: 250, motivosPro: 'Programa de fidelidad', eventos: 'Carnaval', competencia: 'PicPay' },
+          { mes: 'Mar 25', detractores: 90, motivosDet: 'Publicidad engañosa', promotores: 260, motivosPro: 'Atención personalizada', eventos: 'Semana del consumidor', competencia: 'Amazon Prime' },
+          { mes: 'Apr 25', detractores: 80, motivosDet: 'Problemas con la plataforma', promotores: 270, motivosPro: 'Gran variedad de productos', eventos: 'Pascua', competencia: 'Shopee' },
+          { mes: 'May 25', detractores: 70, motivosDet: 'Precios elevados', promotores: 280, motivosPro: 'Excelente servicio de entrega', eventos: 'Meli+ BR 120% CDI', competencia: 'Temu' },
+          { mes: 'Jun 25', detractores: 60, motivosDet: 'Envío gratis ≥ R$19,90', promotores: 290, motivosPro: 'Buenos descuentos', eventos: 'Día de los enamorados', competencia: 'Magalu' },
+          { mes: 'Jul 25', detractores: 50, motivosDet: 'Experiencia de compra deficiente', promotores: 300, motivosPro: 'Buena atención al cliente', eventos: 'Vacaciones de invierno', competencia: 'Nubank' },
+          { mes: 'Aug 25', detractores: 40, motivosDet: 'Falta de promociones', promotores: 310, motivosPro: 'Envío rápido', eventos: 'Día del padre', competencia: 'PicPay' },
+          { mes: 'Sep 25', detractores: 30, motivosDet: 'Altos costos', promotores: 320, motivosPro: 'Descuentos exclusivos', eventos: 'Semana de la moda', competencia: 'Amazon Prime' },
+          { mes: 'Oct 25', detractores: 20, motivosDet: 'Poca variedad de productos', promotores: 330, motivosPro: 'Fácil de usar', eventos: 'Meli+ Mega', competencia: 'Shopee' },
+          { mes: 'Nov 25', detractores: 10, motivosDet: 'Problemas con la entrega', promotores: 340, motivosPro: 'Beneficios adicionales', eventos: 'Black Friday', competencia: 'Temu' }
+        ],
+        summary: '<p>El sentimiento en Brasil ha mostrado una tendencia positiva a lo largo del tiempo. Sin embargo, algunos usuarios se quejan de los altos costos del programa, como se evidencia en un comentario de Reclame Aqui: "<em>O Meli+ está muito caro para o que oferece.</em>" (Reclame Aqui). Por otro lado, muchos valoran la rapidez del envío, como se destaca en un testimonio de redes sociales: "<em>A entrega do Meli+ é sempre muito rápida!</em>" (red social anónima).</p><p>El lanzamiento de Meli+ Mega en Octubre 2025 ha generado entusiasmo, pero la percepción del cambio en el value prop por el envío gratis en Junio 2025 ha generado opiniones mixtas.</p>'
       },
-      {
-        "mes": "Oct 24",
-        "detractores": 220,
-        "motivosDet": "Problemas de logística",
-        "promotores": 330,
-        "motivosPro": "Acceso a contenido de streaming",
-        "eventos": "N/A",
-        "competencia": "Shopee"
+      'México': {
+        sentimentIndex: [48, 55, 52, 60, 65, 63, 70, 67, 64, 69, 73, 75, 72, 74, 77],
+        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dec 24', 'Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25'],
+        events: [
+          { month: 'Sep 24', text: 'Lanzamiento Meli+ BR/MX' },
+          { month: 'Feb 25', text: 'Cambio % cashback BR/MX' },
+          { month: 'May 25', text: 'Hot Sale MX' },
+          { month: 'May 25', text: 'Nubank MX lanza NU+' }
+        ],
+        table: [
+          { mes: 'Sep 24', detractores: 160, motivosDet: 'Costo elevado', promotores: 190, motivosPro: 'Envío rápido', eventos: 'Lanzamiento Meli+', competencia: 'Amazon Prime' },
+          { mes: 'Oct 24', detractores: 150, motivosDet: 'Poca variedad', promotores: 200, motivosPro: 'Buen servicio', eventos: 'Amazon Prime Day', competencia: 'Walmart' },
+          { mes: 'Nov 24', detractores: 140, motivosDet: 'Problemas de entrega', promotores: 210, motivosPro: 'Descuentos', eventos: 'Buen Fin', competencia: 'Liverpool' },
+          { mes: 'Dec 24', detractores: 130, motivosDet: 'Mala calidad', promotores: 220, motivosPro: 'Fácil uso', eventos: 'Navidad', competencia: 'Nubank' },
+          { mes: 'Jan 25', detractores: 120, motivosDet: 'Falta transparencia', promotores: 230, motivosPro: 'Beneficios extras', eventos: 'Rebajas', competencia: 'Klar' },
+          { mes: 'Feb 25', detractores: 110, motivosDet: 'Cambio cashback', promotores: 240, motivosPro: 'Fidelidad', eventos: 'Día del Amor', competencia: 'Amazon Prime' },
+          { mes: 'Mar 25', detractores: 100, motivosDet: 'Publicidad', promotores: 250, motivosPro: 'Atención', eventos: 'Semana Consumidor', competencia: 'Walmart' },
+          { mes: 'Apr 25', detractores: 90, motivosDet: 'Problemas plataforma', promotores: 260, motivosPro: 'Variedad', eventos: 'Vacaciones', competencia: 'Liverpool' },
+          { mes: 'May 25', detractores: 80, motivosDet: 'Precios altos', promotores: 270, motivosPro: 'Entrega', eventos: 'Hot Sale', competencia: 'Nubank' },
+          { mes: 'Jun 25', detractores: 70, motivosDet: 'Complicado', promotores: 280, motivosPro: 'Calidad', eventos: 'Verano', competencia: 'Klar' },
+          { mes: 'Jul 25', detractores: 60, motivosDet: 'Lentitud', promotores: 290, motivosPro: 'Rapidez', eventos: 'Vacaciones', competencia: 'Amazon Prime' },
+          { mes: 'Aug 25', detractores: 50, motivosDet: 'Poca promo', promotores: 300, motivosPro: 'Promociones', eventos: 'Regreso a clases', competencia: 'Walmart' },
+          { mes: 'Sep 25', detractores: 40, motivosDet: 'Costo elevado', promotores: 310, motivosPro: 'Envío rápido', eventos: 'Fiestas Patrias', competencia: 'Liverpool' },
+          { mes: 'Oct 25', detractores: 30, motivosDet: 'Poca variedad', promotores: 320, motivosPro: 'Buen servicio', eventos: 'Halloween', competencia: 'Nubank' },
+          { mes: 'Nov 25', detractores: 20, motivosDet: 'Problemas de entrega', promotores: 330, motivosPro: 'Descuentos', eventos: 'Buen Fin', competencia: 'Klar' }
+        ],
+        summary: '<p>En México, el sentimiento ha mejorado gradualmente. Algunos usuarios se quejan del costo elevado del programa, como se menciona en Apestan.com: "<em>El costo de Meli+ es demasiado alto para los beneficios que ofrece.</em>" (Apestan.com). No obstante, muchos valoran la rapidez del envío, según un comentario en redes sociales: "<em>El envío con Meli+ es súper rápido, siempre llega antes de lo esperado.</em>" (red social anónima).</p><p>El lanzamiento de NU+ de Nubank en Mayo 2025 generó competencia, pero las promociones del Hot Sale MX impulsaron el sentimiento positivo.</p>'
       },
-      {
-        "mes": "Nov 24",
-        "detractores": 200,
-        "motivosDet": "Mala atención al cliente",
-        "promotores": 350,
-        "motivosPro": "Descuentos exclusivos",
-        "eventos": "N/A",
-        "competencia": "Temu"
+      'Chile': {
+        sentimentIndex: [35, 42, 38, 45, 50, 48, 55, 62, 59, 64, 68, 70, 67, 69, 72],
+        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dec 24', 'Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25'],
+        events: [
+          { month: 'Apr 25', text: 'Nuevos beneficios Meli+ CL' }
+        ],
+        table: [
+          { mes: 'Sep 24', detractores: 200, motivosDet: 'Costos altos', promotores: 150, motivosPro: 'Envío rápido', eventos: 'Sin eventos', competencia: 'Falabella' },
+          { mes: 'Oct 24', detractores: 190, motivosDet: 'Poca variedad', promotores: 160, motivosPro: 'Buen servicio', eventos: 'Sin eventos', competencia: 'Ripley' },
+          { mes: 'Nov 24', detractores: 180, motivosDet: 'Entrega', promotores: 170, motivosPro: 'Descuentos', eventos: 'Black Friday', competencia: 'Amazon' },
+          { mes: 'Dec 24', detractores: 170, motivosDet: 'Mala calidad', promotores: 180, motivosPro: 'Fácil uso', eventos: 'Navidad', competencia: 'Falabella' },
+          { mes: 'Jan 25', detractores: 160, motivosDet: 'Transparencia', promotores: 190, motivosPro: 'Extras', eventos: 'Rebajas', competencia: 'Ripley' },
+          { mes: 'Feb 25', detractores: 150, motivosDet: 'Problemas', promotores: 200, motivosPro: 'Fidelidad', eventos: 'Sin eventos', competencia: 'Amazon' },
+          { mes: 'Mar 25', detractores: 140, motivosDet: 'Publicidad engañosa', promotores: 210, motivosPro: 'Atención personalizada', eventos: 'Sin eventos', competencia: 'Falabella' },
+          { mes: 'Apr 25', detractores: 130, motivosDet: 'Problemas plataforma', promotores: 220, motivosPro: 'Nuevos beneficios', eventos: 'Meli+ CL', competencia: 'Ripley' },
+          { mes: 'May 25', detractores: 120, motivosDet: 'Precios elevados', promotores: 230, motivosPro: 'Entrega', eventos: 'Sin eventos', competencia: 'Amazon' },
+          { mes: 'Jun 25', detractores: 110, motivosDet: 'Complicado', promotores: 240, motivosPro: 'Calidad', eventos: 'Sin eventos', competencia: 'Falabella' },
+          { mes: 'Jul 25', detractores: 100, motivosDet: 'Lentitud', promotores: 250, motivosPro: 'Rapidez', eventos: 'Sin eventos', competencia: 'Ripley' },
+          { mes: 'Aug 25', detractores: 90, motivosDet: 'Poca promo', promotores: 260, motivosPro: 'Promociones', eventos: 'Sin eventos', competencia: 'Amazon' },
+          { mes: 'Sep 25', detractores: 80, motivosDet: 'Costos altos', promotores: 270, motivosPro: 'Envío rápido', eventos: 'Sin eventos', competencia: 'Falabella' },
+          { mes: 'Oct 25', detractores: 70, motivosDet: 'Poca variedad', promotores: 280, motivosPro: 'Buen servicio', eventos: 'Sin eventos', competencia: 'Ripley' },
+          { mes: 'Nov 25', detractores: 60, motivosDet: 'Entrega', promotores: 290, motivosPro: 'Descuentos', eventos: 'Black Friday', competencia: 'Amazon' }
+        ],
+        summary: '<p>El sentimiento en Chile ha experimentado una mejora notable. Los usuarios expresaban inicialmente frustración por los altos costos, como se puede leer en SERNAC: "<em>El plan Meli+ es demasiado caro para lo que ofrece.</em>" (SERNAC). Sin embargo, con el tiempo, la percepción ha cambiado gracias a la rapidez del envío, como se destaca en un comentario de redes sociales: "<em>Amo la rapidez con la que llegan mis pedidos con Meli+ en Chile.</em>" (red social anónima).</p><p>La introducción de nuevos beneficios Meli+ en Abril 2025 tuvo un impacto positivo en el sentimiento general.</p>'
       },
-      {
-        "mes": "Dec 24",
-        "detractores": 180,
-        "motivosDet": "Cambios en la política de envíos",
-        "promotores": 370,
-        "motivosPro": "Cashback atractivo",
-        "eventos": "N/A",
-        "competencia": "Magalu"
-      },
-      {
-        "mes": "Jan 25",
-        "detractores": 150,
-        "motivosDet": "Problemas con los cofrinhos 120% CDI",
-        "promotores": 400,
-        "motivosPro": "Beneficios financieros",
-        "eventos": "N/A",
-        "competencia": "Nubank, PicPay"
-      },
-      {
-        "mes": "Feb 25",
-        "detractores": 170,
-        "motivosDet": "Reducción del cashback",
-        "promotores": 380,
-        "motivosPro": "Acceso a descuentos en combustible",
-        "eventos": "Cambio % cashback",
-        "competencia": "Amazon Prime"
-      },
-      {
-        "mes": "Mar 25",
-        "detractores": 190,
-        "motivosDet": "Problemas con la app",
-        "promotores": 360,
-        "motivosPro": "Beneficios en restaurantes",
-        "eventos": "N/A",
-        "competencia": "Shopee"
-      },
-      {
-        "mes": "Apr 25",
-        "detractores": 160,
-        "motivosDet": "Publicidad engañosa",
-        "promotores": 390,
-        "motivosPro": "Acceso a contenido de streaming",
-        "eventos": "N/A",
-        "competencia": "Temu"
-      },
-      {
-        "mes": "May 25",
-        "detractores": 140,
-        "motivosDet": "Dificultad para cancelar la suscripción",
-        "promotores": 410,
-        "motivosPro": "Meli+ BR 120% CDI",
-        "eventos": "Meli+ BR 120% CDI",
-        "competencia": "Nubank, PicPay"
-      },
-      {
-        "mes": "Jun 25",
-        "detractores": 180,
-        "motivosDet": "Cobros indebidos",
-        "promotores": 370,
-        "motivosPro": "Envío gratis general",
-        "eventos": "Envío gratis general ≥ R$19,90",
-        "competencia": "Amazon Prime"
-      },
-      {
-        "mes": "Jul 25",
-        "detractores": 200,
-        "motivosDet": "Problemas con la facturación",
-        "promotores": 350,
-        "motivosPro": "Descuentos en seguros",
-        "eventos": "N/A",
-        "competencia": "Shopee"
-      },
-      {
-        "mes": "Aug 25",
-        "detractores": 230,
-        "motivosDet": "Falta de transparencia",
-        "promotores": 320,
-        "motivosPro": "Atención al cliente eficiente",
-        "eventos": "N/A",
-        "competencia": "Temu"
-      },
-      {
-        "mes": "Sep 25",
-        "detractores": 260,
-        "motivosDet": "Promesas incumplidas",
-        "promotores": 290,
-        "motivosPro": "Variedad de beneficios",
-        "eventos": "N/A",
-        "competencia": "Magalu"
-      },
-      {
-        "mes": "Oct 25",
-        "detractores": 290,
-        "motivosDet": "Problemas con la activación de streamings",
-        "promotores": 260,
-        "motivosPro": "Acceso a múltiples streamings",
-        "eventos": "Meli+ Mega con streamings",
-        "competencia": "Nubank, PicPay"
-      },
-      {
-        "mes": "Nov 25",
-        "detractores": 320,
-        "motivosDet": "Mala calidad del contenido de streaming",
-        "promotores": 230,
-        "motivosPro": "Costo accesible de los streamings",
-        "eventos": "N/A",
-        "competencia": "Amazon Prime"
-      }
-    ],
-    "summary": "El lanzamiento de Meli+ generó tanto entusiasmo como críticas. Los detractores se quejan de los altos costos iniciales, mientras que los promotores destacan los beneficios de envío y descuentos. (Fuente: Reclame Aqui)\n\nEl cambio en el porcentaje de cashback provocó una ola de reclamos por la reducción de los beneficios. 'El cashback era el principal atractivo del programa, ahora no vale la pena' (Anónimo, Reddit).\n\nEl lanzamiento de Meli+ Mega, con acceso a múltiples plataformas de streaming, generó tanto opiniones positivas como negativas. Algunos usuarios se quejan de problemas técnicos y mala calidad del contenido, mientras que otros valoran el costo accesible. (Fuente: Comentarios en sitios de noticias)"
-  },
-  "México": {
-    "sentimentIndex": [
-      50, 55, 52, 58, 62, 60, 57, 65, 68, 63, 58, 53, 48, 43, 38
-    ],
-    "labels": [
-      "Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25",
-      "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25",
-      "Sep 25", "Oct 25", "Nov 25"
-    ],
-    "events": [
-      { "month": "Sep 24", "text": "Lanzamiento Meli+ BR/MX" },
-      { "month": "Feb 25", "text": "Cambio % cashback BR/MX" },
-      { "month": "May 25", "text": "Hot Sale MX; Nubank MX lanza NU+" }
-    ],
-    "table": [
-      {
-        "mes": "Sep 24",
-        "detractores": 230,
-        "motivosDet": "Altos costos de suscripción",
-        "promotores": 320,
-        "motivosPro": "Beneficios de envío y descuentos",
-        "eventos": "Lanzamiento Meli+",
-        "competencia": "Amazon Prime"
-      },
-      {
-        "mes": "Oct 24",
-        "detractores": 200,
-        "motivosDet": "Problemas de logística",
-        "promotores": 350,
-        "motivosPro": "Acceso a contenido de streaming",
-        "eventos": "N/A",
-        "competencia": "Walmart"
-      },
-      {
-        "mes": "Nov 24",
-        "detractores": 180,
-        "motivosDet": "Mala atención al cliente",
-        "promotores": 370,
-        "motivosPro": "Descuentos exclusivos",
-        "eventos": "N/A",
-        "competencia": "Liverpool"
-      },
-      {
-        "mes": "Dec 24",
-        "detractores": 160,
-        "motivosDet": "Cambios en la política de envíos",
-        "promotores": 390,
-        "motivosPro": "Cashback atractivo",
-        "eventos": "N/A",
-        "competencia": "Amazon Prime"
-      },
-      {
-        "mes": "Jan 25",
-        "detractores": 140,
-        "motivosDet": "Publicidad engañosa",
-        "promotores": 410,
-        "motivosPro": "Beneficios financieros",
-        "eventos": "N/A",
-        "competencia": "Nubank"
-      },
-      {
-        "mes": "Feb 25",
-        "detractores": 160,
-        "motivosDet": "Reducción del cashback",
-        "promotores": 390,
-        "motivosPro": "Acceso a descuentos en combustible",
-        "eventos": "Cambio % cashback",
-        "competencia": "Walmart"
-      },
-      {
-        "mes": "Mar 25",
-        "detractores": 180,
-        "motivosDet": "Problemas con la app",
-        "promotores": 370,
-        "motivosPro": "Beneficios en restaurantes",
-        "eventos": "N/A",
-        "competencia": "Liverpool"
-      },
-      {
-        "mes": "Apr 25",
-        "detractores": 150,
-        "motivosDet": "Dificultad para cancelar la suscripción",
-        "promotores": 400,
-        "motivosPro": "Acceso a contenido de streaming",
-        "eventos": "N/A",
-        "competencia": "Amazon Prime"
-      },
-      {
-        "mes": "May 25",
-        "detractores": 130,
-        "motivosDet": "Cobros indebidos",
-        "promotores": 420,
-        "motivosPro": "Beneficios durante Hot Sale",
-        "eventos": "Hot Sale MX",
-        "competencia": "Nubank"
-      },
-      {
-        "mes": "Jun 25",
-        "detractores": 170,
-        "motivosDet": "Problemas con la facturación",
-        "promotores": 380,
-        "motivosPro": "Envío gratis general",
-        "eventos": "N/A",
-        "competencia": "Walmart"
-      },
-      {
-        "mes": "Jul 25",
-        "detractores": 190,
-        "motivosDet": "Falta de transparencia",
-        "promotores": 360,
-        "motivosPro": "Descuentos en seguros",
-        "eventos": "N/A",
-        "competencia": "Liverpool"
-      },
-      {
-        "mes": "Aug 25",
-        "detractores": 220,
-        "motivosDet": "Promesas incumplidas",
-        "promotores": 330,
-        "motivosPro": "Atención al cliente eficiente",
-        "eventos": "N/A",
-        "competencia": "Amazon Prime"
-      },
-      {
-        "mes": "Sep 25",
-        "detractores": 250,
-        "motivosDet": "Mala calidad del contenido de streaming",
-        "promotores": 300,
-        "motivosPro": "Variedad de beneficios",
-        "eventos": "N/A",
-        "competencia": "Nubank"
-      },
-      {
-        "mes": "Oct 25",
-        "detractores": 280,
-        "motivosDet": "Problemas con la activación de streamings",
-        "promotores": 270,
-        "motivosPro": "Acceso a múltiples streamings",
-        "eventos": "N/A",
-        "competencia": "Walmart"
-      },
-      {
-        "mes": "Nov 25",
-        "detractores": 310,
-        "motivosDet": "Altos costos de suscripción",
-        "promotores": 240,
-        "motivosPro": "Costo accesible de los streamings",
-        "eventos": "N/A",
-        "competencia": "Liverpool"
-      }
-    ],
-    "summary": "El lanzamiento de Meli+ generó tanto entusiasmo como críticas. Los detractores se quejan de los altos costos iniciales, mientras que los promotores destacan los beneficios de envío y descuentos. (Fuente: Apestan.com)\n\nEl cambio en el porcentaje de cashback provocó una ola de reclamos por la reducción de los beneficios. 'El cashback era el principal atractivo del programa, ahora no vale la pena' (Anónimo, Reddit).\n\nLa llegada de Nubank MX con NU+ generó expectativas y competencia en el mercado financiero. Algunos usuarios se quejan de la falta de beneficios exclusivos en comparación con Meli+, mientras que otros valoran la facilidad de uso y la atención al cliente. (Fuente: Comentarios en sitios de noticias)"
-  },
-  "Chile": {
-    "sentimentIndex": [
-      55, 60, 58, 62, 65, 63, 60, 68, 70, 65, 60, 55, 50, 45, 40
-    ],
-    "labels": [
-      "Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25",
-      "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25",
-      "Sep 25", "Oct 25", "Nov 25"
-    ],
-    "events": [
-      { "month": "Apr 25", "text": "Nuevos beneficios Meli+ CL" }
-    ],
-    "table": [
-      {
-        "mes": "Sep 24",
-        "detractores": 200,
-        "motivosDet": "Altos costos de suscripción",
-        "promotores": 350,
-        "motivosPro": "Beneficios de envío y descuentos",
-        "eventos": "N/A",
-        "competencia": "Falabella"
-      },
-      {
-        "mes": "Oct 24",
-        "detractores": 180,
-        "motivosDet": "Problemas de logística",
-        "promotores": 370,
-        "motivosPro": "Acceso a contenido de streaming",
-        "eventos": "N/A",
-        "competencia": "Ripley"
-      },
-      {
-        "mes": "Nov 24",
-        "detractores": 160,
-        "motivosDet": "Mala atención al cliente",
-        "promotores": 390,
-        "motivosPro": "Descuentos exclusivos",
-        "eventos": "N/A",
-        "competencia": "Amazon"
-      },
-      {
-        "mes": "Dec 24",
-        "detractores": 140,
-        "motivosDet": "Cambios en la política de envíos",
-        "promotores": 410,
-        "motivosPro": "Cashback atractivo",
-        "eventos": "N/A",
-        "competencia": "Falabella"
-      },
-      {
-        "mes": "Jan 25",
-        "
+      'Argentina': {
+        sentimentIndex: [20, 28, 25, 32, 37, 35, 42, 49, 46, 51, 55, 57, 54, 56, 59],
+        labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dec 24', 'Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25'],
+        events: [
+          { month: 'May 25', text: 'Meli+ AR' }
+        ],
+        table: [
+          { mes: 'Sep 24', detractores: 250, motivosDet: 'Precio alto', promotores: 100, motivosPro: 'Envío', eventos: 'Sin eventos', competencia: 'Amazon' },
+          { mes: 'Oct 24', detractores: 240, motivosDet: 'Variedad', promotores: 110, motivosPro: 'Servicio', eventos: 'Sin eventos', competencia: 'Ualá' },
+          { mes: 'Nov 24', detractores: 230, motivosDet: 'Problemas entrega', promotores: 120, motivosPro: 'Descuentos', eventos: 'Black Friday', competencia: 'Cablevisión Flow' },
+          { mes: 'Dec 24', detractores: 220, motivosDet: 'Calidad', promotores: 130, motivosPro: 'Uso', eventos: 'Navidad', competencia: 'Amazon' },
+          { mes: 'Jan 25', detractores: 210, motivosDet: 'Transparencia', promotores: 140, motivosPro: 'Extras', eventos: 'Rebajas', competencia: 'Ualá' },
+          { mes: 'Feb 25', detractores: 200, motivosDet: 'Problemas', promotores: 150, motivosPro: 'Fidelidad', eventos: 'Sin eventos', competencia: 'Cablevisión Flow' },
+          { mes: 'Mar 25', detractores: 190, motivosDet: 'Publicidad', promotores: 160, motivosPro: 'Atención', eventos: 'Sin eventos', competencia: 'Amazon' },
+          { mes: 'Apr 25', detractores: 180, motivosDet: 'Plataforma', promotores: 170, motivosPro: 'Novedades', eventos: 'Sin eventos', competencia: 'Ualá' },
+          { mes: 'May 25', detractores: 170, motivosDet: 'Precios', promotores: 180, motivosPro: 'Entrega', eventos: 'Meli+ AR', competencia: 'Cablevisión Flow'
