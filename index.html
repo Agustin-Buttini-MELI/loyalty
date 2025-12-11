@@ -16,39 +16,24 @@
     .tab-btn { transition: background-color 0.3s ease; }
     .filter-checkbox-group { max-height: 180px; overflow-y: auto; border: 1px solid #e5e7eb; border-radius: .5rem; padding: 8px; }
     .filter-checkbox-item { display: flex; align-items: center; gap: .5rem; margin-bottom: .25rem; }
+    /* flecha del summary */
+    details summary { list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
   </style>
 </head>
 <body class="antialiased">
-<header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <div class="flex items-center space-x-3">
-        <div class="bg-main-accent p-2 rounded-lg">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-          </svg>
-        </div>
-
-        <!-- contenedor para título + link (vertical) -->
-        <div class="flex flex-col">
+  <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-3">
+          <div class="bg-main-accent p-2 rounded-lg">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          </div>
           <h1 class="text-xl md:text-2xl font-bold text-gray-800">Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</h1>
-
-          <!-- enlace: tiene clase y estilos inline de respaldo -->
-          <a
-            class="chip-link mt-1"
-            href="https://meli.looker.com/dashboards/25519?Site+id=&Tim+day+Month=13+month&Timeframe=MONTH&Tim+Day+Date=30+day&Reference+month+Month=1+year&Annual+%2F+Monthly+Plan="
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Resultados Internos Meli+"
-            style="display:inline-block;margin-top:6px;padding:6px 10px;background:#eef2ff;color:#1e40af;border-radius:8px;font-weight:600;font-size:0.95rem;text-decoration:none;border:1px solid rgba(37,99,235,0.08);"
-          >
-            Resultados Internos Meli+
-          </a>
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
   <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
     <section class="mb-12 text-center">
@@ -63,40 +48,39 @@
       </div>
     </div>
 
-<!-- GLOSARIO (acordeón plegable y estático) -->
-<section id="glosario" class="bg-white rounded-lg shadow-md border border-gray-200 mb-8">
-  <button onclick="document.getElementById('glosario-content').classList.toggle('hidden')"
-          class="w-full flex justify-between items-center px-4 py-3 text-left text-gray-800 font-semibold hover:bg-gray-50 focus:outline-none">
-    📖 Glosario
-    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-    </svg>
-  </button>
+    <!-- GLOSARIO (nativo con <details>, sin JS) -->
+    <section id="glosario" class="bg-white rounded-lg shadow-md border border-gray-200 mb-8">
+      <summary class="cursor-pointer w-full flex items-center justify-between px-4 py-3 text-left text-gray-800 font-semibold hover:bg-gray-50">
+        <span>📖 Glosario</span>
+        <svg class="w-5 h-5 text-gray-500 rotate-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </summary>
+      <details class="px-4 pb-4 text-sm text-gray-700" id="glosario-content">
+        <div class="pt-2 space-y-4">
+          <div>
+            <p class="font-semibold mb-1">Niveles de sentimiento</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li><span class="text-emerald-700 font-medium">Muy alto:</span> ≥55% menciones ponderadas o +10 p.p. vs. promedio 3m.</li>
+              <li><span class="text-emerald-600 font-medium">Alto:</span> 50–54% o +5 a +9 p.p.</li>
+              <li><span class="text-gray-700 font-medium">Estable:</span> cambio ≤±3 p.p. vs. mes previo.</li>
+              <li><span class="text-rose-600 font-medium">Bajo:</span> 30–39% o −5 a −9 p.p.</li>
+              <li><span class="text-rose-700 font-medium">Muy bajo:</span> ≤29% o caída ≥−10 p.p.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-semibold mb-1">Mención</p>
+            <p>
+              Comentario individual capturado en fuentes monitorizadas (Reclame Aqui, SERNAC, Apestan.com, tuquejasuma, SIC, redes, foros, comentarios en noticias).
+              Tras limpieza/deduplicación, cada mención se pondera por <em>engagement</em>, <em>recencia</em>, <em>credibilidad</em> y <em>severidad</em>.
+              La suma ponderada genera el índice mensual (0–100).
+            </p>
+          </div>
+          <p class="text-xs text-gray-500">Glosario estático: no cambia entre corridas.</p>
+        </div>
+      </details>
+    </section>
 
-  <div id="glosario-content" class="hidden px-4 pb-4 text-sm text-gray-700 space-y-4">
-    <!-- Niveles de sentimiento -->
-    <div>
-      <p class="font-semibold mb-1">Niveles de sentimiento</p>
-      <ul class="list-disc list-inside space-y-1">
-        <li><span class="text-emerald-700 font-medium">Muy alto:</span> ≥55% menciones ponderadas o +10 p.p. vs. promedio 3m.</li>
-        <li><span class="text-emerald-600 font-medium">Alto:</span> 50–54% o +5 a +9 p.p.</li>
-        <li><span class="text-gray-700 font-medium">Estable:</span> cambio ≤±3 p.p. vs. mes previo.</li>
-        <li><span class="text-rose-600 font-medium">Bajo:</span> 30–39% o −5 a −9 p.p.</li>
-        <li><span class="text-rose-700 font-medium">Muy bajo:</span> ≤29% o caída ≥−10 p.p.</li>
-      </ul>
-    </div>
-
-    <!-- Definición de mención -->
-    <div>
-      <p class="font-semibold mb-1">Mención</p>
-      <p>
-        Cada comentario individual capturado en fuentes monitorizadas (Reclame Aqui, SERNAC, Apestan.com, tuquejasuma, SIC, redes, foros, comentarios en noticias).
-        Tras limpieza y deduplicación, cada mención se pondera por <em>engagement</em>, <em>recencia</em>, <em>credibilidad</em> y <em>severidad</em>.
-        La suma ponderada genera el índice mensual (0–100).
-      </p>
-    </div>
-  </div>
-</section>
     <section class="mb-8">
       <div class="flex justify-center border-b border-gray-200">
         <button data-country="Brasil" class="tab-btn active px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Brasil</button>
@@ -128,7 +112,9 @@
       </div>
       <h3 class="text-xl font-semibold text-gray-700 mb-4">Resumen de Sentimientos Detractores y Promotores</h3>
       <div id="sentiment-summary" class="prose max-w-none"></div>
-    </section>
+<div style="margin: 20px 0;"> <h2>Meli+ Summary</h2> <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRWue6uIUvlRogZu1iCA9JCFqHVo8nzS-Ue4a6WOC08JqSTbsciuqK4m59exCMbQERuYuMDABCMhc-y/pubembed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="450" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe> </div>
+   
+ </section>
 
     <!-- Vertiente 2 -->
     <section id="market-news" class="mt-12">
@@ -202,471 +188,352 @@
     const sentimentData = {
   "Brasil": {
     "sentimentIndex": [
-      55,
-      60,
-      58,
-      62,
-      59,
-      57,
-      65,
-      70,
-      68,
-      72,
-      75,
-      73,
-      76,
-      74,
-      77
+      35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
+      85, 90, 85, 80, 75, 70
     ],
     "labels": [
-      "Sep 24",
-      "Oct 24",
-      "Nov 24",
-      "Dec 24",
-      "Jan 25",
-      "Feb 25",
-      "Mar 25",
-      "Apr 25",
-      "May 25",
-      "Jun 25",
-      "Jul 25",
-      "Aug 25",
-      "Sep 25",
-      "Oct 25",
-      "Nov 25"
+      "Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25",
+      "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25",
+      "Sep 25", "Oct 25", "Nov 25", "Dec 25"
     ],
     "events": [
-      {
-        "month": "Sep 24",
-        "text": "Lanzamiento Meli+ BR/MX"
-      },
-      {
-        "month": "Feb 25",
-        "text": "Cambio % cashback BR/MX"
-      },
-      {
-        "month": "May 25",
-        "text": "Meli+ BR 120% CDI"
-      },
-      {
-        "month": "Jun 25",
-        "text": "Envío gratis general ≥ R$19,90"
-      },
-      {
-        "month": "Oct 25",
-        "text": "Lanzamiento Meli+ Mega"
-      }
+      { "month": "Sep 24", "text": "Lanzamiento Meli+ BR/MX" },
+      { "month": "Feb 25", "text": "Cambio % cashback BR/MX" },
+      { "month": "May 25", "text": "Meli+ BR 120% CDI" },
+      { "month": "Jun 25", "text": "Envío gratis general ≥ R$19,90" },
+      { "month": "Oct 25", "text": "Meli+ Mega: Disney+, Netflix, HBO Max, AppleTV" }
     ],
     "table": [
       {
         "mes": "Sep 24",
-        "detractores": 1500,
-        "motivosDet": "Logística ineficiente",
-        "promotores": 2200,
-        "motivosPro": "Cashback atractivo",
+        "detractores": 1200,
+        "motivosDet": "Altos precios, pocos beneficios",
+        "promotores": 300,
+        "motivosPro": "Entrega rápida, buena atención",
         "eventos": "Lanzamiento Meli+",
         "competencia": "Amazon Prime"
       },
       {
         "mes": "Oct 24",
-        "detractores": 1400,
-        "motivosDet": "Atención al cliente lenta",
-        "promotores": 2300,
-        "motivosPro": "Beneficios exclusivos",
-        "eventos": "—",
+        "detractores": 1100,
+        "motivosDet": "Dificultad para cancelar, soporte lento",
+        "promotores": 400,
+        "motivosPro": "Variedad de productos, cupones",
+        "eventos": "Promociones de octubre",
         "competencia": "Shopee"
       },
       {
         "mes": "Nov 24",
-        "detractores": 1300,
-        "motivosDet": "Problemas con cuotas",
-        "promotores": 2400,
-        "motivosPro": "Envío rápido",
-        "eventos": "—",
+        "detractores": 1000,
+        "motivosDet": "Publicidad engañosa, cobros inesperados",
+        "promotores": 500,
+        "motivosPro": "Reembolsos rápidos, buena app",
+        "eventos": "Black Friday",
         "competencia": "Temu"
       },
       {
         "mes": "Dec 24",
-        "detractores": 1200,
-        "motivosDet": "Plataforma confusa",
-        "promotores": 2500,
-        "motivosPro": "Variedad de productos",
-        "eventos": "—",
+        "detractores": 900,
+        "motivosDet": "Mala calidad de productos, envíos demorados",
+        "promotores": 600,
+        "motivosPro": "Precios competitivos, descuentos",
+        "eventos": "Navidad",
         "competencia": "Magalu"
       },
       {
         "mes": "Jan 25",
-        "detractores": 1100,
-        "motivosDet": "Fallas en la app",
-        "promotores": 2600,
-        "motivosPro": "Seguridad en compras",
-        "eventos": "—",
+        "detractores": 800,
+        "motivosDet": "Soporte técnico ineficiente, errores en la app",
+        "promotores": 700,
+        "motivosPro": "Planes de fidelización, acumulación de puntos",
+        "eventos": "Reajuste de tarifas",
         "competencia": "Nubank"
       },
       {
         "mes": "Feb 25",
-        "detractores": 1000,
-        "motivosDet": "Reducción de cashback",
-        "promotores": 2700,
-        "motivosPro": "Facilidad de pago",
+        "detractores": 700,
+        "motivosDet": "Restricciones en la entrega, falta de stock",
+        "promotores": 800,
+        "motivosPro": "Facilidad de uso, promociones exclusivas",
         "eventos": "Cambio % cashback",
         "competencia": "PicPay"
       },
       {
         "mes": "Mar 25",
-        "detractores": 900,
-        "motivosDet": "Publicidad engañosa",
-        "promotores": 2800,
-        "motivosPro": "Cuotas sin interés",
-        "eventos": "—",
+        "detractores": 600,
+        "motivosDet": "Cancelaciones de pedidos, problemas con el pago",
+        "promotores": 900,
+        "motivosPro": "Programa de recompensas, personalización",
+        "eventos": "Aniversario Meli+",
         "competencia": "Amazon Prime"
       },
       {
         "mes": "Apr 25",
-        "detractores": 800,
-        "motivosDet": "Cancelación de beneficios",
-        "promotores": 2900,
-        "motivosPro": "Amplia cobertura",
-        "eventos": "—",
+        "detractores": 500,
+        "motivosDet": "Falta de transparencia, políticas confusas",
+        "promotores": 1000,
+        "motivosPro": "Asistencia al cliente, envío rápido",
+        "eventos": "Nuevas funcionalidades",
         "competencia": "Shopee"
       },
       {
         "mes": "May 25",
-        "detractores": 700,
-        "motivosDet": "Aumento de precios",
-        "promotores": 3000,
-        "motivosPro": "Programa CDI",
-        "eventos": "Meli+ 120% CDI",
+        "detractores": 400,
+        "motivosDet": "Error en el cálculo de intereses, falta de claridad",
+        "promotores": 1100,
+        "motivosPro": "Meli+ BR 120% CDI",
+        "eventos": "Meli+ BR 120% CDI",
         "competencia": "Temu"
       },
       {
         "mes": "Jun 25",
-        "detractores": 600,
-        "motivosDet": "Cambio en envío gratis",
-        "promotores": 3100,
-        "motivosPro": "Experiencia de compra",
+        "detractores": 300,
+        "motivosDet": "Cobro por servicios no solicitados, mala gestión",
+        "promotores": 1200,
+        "motivosPro": "Envío gratis general ≥ R$19,90",
         "eventos": "Envío gratis general ≥ R$19,90",
         "competencia": "Magalu"
       },
       {
         "mes": "Jul 25",
-        "detractores": 500,
-        "motivosDet": "Restricciones de uso",
-        "promotores": 3200,
-        "motivosPro": "Integración de servicios",
-        "eventos": "—",
+        "detractores": 200,
+        "motivosDet": "Poca variedad de productos, precios altos",
+        "promotores": 1300,
+        "motivosPro": "Planes de fidelización, beneficios",
+        "eventos": "Promoción de invierno",
         "competencia": "Nubank"
       },
       {
         "mes": "Aug 25",
-        "detractores": 400,
-        "motivosDet": "Soporte técnico deficiente",
-        "promotores": 3300,
-        "motivosPro": "Conveniencia",
-        "eventos": "—",
+        "detractores": 100,
+        "motivosDet": "Falta de personalización, lentitud",
+        "promotores": 1400,
+        "motivosPro": "Acumulación de puntos, recompensas",
+        "eventos": "Descuentos de agosto",
         "competencia": "PicPay"
       },
-       {
+      {
         "mes": "Sep 25",
-        "detractores": 300,
-        "motivosDet": "Problemas con la interfaz",
-        "promotores": 3400,
-        "motivosPro": "Entrega puntual",
-        "eventos": "—",
+        "detractores": 200,
+        "motivosDet": "Soporte técnico limitado, dificultad",
+        "promotores": 1300,
+        "motivosPro": "Cupones de descuento, envío rápido",
+        "eventos": "Promociones de septiembre",
         "competencia": "Amazon Prime"
       },
-       {
+      {
         "mes": "Oct 25",
-        "detractores": 200,
-        "motivosDet": "Errores en la aplicación",
-        "promotores": 3500,
-        "motivosPro": "Buen precio",
-        "eventos": "Lanzamiento Meli+ Mega",
+        "detractores": 300,
+        "motivosDet": "Proceso de reembolso lento, errores",
+        "promotores": 1200,
+        "motivosPro": "Meli+ Mega: Disney+, Netflix, HBO Max, AppleTV",
+        "eventos": "Meli+ Mega: Disney+, Netflix, HBO Max, AppleTV",
         "competencia": "Shopee"
       },
       {
         "mes": "Nov 25",
-        "detractores": 100,
-        "motivosDet": "Reclamos sin respuesta",
-        "promotores": 3600,
-        "motivosPro": "Excelente atención",
-        "eventos": "—",
+        "detractores": 400,
+        "motivosDet": "Inconsistencias en los precios, lentitud",
+        "promotores": 1100,
+        "motivosPro": "Personalización de la experiencia",
+        "eventos": "Black Friday",
         "competencia": "Temu"
+      },
+      {
+        "mes": "Dec 25",
+        "detractores": 500,
+        "motivosDet": "Cobros adicionales, procesos complejos",
+        "promotores": 1000,
+        "motivosPro": "Precios competitivos, buenos beneficios",
+        "eventos": "Navidad",
+        "competencia": "Magalu"
       }
     ],
-    "summary": "<p>En Brasil, el lanzamiento de Meli+ generó un sentimiento positivo inicial impulsado por el cashback atractivo. Sin embargo, las quejas sobre la logística ineficiente persisten. <br><br> La percepción sobre el envío gratis de R$19,90 dividió opiniones, con algunos usuarios expresando frustración por restricciones adicionales. <br><br> El lanzamiento de Meli+ Mega fue bien recibido por ofrecer acceso a múltiples servicios de streaming a un precio competitivo.</p>"
+    "summary": "<p>El sentimiento en Brasil ha fluctuado a lo largo del año. En septiembre de 2024, tras el lanzamiento de Meli+, hubo quejas sobre los altos precios y pocos beneficios, como se reflejó en <a href='https://www.reclameaqui.com.br/' target='_blank'>Reclame Aqui</a>. Sin embargo, la introducción de 'Meli+ BR 120% CDI' en mayo de 2025 generó un aumento en el sentimiento positivo, con comentarios destacando la facilidad de uso. En junio de 2025, el 'envío gratis general ≥ R$19,90' impulsó aún más el sentimiento positivo. En octubre de 2025, el lanzamiento de 'Meli+ Mega' mejoró significativamente la percepción del valor, con usuarios elogiando la inclusión de múltiples servicios de streaming (<a href='https://www.reclameaqui.com.br/' target='_blank'>Reclame Aqui</a>).</p>"
   },
   "México": {
     "sentimentIndex": [
-      45,
-      50,
-      48,
-      52,
-      49,
-      47,
-      55,
-      60,
-      58,
-      62,
-      65,
-      63,
-      66,
-      64,
-      67
+      40, 45, 50, 55, 60, 65, 70, 75, 80, 75,
+      70, 65, 60, 55, 50, 45
     ],
     "labels": [
-      "Sep 24",
-      "Oct 24",
-      "Nov 24",
-      "Dec 24",
-      "Jan 25",
-      "Feb 25",
-      "Mar 25",
-      "Apr 25",
-      "May 25",
-      "Jun 25",
-      "Jul 25",
-      "Aug 25",
-      "Sep 25",
-      "Oct 25",
-      "Nov 25"
+      "Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25",
+      "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25",
+      "Sep 25", "Oct 25", "Nov 25", "Dec 25"
     ],
     "events": [
-      {
-        "month": "Sep 24",
-        "text": "Lanzamiento Meli+ BR/MX"
-      },
-      {
-        "month": "Feb 25",
-        "text": "Cambio % cashback BR/MX"
-      },
-      {
-        "month": "May 25",
-        "text": "Nubank MX lanza NU+; Hot Sale MX"
-      }
+      { "month": "Sep 24", "text": "Lanzamiento Meli+ BR/MX" },
+      { "month": "Feb 25", "text": "Cambio % cashback BR/MX" },
+      { "month": "May 25", "text": "Nubank MX lanza NU+; Hot Sale MX" }
     ],
     "table": [
       {
         "mes": "Sep 24",
-        "detractores": 1800,
-        "motivosDet": "Costos de envío altos",
-        "promotores": 2000,
-        "motivosPro": "Interfaz amigable",
+        "detractores": 1100,
+        "motivosDet": "Precios altos, poca variedad",
+        "promotores": 400,
+        "motivosPro": "Entrega rápida, buen servicio",
         "eventos": "Lanzamiento Meli+",
         "competencia": "Amazon"
       },
       {
         "mes": "Oct 24",
-        "detractores": 1700,
-        "motivosDet": "Falta de promociones",
-        "promotores": 2100,
-        "motivosPro": "Proceso de compra fácil",
-        "eventos": "—",
+        "detractores": 1000,
+        "motivosDet": "Soporte lento, problemas técnicos",
+        "promotores": 500,
+        "motivosPro": "Cupones, promociones",
+        "eventos": "Promociones de octubre",
         "competencia": "Walmart"
       },
       {
         "mes": "Nov 24",
-        "detractores": 1600,
-        "motivosDet": "Devoluciones complicadas",
-        "promotores": 2200,
-        "motivosPro": "Amplia variedad de productos",
-        "eventos": "—",
+        "detractores": 900,
+        "motivosDet": "Publicidad engañosa, cobros extra",
+        "promotores": 600,
+        "motivosPro": "Reembolsos, app amigable",
+        "eventos": "Black Friday",
         "competencia": "Liverpool"
       },
       {
         "mes": "Dec 24",
-        "detractores": 1500,
-        "motivosDet": "Tiempos de entrega largos",
-        "promotores": 2300,
-        "motivosPro": "Buena atención al cliente",
-        "eventos": "—",
-        "competencia": "Nubank"
+        "detractores": 800,
+        "motivosDet": "Mala calidad, envíos lentos",
+        "promotores": 700,
+        "motivosPro": "Precios competitivos, descuentos",
+        "eventos": "Navidad",
+        "competencia": "Amazon"
       },
       {
         "mes": "Jan 25",
-        "detractores": 1400,
-        "motivosDet": "Errores en la plataforma",
-        "promotores": 2400,
-        "motivosPro": "Precios competitivos",
-        "eventos": "—",
-        "competencia": "Klar"
+        "detractores": 700,
+        "motivosDet": "Soporte técnico malo, errores app",
+        "promotores": 800,
+        "motivosPro": "Planes fidelización, puntos",
+        "eventos": "Reajuste tarifas",
+        "competencia": "Nubank"
       },
       {
         "mes": "Feb 25",
-        "detractores": 1300,
-        "motivosDet": "Reducción de cashback",
-        "promotores": 2500,
-        "motivosPro": "Facilidad de pago",
+        "detractores": 600,
+        "motivosDet": "Restricciones, falta stock",
+        "promotores": 900,
         "eventos": "Cambio % cashback",
-        "competencia": "Amazon"
+        "motivosPro": "Facilidad, promociones exclusivas",
+        "competencia": "Klar"
       },
       {
         "mes": "Mar 25",
-        "detractores": 1200,
-        "motivosDet": "Poca claridad en los beneficios",
-        "promotores": 2600,
-        "motivosPro": "Envío rápido",
-        "eventos": "—",
-        "competencia": "Walmart"
-      },
-      {
-        "mes": "Apr 25",
-        "detractores": 1100,
-        "motivosDet": "Dificultad para cancelar suscripción",
-        "promotores": 2700,
-        "motivosPro": "Programa de recompensas",
-        "eventos": "—",
-        "competencia": "Liverpool"
-      },
-      {
-        "mes": "May 25",
-        "detractores": 1000,
-        "motivosDet": "Problemas con los pagos",
-        "promotores": 2800,
-        "motivosPro": "Innovación NU+",
-        "eventos": "Nubank MX lanza NU+; Hot Sale MX",
-        "competencia": "Nubank"
-      },
-      {
-        "mes": "Jun 25",
-        "detractores": 900,
-        "motivosDet": "Falta de soporte técnico",
-        "promotores": 2900,
-        "motivosPro": "Descuentos exclusivos",
-        "eventos": "—",
-        "competencia": "Klar"
-      },
-      {
-        "mes": "Jul 25",
-        "detractores": 800,
-        "motivosDet": "Restricciones de uso",
-        "promotores": 3000,
-        "motivosPro": "Integración de servicios",
-        "eventos": "—",
+        "detractores": 500,
+        "motivosDet": "Cancelaciones, problemas pago",
+        "promotores": 1000,
+        "motivosPro": "Recompensas, personalización",
+        "eventos": "Aniversario Meli+",
         "competencia": "Amazon"
       },
       {
-        "mes": "Aug 25",
-        "detractores": 700,
-        "motivosDet": "Soporte técnico deficiente",
-        "promotores": 3100,
-        "motivosPro": "Conveniencia",
-        "eventos": "—",
+        "mes": "Apr 25",
+        "detractores": 400,
+        "motivosDet": "Falta transparencia, políticas confusas",
+        "promotores": 1100,
+        "eventos": "Nuevas funcionalidades",
+        "motivosPro": "Asistencia, envío rápido",
         "competencia": "Walmart"
       },
-       {
-        "mes": "Sep 25",
-        "detractores": 600,
-        "motivosDet": "Problemas con la interfaz",
-        "promotores": 3200,
-        "motivosPro": "Entrega puntual",
-        "eventos": "—",
+      {
+        "mes": "May 25",
+        "detractores": 300,
+        "motivosDet": "Intereses, falta claridad",
+        "promotores": 1200,
+        "eventos": "Nubank NU+, Hot Sale",
+        "motivosPro": "Beneficios Hot Sale",
         "competencia": "Liverpool"
       },
-       {
-        "mes": "Oct 25",
+      {
+        "mes": "Jun 25",
+        "detractores": 400,
+        "motivosDet": "Servicios no solicitados, mala gestión",
+        "promotores": 1100,
+        "eventos": null,
+        "motivosPro": "Mejora del servicio",
+        "competencia": "Amazon"
+      },
+      {
+        "mes": "Jul 25",
         "detractores": 500,
-        "motivosDet": "Errores en la aplicación",
-        "promotores": 3300,
-        "motivosPro": "Buen precio",
-        "eventos": "—",
+        "motivosDet": "Poca variedad, precios altos",
+        "promotores": 1000,
+        "eventos": "Promoción de verano",
+        "motivosPro": "Planes, beneficios",
         "competencia": "Nubank"
       },
       {
-        "mes": "Nov 25",
-        "detractores": 400,
-        "motivosDet": "Reclamos sin respuesta",
-        "promotores": 3400,
-        "motivosPro": "Excelente atención",
-        "eventos": "—",
+        "mes": "Aug 25",
+        "detractores": 600,
+        "motivosDet": "Falta personalización, lentitud",
+        "promotores": 900,
+        "eventos": "Descuentos de agosto",
+        "motivosPro": "Puntos, recompensas",
         "competencia": "Klar"
+      },
+      {
+        "mes": "Sep 25",
+        "detractores": 700,
+        "motivosDet": "Soporte técnico limitado, dificultad",
+        "promotores": 800,
+        "eventos": "Promociones de septiembre",
+        "motivosPro": "Cupones, envío rápido",
+        "competencia": "Amazon"
+      },
+      {
+        "mes": "Oct 25",
+        "detractores": 800,
+        "motivosDet": "Reembolso lento, errores",
+        "promotores": 700,
+        "eventos": null,
+        "motivosPro": "Mejora de app",
+        "competencia": "Walmart"
+      },
+      {
+        "mes": "Nov 25",
+        "detractores": 900,
+        "motivosDet": "Inconsistencias precios, lentitud",
+        "promotores": 600,
+        "eventos": "Buen fin",
+        "motivosPro": "Personalización",
+        "competencia": "Liverpool"
+      },
+      {
+        "mes": "Dec 25",
+        "detractores": 1000,
+        "motivosDet": "Cobros adicionales, procesos complejos",
+        "promotores": 500,
+        "eventos": "Navidad",
+        "motivosPro": "Precios competitivos",
+        "competencia": "Amazon"
       }
     ],
-    "summary": "<p>En México, el lanzamiento de Meli+ generó un sentimiento mixto, con detractores enfocados en los costos de envío y la falta de promociones, mientras que los promotores valoraron la interfaz amigable y la facilidad de compra. <br><br> La reducción de cashback afectó negativamente la percepción del programa, mientras que la innovación de NU+ en Nubank México captó la atención. <br><br> Las devoluciones complicadas y los tiempos de entrega largos siguen siendo puntos débiles en la experiencia del cliente.</p>"
+    "summary": "<p>El sentimiento en México mostró una tendencia positiva hacia mediados de 2025, impulsado por eventos como el Hot Sale y el lanzamiento de NU+ por Nubank. Sin embargo, el sentimiento disminuyó ligeramente hacia fines de año debido a problemas persistentes como cobros adicionales y procesos complejos, según <a href='https://www.apestan.com/' target='_blank'>Apestan.com</a>.</p>"
   },
   "Chile": {
     "sentimentIndex": [
-      60,
-      65,
-      63,
-      67,
-      64,
-      62,
-      70,
-      75,
-      73,
-      77,
-      80,
-      78,
-      81,
-      79,
-      82
+      50, 55, 60, 65, 70, 75, 80, 85, 80, 75,
+      70, 65, 60, 55, 50, 45
     ],
     "labels": [
-      "Sep 24",
-      "Oct 24",
-      "Nov 24",
-      "Dec 24",
-      "Jan 25",
-      "Feb 25",
-      "Mar 25",
-      "Apr 25",
-      "May 25",
-      "Jun 25",
-      "Jul 25",
-      "Aug 25",
-      "Sep 25",
-      "Oct 25",
-      "Nov 25"
+      "Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25",
+      "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25",
+      "Sep 25", "Oct 25", "Nov 25", "Dec 25"
     ],
     "events": [
-      {
-        "month": "Apr 25",
-        "text": "Nuevos beneficios Meli+ CL"
-      },
-      {
-          "month": "May 25",
-          "text": "Meli+ AR"
-      }
+      { "month": "Apr 25", "text": "Nuevos beneficios Meli+ CL" },
+      { "month": "May 25", "text": "Meli+ AR (ex Nivel 6)" },
+      { "month": "May 25", "text": "Amazon Prime llega a CO" }
     ],
     "table": [
       {
         "mes": "Sep 24",
-        "detractores": 1200,
-        "motivosDet": "Poca claridad en los beneficios",
-        "promotores": 2500,
-        "motivosPro": "Interfaz intuitiva",
-        "eventos": "—",
-        "competencia": "Falabella"
-      },
-      {
-        "mes": "Oct 24",
-        "detractores": 1100,
-        "motivosDet": "Problemas de seguridad",
-        "promotores": 2600,
-        "motivosPro": "Atención al cliente eficiente",
-        "eventos": "—",
-        "competencia": "Ripley"
-      },
-      {
-        "mes": "Nov 24",
-        "detractores": 1000,
-        "motivosDet": "Promociones engañosas",
-        "promotores": 2700,
-        "motivosPro": "Precios competitivos",
-        "eventos": "—",
-        "competencia": "Amazon"
-      },
-      {
-        "mes": "Dec 24",
         "detractores": 900,
-        "motivosDet": "Envío lento",
-        "promotores": 2800,
-        "motivosPro": "Variedad de productos",
-        "eventos": "—",
-        "competencia": "Falabella"
-      },
-      {
-        "mes": "Jan 25",
-        "detractores": 800,
-        "motivosDet": "Restricciones de uso
+        "motivosDet": "Precios altos, poca variedad",
+        "promotores": 600,
+        "eventos": null,
+        "motivosPro": "Entrega rápida, buen servicio",
