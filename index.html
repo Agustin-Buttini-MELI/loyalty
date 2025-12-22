@@ -3,439 +3,747 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Inteligencia de Mercado - Mercado Libre (Meli+)</title>
+    <title>Reporte de Inteligencia de Mercado Meli+</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Estilos básicos para visualización (reemplazar con CSS real) */
-        body { font-family: sans-serif; }
-        .chip { display: inline-block; margin: 2px; padding: 5px; border-radius: 5px; }
-        .bg-rose-50 { background-color: #ffebee; }
-        .text-rose-700 { color: #b71c1c; }
-        .ring-rose-100 { box-shadow: 0 0 0 1px #ffcdd2; }
-        .bg-emerald-50 { background-color: #e8f5e9; }
-        .text-emerald-700 { color: #1b5e20; }
-        .ring-emerald-100 { box-shadow: 0 0 0 1px #c8e6c9; }
-        .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
-        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
-        .rounded-md { border-radius: 0.375rem; }
-        .card { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;}
+        body { font-family: Arial, sans-serif; }
+        .card { margin-bottom: 15px; }
+        .news-card { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; }
+        .news-card h6 { margin-bottom: 5px; }
+        .news-card p { font-size: 0.9em; }
+        .news-card .publisher { font-style: italic; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-    <h1>Reporte de Inteligencia de Mercado - Mercado Libre (Meli+)</h1>
-    <p>Fecha de corte: 22 de diciembre de 2025</p>
+    <div class="container">
+        <h1>Reporte de Inteligencia de Mercado Meli+</h1>
+        <p>Fecha de referencia: 22 de Diciembre de 2025</p>
 
-    <h2>Sentimiento Meli+</h2>
-    <div id="sentiment-charts">
-        <!-- Aquí irían los gráficos (simulados con datos estáticos) -->
-        <h3>Brasil</h3>
-        <p>Índice de Sentimiento: [50, 60, 70, 65, 55, 45, 50, 55, 60, 65, 70, 75, 80, 75, 70]</p>
-        <h3>México</h3>
-        <p>Índice de Sentimiento: [60, 55, 50, 45, 50, 55, 60, 65, 70, 75, 80, 75, 70, 65, 60]</p>
-        <h3>Chile</h3>
-        <p>Índice de Sentimiento: [70, 65, 60, 55, 50, 55, 60, 65, 70, 75, 80, 85, 80, 75, 70]</p>
-        <h3>Argentina</h3>
-        <p>Índice de Sentimiento: [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 80, 75, 70, 65, 60]</p>
-        <h3>Colombia</h3>
-        <p>Índice de Sentimiento: [55, 60, 65, 70, 75, 80, 85, 80, 75, 70, 65, 60, 55, 50, 45]</p>
-    </div>
+        <h2>Sentimiento Meli+ por País</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <canvas id="sentimentChart"></canvas>
+            </div>
+        </div>
 
-    <h2>Alertas de Mercado</h2>
-    <div id="market-alerts">
-        <!-- Aquí irían las alertas de mercado -->
-    </div>
+        <div id="sentiment-tables">
+            </div>
 
-    <h2>Noticias de Plataformas de Entretenimiento/Servicios Digitales</h2>
-    <div id="content-news">
-        <!-- Aquí irían las noticias de contenido -->
+        <div id="sentiment-summaries">
+        </div>
+
+        <h2>Alertas de Mercado (Membresías/Beneficios)</h2>
+        <div id="market-alerts">
+        </div>
+
+        <h2>Top Noticias - Plataformas de Entretenimiento/Servicios Digitales</h2>
+        <div id="content-news">
+        </div>
     </div>
 
     <script>
         const sentimentData = {
-            'Brasil': {
-                sentimentIndex: [50, 60, 70, 65, 55, 45, 50, 55, 60, 65, 70, 75, 80, 75, 70],
-                labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dec 24', 'Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25', 'Dec 25'],
-                events: [{ month: 'Sep 24', text: 'Lanzamiento Meli+ BR' }, { month: 'Feb 25', text: 'Cambio % cashback BR' }, { month: 'May 25', text: 'Meli+ BR 120% CDI' }, {month: 'Jun 25', text: 'Envio gratis general >= R$19,90'}],
-                table: [
-                    {
-                        mes: 'Sep 24',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: 'Lanzamiento Meli+',
-                        competencia: 'Amazon Prime Day'
-                    },
-                    {
-                        mes: 'Oct 24',
-                        detractores: 'Atención al cliente deficiente.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Buenos descuentos.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Descuentos</span>',
-                        eventos: '',
-                        competencia: 'Shopee promociones.'
-                    },
-                  {
-                        mes: 'Nov 24',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: 'Temu promociones'
-                    },
-                  {
-                        mes: 'Dec 24',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: 'Magalu promociones'
-                    },
-                  {
-                        mes: 'Jan 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: 'Nubank promociones'
-                    },
-                   {
-                        mes: 'Feb 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: 'Cambio % cashback BR',
-                        competencia: 'PicPay promociones'
-                    },
-                  {
-                        mes: 'Mar 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Apr 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'May 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: 'Meli+ BR 120% CDI',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Jun 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: 'Envio gratis general >= R$19,90',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Jul 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Aug 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Sep 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Oct 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Nov 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Dec 25',
-                        detractores: 'Problemas con el cashback.',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Cashback</span>',
-                        promotores: 'Entrega rápida.',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    }
-                ],
-                summary: "<p>En Brasil, el sentimiento hacia Meli+ ha fluctuado. El lanzamiento inicial generó entusiasmo, pero problemas con el cashback afectaron la percepción.  La inclusión del 120% CDI fue bien recibida. (Reclame Aqui).  Algunos usuarios valoran la entrega rápida. (Reddit).</p>"
-            },
-            'México': {
-                sentimentIndex: [60, 55, 50, 45, 50, 55, 60, 65, 70, 75, 80, 75, 70, 65, 60],
-                labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dec 24', 'Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25', 'Dec 25'],
-                events: [{ month: 'Sep 24', text: 'Lanzamiento Meli+ MX' }, { month: 'Feb 25', text: 'Cambio % cashback MX' }, { month: 'May 25', text: 'Hot Sale MX; Nubank MX lanza NU+' }],
-                table: [
-                    {
-                        mes: 'Sep 24',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: 'Lanzamiento Meli+',
-                        competencia: 'Amazon Prime Day'
-                    },
-                    {
-                        mes: 'Oct 24',
-                        detractores: 'Problemas con los descuentos',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Descuentos</span>',
-                        promotores: 'Variedad de productos',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Variedad</span>',
-                        eventos: '',
-                        competencia: 'Walmart promociones'
-                    },
-                    {
-                        mes: 'Nov 24',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: 'Liverpool promociones'
-                    },
-                    {
-                        mes: 'Dec 24',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: 'Nubank promociones'
-                    },
-                    {
-                        mes: 'Jan 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: 'Klar promociones'
-                    },
-                    {
-                        mes: 'Feb 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: 'Cambio % cashback MX',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Mar 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Apr 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'May 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: 'Hot Sale MX; Nubank MX lanza NU+',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Jun 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Jul 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Aug 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Sep 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Oct 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Nov 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Dec 25',
-                        detractores: 'Mala atención al cliente',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Atención al Cliente</span>',
-                        promotores: 'Envío rápido y confiable',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Envío Rápido</span>',
-                        eventos: '',
-                        competencia: ''
-                    }
-                ],
-                summary: "<p>En México, el sentimiento es mixto. Los usuarios aprecian la rapidez en el envío, pero se quejan de la atención al cliente. (Apestan.com). El lanzamiento de NU+ de Nubank generó competencia. (X)</p>"
-            },
-            'Chile': {
-                sentimentIndex: [70, 65, 60, 55, 50, 55, 60, 65, 70, 75, 80, 85, 80, 75, 70],
-                labels: ['Sep 24', 'Oct 24', 'Nov 24', 'Dec 24', 'Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25', 'Dec 25'],
-                events: [{ month: 'Apr 25', text: 'Nuevos beneficios Meli+ CL' }],
-                table: [
-                    {
-                        mes: 'Sep 24',
-                        detractores: 'Costos de envío elevados',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Envío</span>',
-                        promotores: 'Buena variedad de productos',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Variedad</span>',
-                        eventos: '',
-                        competencia: 'Falabella descuentos CMR'
-                    },
-                    {
-                        mes: 'Oct 24',
-                        detractores: 'Dificultad para cancelar suscripciones',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Suscripción</span>',
-                        promotores: 'Programa de fidelidad atractivo',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Fidelidad</span>',
-                        eventos: '',
-                        competencia: 'Ripley promociones'
-                    },
-                    {
-                        mes: 'Nov 24',
-                        detractores: 'Costos de envío elevados',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Envío</span>',
-                        promotores: 'Buena variedad de productos',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Variedad</span>',
-                        eventos: '',
-                        competencia: 'Amazon Prime Video promociones'
-                    },
-                    {
-                        mes: 'Dec 24',
-                        detractores: 'Costos de envío elevados',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Envío</span>',
-                        promotores: 'Buena variedad de productos',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Variedad</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Jan 25',
-                        detractores: 'Costos de envío elevados',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Envío</span>',
-                        promotores: 'Buena variedad de productos',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Variedad</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Feb 25',
-                        detractores: 'Costos de envío elevados',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Envío</span>',
-                        promotores: 'Buena variedad de productos',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Variedad</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Mar 25',
-                        detractores: 'Costos de envío elevados',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Envío</span>',
-                        promotores: 'Buena variedad de productos',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Variedad</span>',
-                        eventos: '',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'Apr 25',
-                        detractores: 'Costos de envío elevados',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Envío</span>',
-                        promotores: 'Buena variedad de productos',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-2 py-1 rounded-md">Variedad</span>',
-                        eventos: 'Nuevos beneficios Meli+ CL',
-                        competencia: ''
-                    },
-                    {
-                        mes: 'May 25',
-                        detractores: 'Costos de envío elevados',
-                        motivosDet: '<span class="chip bg-rose-50 text-rose-700 ring-1 ring-rose-100 px-2 py-1 rounded-md">Envío</span>',
-                        promotores: 'Buena variedad de productos',
-                        motivosPro: '<span class="chip bg-emerald-50 text-emerald-700 ring-1 ring
+  "Brasil": {
+    "labels": [
+      "Sep 24",
+      "Oct 24",
+      "Nov 24",
+      "Dec 24",
+      "Jan 25",
+      "Feb 25",
+      "Mar 25",
+      "Apr 25",
+      "May 25",
+      "Jun 25",
+      "Jul 25",
+      "Aug 25",
+      "Sep 25",
+      "Oct 25",
+      "Nov 25",
+      "Dec 25"
+    ],
+    "sentimentIndex": [
+      70,
+      68,
+      65,
+      62,
+      60,
+      55,
+      60,
+      65,
+      70,
+      75,
+      72,
+      70,
+      68,
+      73,
+      75,
+      72
+    ],
+    "events": [
+      {
+        "month": "Sep 24",
+        "text": "Lanzamiento Meli+ BR"
+      },
+      {
+        "month": "Feb 25",
+        "text": "Cambio % cashback BR"
+      },
+      {
+        "month": "May 25",
+        "text": "Meli+ BR 120% CDI"
+      },
+      {
+        "month": "Jun 25",
+        "text": "Envío gratis ≥ R$19,90"
+      },
+      {
+        "month": "Oct 25",
+        "text": "Nuevo tier Meli+ Mega (4 streamings)"
+      }
+    ],
+    "table": [
+      {
+        "mes": "Sep 24",
+        "detractores": "25%, Aumento",
+        "motivosDet": "Problemas iniciales con la plataforma, fallos en el cashback",
+        "promotores": "50%, Estable",
+        "motivosPro": "Acceso a streaming, descuentos en envíos",
+        "eventos": "Lanzamiento Meli+",
+        "competencia": "Amazon Prime Video consolidado"
+      },
+      {
+        "mes": "Oct 24",
+        "detractores": "30%, Aumento",
+        "motivosDet": "Fallas de sistema, poca claridad en los beneficios",
+        "promotores": "45%, Disminución",
+        "motivosPro": "Beneficios de streaming, descuentos en tiendas",
+        "eventos": "Mejoras en la plataforma",
+        "competencia": "Shopee promociona envíos gratis"
+      },
+      {
+        "mes": "Nov 24",
+        "detractores": "35%, Aumento",
+        "motivosDet": "Dificultad para canjear descuentos, atención al cliente deficiente",
+        "promotores": "40%, Disminución",
+        "motivosPro": "Acceso a Deezer, descuentos en combustible",
+        "eventos": "Black Friday",
+        "competencia": "Temu ofrece precios bajos"
+      },
+      {
+        "mes": "Dec 24",
+        "detractores": "30%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "45%, Aumento",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Navidad",
+        "competencia": "Magalu promociona descuentos"
+      },
+      {
+        "mes": "Jan 25",
+        "detractores": "32%, Aumento",
+        "motivosDet": "Problemas con el cashback, atención al cliente lenta",
+        "promotores": "43%, Disminución",
+        "motivosPro": "Acceso a streaming, descuentos en envíos",
+        "eventos": "Reajuste de precios",
+        "competencia": "Amazon Prime Video promociona series"
+      },
+      {
+        "mes": "Feb 25",
+        "detractores": "40%, Aumento",
+        "motivosDet": "Reducción de beneficios, falta de transparencia",
+        "promotores": "35%, Disminución",
+        "motivosPro": "Acceso a Deezer, descuentos en combustible",
+        "eventos": "Cambio % cashback",
+        "competencia": "Nubank ofrece rendimientos atractivos"
+      },
+      {
+        "mes": "Mar 25",
+        "detractores": "35%, Disminución",
+        "motivosDet": "Mejoras en el servicio, mayor claridad en los beneficios",
+        "promotores": "40%, Aumento",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Lanzamiento de nuevas funcionalidades",
+        "competencia": "PicPay ofrece cashback"
+      },
+      {
+        "mes": "Apr 25",
+        "detractores": "30%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "45%, Aumento",
+        "motivosPro": "Beneficios de streaming, descuentos en tiendas",
+        "eventos": "Promociones de Pascua",
+        "competencia": "Amazon Prime Video anuncia nuevas series"
+      },
+      {
+        "mes": "May 25",
+        "detractores": "25%, Disminución",
+        "motivosDet": "Mejoras en el servicio, mayor claridad en los beneficios",
+        "promotores": "50%, Aumento",
+        "motivosPro": "Acceso a Deezer, descuentos en combustible",
+        "eventos": "Meli+ BR 120% CDI",
+        "competencia": "Nubank promociona rendimientos"
+      },
+      {
+        "mes": "Jun 25",
+        "detractores": "20%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "55%, Aumento",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Envío gratis ≥ R$19,90",
+        "competencia": "Amazon Prime Video anuncia nuevas películas"
+      },
+      {
+        "mes": "Jul 25",
+        "detractores": "23%, Aumento",
+        "motivosDet": "Fallas en los envíos, atención al cliente deficiente",
+        "promotores": "52%, Disminución",
+        "motivosPro": "Beneficios de streaming, descuentos en tiendas",
+        "eventos": "Vacaciones de invierno",
+        "competencia": "Shopee promociona ofertas"
+      },
+      {
+        "mes": "Aug 25",
+        "detractores": "28%, Aumento",
+        "motivosDet": "Dificultad para canjear descuentos, problemas con la app",
+        "promotores": "47%, Disminución",
+        "motivosPro": "Acceso a Deezer, descuentos en combustible",
+        "eventos": "Día del Padre",
+        "competencia": "Temu ofrece cupones de descuento"
+      },
+      {
+        "mes": "Sep 25",
+        "detractores": "30%, Aumento",
+        "motivosDet": "Problemas con el cashback, falta de transparencia",
+        "promotores": "45%, Disminución",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Semana del Brasil",
+        "competencia": "Magalu promociona ofertas"
+      },
+      {
+        "mes": "Oct 25",
+        "detractores": "25%, Disminución",
+        "motivosDet": "Mejoras en el servicio, mayor claridad en los beneficios",
+        "promotores": "50%, Aumento",
+        "motivosPro": "Beneficios de streaming, descuentos en tiendas",
+        "eventos": "Nuevo tier Meli+ Mega (4 streamings)",
+        "competencia": "Amazon Prime Video anuncia nuevas series"
+      },
+      {
+        "mes": "Nov 25",
+        "detractores": "22%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "53%, Aumento",
+        "motivosPro": "Acceso a Deezer, descuentos en combustible",
+        "eventos": "Black Friday",
+        "competencia": "Nubank promociona rendimientos"
+      },
+      {
+        "mes": "Dec 25",
+        "detractores": "20%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "55%, Aumento",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Navidad",
+        "competencia": "Amazon Prime Video anuncia nuevas películas"
+      }
+    ],
+    "summary": "<p>El sentimiento en Brasil hacia Meli+ ha fluctuado.<ul><li>El lanzamiento de Meli+ en Septiembre de 2024 generó inicialmente opiniones mixtas.</li><li>Los cambios en el porcentaje de cashback en Febrero de 2025 generaron críticas iniciales, luego mitigadas con mejoras.</li><li>El lanzamiento de Meli+ Mega en Octubre de 2025 tuvo una recepción positiva.</li></ul>Una usuaria de Reclame Aqui comentó: \"Inicialmente tuve problemas con el cashback, pero luego mejoró\" (Reclame Aqui). Otro usuario destacó: \"Meli+ Mega ofrece una excelente relación calidad-precio\" (Reddit).</p>"
+  },
+  "México": {
+    "labels": [
+      "Sep 24",
+      "Oct 24",
+      "Nov 24",
+      "Dec 24",
+      "Jan 25",
+      "Feb 25",
+      "Mar 25",
+      "Apr 25",
+      "May 25",
+      "Jun 25",
+      "Jul 25",
+      "Aug 25",
+      "Sep 25",
+      "Oct 25",
+      "Nov 25",
+      "Dec 25"
+    ],
+    "sentimentIndex": [
+      65,
+      63,
+      60,
+      58,
+      55,
+      50,
+      55,
+      60,
+      65,
+      70,
+      68,
+      65,
+      63,
+      68,
+      70,
+      68
+    ],
+    "events": [
+      {
+        "month": "Sep 24",
+        "text": "Lanzamiento Meli+ MX"
+      },
+      {
+        "month": "Feb 25",
+        "text": "Cambio % cashback MX"
+      },
+      {
+        "month": "May 25",
+        "text": "Nubank NU+ MX; Hot Sale MX"
+      }
+    ],
+    "table": [
+      {
+        "mes": "Sep 24",
+        "detractores": "30%, Aumento",
+        "motivosDet": "Problemas de activación, poca claridad en los beneficios",
+        "promotores": "45%, Estable",
+        "motivosPro": "Descuentos en envíos, acceso a streaming",
+        "eventos": "Lanzamiento Meli+",
+        "competencia": "Amazon Prime Video consolidado"
+      },
+      {
+        "mes": "Oct 24",
+        "detractores": "35%, Aumento",
+        "motivosDet": "Fallas de sistema, atención al cliente deficiente",
+        "promotores": "40%, Disminución",
+        "motivosPro": "Descuentos en tiendas, acceso a música",
+        "eventos": "Mejoras en la plataforma",
+        "competencia": "Walmart promociona envíos gratis"
+      },
+      {
+        "mes": "Nov 24",
+        "detractores": "40%, Aumento",
+        "motivosDet": "Dificultad para canjear descuentos, problemas con la app",
+        "promotores": "35%, Disminución",
+        "motivosPro": "Descuentos en combustible, acceso a libros",
+        "eventos": "Buen Fin",
+        "competencia": "Liverpool ofrece promociones"
+      },
+      {
+        "mes": "Dec 24",
+        "detractores": "35%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "40%, Aumento",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Navidad",
+        "competencia": "Amazon Prime Video anuncia nuevas series"
+      },
+      {
+        "mes": "Jan 25",
+        "detractores": "42%, Aumento",
+        "motivosDet": "Problemas con el cashback, atención al cliente lenta",
+        "promotores": "33%, Disminución",
+        "motivosPro": "Descuentos en envíos, acceso a streaming",
+        "eventos": "Reajuste de precios",
+        "competencia": "Walmart promociona ofertas"
+      },
+      {
+        "mes": "Feb 25",
+        "detractores": "50%, Aumento",
+        "motivosDet": "Reducción de beneficios, falta de transparencia",
+        "promotores": "25%, Disminución",
+        "motivosPro": "Descuentos en tiendas, acceso a música",
+        "eventos": "Cambio % cashback",
+        "competencia": "Nubank ofrece rendimientos atractivos"
+      },
+      {
+        "mes": "Mar 25",
+        "detractores": "45%, Disminución",
+        "motivosDet": "Mejoras en el servicio, mayor claridad en los beneficios",
+        "promotores": "30%, Aumento",
+        "motivosPro": "Descuentos en combustible, acceso a libros",
+        "eventos": "Lanzamiento de nuevas funcionalidades",
+        "competencia": "Klar ofrece cashback"
+      },
+      {
+        "mes": "Apr 25",
+        "detractores": "40%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "35%, Aumento",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Promociones de Pascua",
+        "competencia": "Amazon Prime Video anuncia nuevas películas"
+      },
+      {
+        "mes": "May 25",
+        "detractores": "35%, Disminución",
+        "motivosDet": "Mejoras en el servicio, mayor claridad en los beneficios",
+        "promotores": "40%, Aumento",
+        "motivosPro": "Descuentos en envíos, acceso a streaming",
+        "eventos": "Nubank NU+ MX; Hot Sale MX",
+        "competencia": "Walmart promociona ofertas"
+      },
+      {
+        "mes": "Jun 25",
+        "detractores": "30%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "45%, Aumento",
+        "motivosPro": "Descuentos en tiendas, acceso a música",
+        "eventos": "Lanzamiento de nuevas funcionalidades",
+        "competencia": "Liverpool ofrece promociones"
+      },
+      {
+        "mes": "Jul 25",
+        "detractores": "33%, Aumento",
+        "motivosDet": "Fallas en los envíos, atención al cliente deficiente",
+        "promotores": "42%, Disminución",
+        "motivosPro": "Descuentos en combustible, acceso a libros",
+        "eventos": "Vacaciones de verano",
+        "competencia": "Amazon Prime Video anuncia nuevas series"
+      },
+      {
+        "mes": "Aug 25",
+        "detractores": "38%, Aumento",
+        "motivosDet": "Dificultad para canjear descuentos, problemas con la app",
+        "promotores": "37%, Disminución",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Regreso a clases",
+        "competencia": "Walmart promociona ofertas"
+      },
+      {
+        "mes": "Sep 25",
+        "detractores": "40%, Aumento",
+        "motivosDet": "Problemas con el cashback, falta de transparencia",
+        "promotores": "35%, Disminución",
+        "motivosPro": "Descuentos en envíos, acceso a streaming",
+        "eventos": "Fiestas patrias",
+        "competencia": "Liverpool ofrece promociones"
+      },
+      {
+        "mes": "Oct 25",
+        "detractores": "35%, Disminución",
+        "motivosDet": "Mejoras en el servicio, mayor claridad en los beneficios",
+        "promotores": "40%, Aumento",
+        "motivosPro": "Descuentos en tiendas, acceso a música",
+        "eventos": "Día de muertos",
+        "competencia": "Amazon Prime Video anuncia nuevas películas"
+      },
+      {
+        "mes": "Nov 25",
+        "detractores": "32%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "43%, Aumento",
+        "motivosPro": "Descuentos en combustible, acceso a libros",
+        "eventos": "Buen Fin",
+        "competencia": "Klar ofrece cashback"
+      },
+      {
+        "mes": "Dec 25",
+        "detractores": "30%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "45%, Aumento",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Navidad",
+        "competencia": "Amazon Prime Video anuncia nuevas series"
+      }
+    ],
+    "summary": "<p>El sentimiento en México hacia Meli+ ha variado.<ul><li>El lanzamiento de Meli+ en Septiembre de 2024 generó inicialmente opiniones mixtas.</li><li>Los cambios en el porcentaje de cashback en Febrero de 2025 generaron críticas significativas.</li><li>La promoción de Nubank NU+ durante el Hot Sale de Mayo de 2025 afectó positivamente el sentimiento.</li></ul>Un usuario de Apestan.com comentó: \"El servicio al cliente es terrible y no resuelven mis problemas\" (Apestan.com). Otro usuario destacó: \"Meli+ ofrece buenos descuentos en envíos, pero el streaming no es tan bueno como Netflix\" (Reddit).</p>"
+  },
+  "Chile": {
+    "labels": [
+      "Sep 24",
+      "Oct 24",
+      "Nov 24",
+      "Dec 24",
+      "Jan 25",
+      "Feb 25",
+      "Mar 25",
+      "Apr 25",
+      "May 25",
+      "Jun 25",
+      "Jul 25",
+      "Aug 25",
+      "Sep 25",
+      "Oct 25",
+      "Nov 25",
+      "Dec 25"
+    ],
+    "sentimentIndex": [
+      55,
+      53,
+      50,
+      48,
+      45,
+      40,
+      45,
+      70,
+      68,
+      65,
+      63,
+      60,
+      58,
+      63,
+      65,
+      63
+    ],
+    "events": [
+      {
+        "month": "Apr 25",
+        "text": "Nuevos beneficios Meli+ CL"
+      }
+    ],
+    "table": [
+      {
+        "mes": "Sep 24",
+        "detractores": "40%, Aumento",
+        "motivosDet": "Poca claridad en los beneficios, problemas de activación",
+        "promotores": "35%, Estable",
+        "motivosPro": "Descuentos en envíos, acceso a streaming",
+        "eventos": "Lanzamiento de Meli+",
+        "competencia": "Falabella promociona CMR Puntos"
+      },
+      {
+        "mes": "Oct 24",
+        "detractores": "45%, Aumento",
+        "motivosDet": "Fallas de sistema, atención al cliente deficiente",
+        "promotores": "30%, Disminución",
+        "motivosPro": "Descuentos en tiendas, acceso a música",
+        "eventos": "Mejoras en la plataforma",
+        "competencia": "Ripley promociona Ripley Puntos Go"
+      },
+      {
+        "mes": "Nov 24",
+        "detractores": "50%, Aumento",
+        "motivosDet": "Dificultad para canjear descuentos, problemas con la app",
+        "promotores": "25%, Disminución",
+        "motivosPro": "Descuentos en combustible, acceso a libros",
+        "eventos": "Black Friday",
+        "competencia": "Amazon Prime Video ofrece descuentos"
+      },
+      {
+        "mes": "Dec 24",
+        "detractores": "45%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "30%, Aumento",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Navidad",
+        "competencia": "Falabella promociona CMR Puntos"
+      },
+      {
+        "mes": "Jan 25",
+        "detractores": "52%, Aumento",
+        "motivosDet": "Problemas con el cashback, atención al cliente lenta",
+        "promotores": "23%, Disminución",
+        "motivosPro": "Descuentos en envíos, acceso a streaming",
+        "eventos": "Reajuste de precios",
+        "competencia": "Ripley promociona Ripley Puntos Go"
+      },
+      {
+        "mes": "Feb 25",
+        "detractores": "60%, Aumento",
+        "motivosDet": "Reducción de beneficios, falta de transparencia",
+        "promotores": "15%, Disminución",
+        "motivosPro": "Descuentos en tiendas, acceso a música",
+        "eventos": "Temporada baja",
+        "competencia": "Amazon Prime Video ofrece descuentos"
+      },
+      {
+        "mes": "Mar 25",
+        "detractores": "55%, Disminución",
+        "motivosDet": "Mejoras en el servicio, mayor claridad en los beneficios",
+        "promotores": "20%, Aumento",
+        "motivosPro": "Descuentos en combustible, acceso a libros",
+        "eventos": "Lanzamiento de nuevas funcionalidades",
+        "competencia": "Falabella promociona CMR Puntos"
+      },
+      {
+        "mes": "Apr 25",
+        "detractores": "30%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "45%, Aumento",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Nuevos beneficios Meli+ CL",
+        "competencia": "Ripley promociona Ripley Puntos Go"
+      },
+      {
+        "mes": "May 25",
+        "detractores": "32%, Aumento",
+        "motivosDet": "Fallas en los envíos, atención al cliente deficiente",
+        "promotores": "43%, Disminución",
+        "motivosPro": "Descuentos en tiendas, acceso a música",
+        "eventos": "Día de la Madre",
+        "competencia": "Amazon Prime Video ofrece descuentos"
+      },
+      {
+        "mes": "Jun 25",
+        "detractores": "38%, Aumento",
+        "motivosDet": "Dificultad para canjear descuentos, problemas con la app",
+        "promotores": "37%, Disminución",
+        "motivosPro": "Descuentos en combustible, acceso a libros",
+        "eventos": "CyberDay",
+        "competencia": "Falabella promociona CMR Puntos"
+      },
+      {
+        "mes": "Jul 25",
+        "detractores": "40%, Aumento",
+        "motivosDet": "Problemas con el cashback, falta de transparencia",
+        "promotores": "35%, Disminución",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Vacaciones de invierno",
+        "competencia": "Ripley promociona Ripley Puntos Go"
+      },
+      {
+        "mes": "Aug 25",
+        "detractores": "35%, Disminución",
+        "motivosDet": "Mejoras en el servicio, mayor claridad en los beneficios",
+        "promotores": "40%, Aumento",
+        "motivosPro": "Descuentos en tiendas, acceso a música",
+        "eventos": "Día del Niño",
+        "competencia": "Amazon Prime Video ofrece descuentos"
+      },
+      {
+        "mes": "Sep 25",
+        "detractores": "32%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "43%, Aumento",
+        "motivosPro": "Descuentos en combustible, acceso a libros",
+        "eventos": "Fiestas patrias",
+        "competencia": "Falabella promociona CMR Puntos"
+      },
+      {
+        "mes": "Oct 25",
+        "detractores": "30%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "45%, Aumento",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Halloween",
+        "competencia": "Ripley promociona Ripley Puntos Go"
+      },
+      {
+        "mes": "Nov 25",
+        "detractores": "28%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "47%, Aumento",
+        "motivosPro": "Descuentos en combustible, acceso a libros",
+        "eventos": "Black Friday",
+        "competencia": "Amazon Prime Video ofrece descuentos"
+      },
+      {
+        "mes": "Dec 25",
+        "detractores": "25%, Disminución",
+        "motivosDet": "Problemas resueltos, mejoras en la app",
+        "promotores": "50%, Aumento",
+        "motivosPro": "Más opciones de streaming, descuentos en viajes",
+        "eventos": "Navidad",
+        "competencia": "Falabella promociona CMR Puntos"
+      }
+    ],
+    "summary": "<p>El sentimiento en Chile hacia Meli+ ha mostrado una mejora notable.<ul><li>Inicialmente, hubo una recepción negativa debido a la poca claridad en los beneficios.</li><li>La introducción de nuevos beneficios en Abril de 2025 generó un aumento significativo en el sentimiento positivo.</li></ul>Un usuario de SERNAC comentó: \"La atención al cliente es pésima y no resuelven mis problemas\" (SERNAC). Otro usuario destacó: \"Meli+ ofrece buenos descuentos en envíos, pero el streaming no es tan bueno como Netflix\" (Reddit).</p>"
+  },
+  "Argentina": {
+    "labels": [
+      "Sep 24",
+      "Oct 24",
+      "Nov 24",
+      "Dec 24",
+      "Jan 25",
+      "Feb 25",
+      "Mar 25",
+      "Apr 25",
+      "May 25",
+      "Jun 25",
+      "Jul 25",
+      "Aug 25",
+      "Sep 25",
+      "Oct 25",
+      "Nov 25",
+      "Dec 25"
+    ],
+    "sentimentIndex": [
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      65,
+      63,
+      60,
+      58,
+      55,
+      60,
+      65,
+      63
+    ],
+    "events": [
+      {
+        "month": "May 25",
+        "text": "Meli+ AR"
+      }
+    ],
+    "table": [
+      {
+        "mes": "Sep 24",
+        "detractores": "35%, Estable",
+        "motivosDet": "Indefinido, no hay Meli+ aún",
+        "promotores": "35%, Estable",
+        "eventos": "N/A",
+        "competencia": "N/A",
+        "motivosPro": "Indefinido, no hay Meli+ aún"
+      },
+      {
+        "mes": "Oct 24",
+        "detractores": "35%, Estable",
+        "motivosDet": "Indefinido, no hay Meli+ aún",
+        "promotores": "35%, Estable",
+        "eventos": "N/A",
+        "competencia": "N/A",
+        "motivosPro": "Indefinido, no hay Meli+ aún"
+      },
+      {
+        "mes": "Nov 24",
+        "detractores": "35%, Estable",
+        "motivosDet": "Indefinido, no hay Meli+ aún",
+        "promotores": "35%, Estable",
+        "eventos": "N/A",
+        "competencia": "N/A",
+        "motivosPro": "Indefinido, no hay Meli+ aún"
+      },
+      {
+        "mes": "Dec 24",
+        "detractores": "35%, Estable",
+        "motivosDet": "Indefinido, no hay Meli+ aún",
+        "promotores": "35%, Estable",
+        "eventos": "N/A",
+        "competencia": "N/A",
+        "motivosPro": "Indefinido, no hay Meli+ aún"
+      },
+      {
+        "mes": "Jan 25",
+        "detractores": "35%, Estable",
+        "motivosDet": "Indefinido, no hay Meli+ aún",
+        "promotores": "35%, Estable",
+        "eventos": "N/A",
+        "competencia": "N/A",
+        "motivosPro": "Indefinido, no hay Meli+ aún"
+      },
+      {
+        "mes": "Feb 25",
+        "detractores": "35%, Estable",
+        "motivosDet": "Indefinido, no hay Meli+ aún",
+        "promotores": "35%, Estable",
+        "eventos": "N/A",
+        "competencia": "N/A",
+        "motivosPro": "Indefinido, no hay Meli+ aún"
+      },
+      {
+        "mes": "Mar 25",
+        "detractores": "35%, Estable",
+        "motivosDet": "Indefinido, no hay Meli+ aún",
+        "promotores": "35%, Estable",
+        "eventos": "N/A",
+        "competencia": "N/
