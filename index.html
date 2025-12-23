@@ -25,7 +25,7 @@
       <div class="flex items-center space-x-3">
         <div class="bg-main-accent p-2 rounded-lg">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 003 3v8a3 3 0 003 3z"/>
           </svg>
         </div>
         <div class="flex flex-col">
@@ -173,384 +173,313 @@
 
 <script>
   const sentimentData = {
-    "Brasil": {
-      labels: ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
-      sentimentIndex: [70, 68, 65, 72, 75, 60, 62, 68, 78, 80, 76, 74, 72, 75, 73, 70],
-      events: [
-        { month: "Sep 24", text: "Lanzamiento Meli+ BR/MX" },
-        { month: "Feb 25", text: "Cambio % cashback BR/MX" },
-        { month: "May 25", text: "Meli+ BR 120% CDI" },
-        { month: "Jun 25", text: "Envío gratis ≥ R$19,90" },
-        { month: "Oct 25", text: "Nuevo tier Meli+ Mega (4 streamings)" }
-      ],
-      table: [
-        {
-          mes: "Sep 24",
-          detractores: "25%",
-          motivosDet: "Costos de envío elevados",
-          promotores: "60%",
-          motivosPro: "Beneficios de streaming",
-          eventos: "Lanzamiento Meli+",
-          competencia: "Amazon Prime Video promociones"
-        },
-        {
-          mes: "Oct 24",
-          detractores: "28%",
-          motivosDet: "Experiencia de usuario confusa",
-          promotores: "58%",
-          motivosPro: "Descuentos en productos",
-          eventos: "Nuevas alianzas con marcas",
-          competencia: "Shopee Day con cupones"
-        },
-        {
-          mes: "Nov 24",
-          detractores: "30%",
-          motivosDet: "Problemas con el cashback",
-          promotores: "55%",
-          motivosPro: "Acceso a contenido exclusivo",
-          eventos: "Black Friday",
-          competencia: "Temu lanza programa de referidos"
-        },
-        {
-          mes: "Dec 24",
-          detractores: "20%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "65%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "Jan 25",
-          detractores: "20%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "65%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "Feb 25",
-          detractores: "40%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "45%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "Mar 25",
-          detractores: "38%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "47%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "Apr 25",
-          detractores: "27%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "58%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "May 25",
-          detractores: "15%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "70%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "Jun 25",
-          detractores: "13%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "72%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "Jul 25",
-          detractores: "21%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "64%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "Aug 25",
-          detractores: "23%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "62%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "Sep 25",
-          detractores: "25%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "60%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "Oct 25",
-          detractores: "20%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "65%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "Nov 25",
-          detractores: "22%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "63%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-                {
-          mes: "Dec 25",
-          detractores: "25%",
-          motivosDet: "Altos costos de suscripción",
-          promotores: "60%",
-          motivosPro: "Variedad de beneficios",
-          eventos: "Campañas navideñas",
-          competencia: "Magalu ofrece frete grátis"
-        },
-      ],
-      summary: "<p><ul><li>Meli+ ha mantenido un índice de sentimiento generalmente positivo en Brasil, con picos notables en mayo debido a la inclusión del 120% CDI.</li><li>La competencia de Amazon y Magalu sigue siendo fuerte, con ofertas agresivas de frete grátis.</li><li>'O cashback oferecido é muito bom, mas a taxa de adesão é alta' - Reclame Aqui.</li><li>'Gosto dos benefícios de streaming, mas a entrega poderia ser mais rápida' - Comentario Reddit.</li></ul></p>"
-    },
-    "México": {
-      labels: ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
-      sentimentIndex: [65, 63, 60, 68, 70, 55, 57, 63, 73, 75, 71, 69, 67, 70, 68, 65],
-      events: [
-        { month: "Sep 24", text: "Lanzamiento Meli+ BR/MX" },
-        { month: "Feb 25", text: "Cambio % cashback BR/MX" },
-        { month: "May 25", text: "Nubank NU+ MX; Hot Sale MX" }
-      ],
-      table: [
-        {
-          mes: "Sep 24",
-          detractores: "30%",
-          motivosDet: "Precios altos en algunos productos",
-          promotores: "55%",
-          motivosPro: "Envío rápido y confiable",
-          eventos: "Lanzamiento Meli+",
-          competencia: "Amazon Prime ofrece descuentos"
-        },
-        {
-          mes: "Oct 24",
-          detractores: "33%",
-          motivosDet: "Problemas con la atención al cliente",
-          promotores: "53%",
-          motivosPro: "Amplia variedad de productos",
-          eventos: "Promociones de temporada",
-          competencia: "Walmart Plus expande cobertura"
-        },
-        {
-          mes: "Nov 24",
-          detractores: "35%",
-          motivosDet: "Publicidad engañosa",
-          promotores: "50%",
-          motivosPro: "Beneficios de envío",
-          eventos: "El Buen Fin",
-          competencia: "Liverpool ofrece meses sin intereses"
-        },
-        {
-          mes: "Dec 24",
-          detractores: "25%",
-          motivosDet: "Cargos inesperados",
-          promotores: "60%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "Jan 25",
-          detractores: "25%",
-          motivosDet: "Cargos inesperados",
-          promotores: "60%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "Feb 25",
-          detractores: "45%",
-          motivosDet: "Cargos inesperados",
-          promotores: "40%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "Mar 25",
-          detractores: "43%",
-          motivosDet: "Cargos inesperados",
-          promotores: "42%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "Apr 25",
-          detractores: "32%",
-          motivosDet: "Cargos inesperados",
-          promotores: "53%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "May 25",
-          detractores: "20%",
-          motivosDet: "Cargos inesperados",
-          promotores: "65%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "Jun 25",
-          detractores: "18%",
-          motivosDet: "Cargos inesperados",
-          promotores: "67%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "Jul 25",
-          detractores: "26%",
-          motivosDet: "Cargos inesperados",
-          promotores: "59%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "Aug 25",
-          detractores: "28%",
-          motivosDet: "Cargos inesperados",
-          promotores: "57%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "Sep 25",
-          detractores: "30%",
-          motivosDet: "Cargos inesperados",
-          promotores: "55%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "Oct 25",
-          detractores: "25%",
-          motivosDet: "Cargos inesperados",
-          promotores: "60%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "Nov 25",
-          detractores: "27%",
-          motivosDet: "Cargos inesperados",
-          promotores: "58%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-                {
-          mes: "Dec 25",
-          detractores: "30%",
-          motivosDet: "Cargos inesperados",
-          promotores: "55%",
-          motivosPro: "Facilidad de compra",
-          eventos: "Campañas de Navidad",
-          competencia: "Nubank Nu+ con recompensas"
-        },
-      ],
-      summary: "<p><ul><li>El sentimiento en México ha sido fluctuante, con un declive en febrero debido a los cambios en el cashback.</li><li>La competencia de Amazon y Nubank es un factor constante.</li><li>'El envío es rápido pero los precios no siempre son los mejores' - Apestan.com.</li><li>'Me encanta la facilidad de comprar, pero el servicio al cliente deja mucho que desear' - Comentario X.</li></ul></p>"
-    },
-    "Chile": {
-      labels: ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
-      sentimentIndex: [50, 52, 48, 55, 58, 53, 55, 65, 68, 64, 62, 60, 58, 60, 58, 55],
-      events: [
-        { month: "Apr 25", text: "Nuevos beneficios Meli+ CL" }
-      ],
-      table: [
-        {
-          mes: "Sep 24",
-          detractores: "40%",
-          motivosDet: "Poca variedad de productos",
-          promotores: "45%",
-          motivosPro: "Entrega rápida",
-          eventos: "Inicios de Meli+",
-          competencia: "Falabella promociona envíos"
-        },
-        {
-          mes: "Oct 24",
-          detractores: "38%",
-          motivosDet: "Costos de envío elevados",
-          promotores: "47%",
-          motivosPro: "Atención al cliente eficiente",
-          eventos: "Promociones de octubre",
-          competencia: "Ripley ofrece descuentos"
-        },
-        {
-          mes: "Nov 24",
-          detractores: "42%",
-          motivosDet: "Interfaz confusa",
-          promotores: "43%",
-          motivosPro: "Beneficios de streaming",
-          eventos: "Black Friday",
-          competencia: "Amazon reduce precios"
-        },
-        {
-          mes: "Dec 24",
-          detractores: "35%",
-          motivosDet: "Fallas en la app",
-          promotores: "50%",
-          motivosPro: "Ofertas de fin de año",
-          eventos: "Campañas de Navidad",
-          competencia: "Falabella extiende horarios"
-        },
-                {
-          mes: "Jan 25",
-          detractores: "35%",
-          motivosDet: "Fallas en la app",
-          promotores: "50%",
-          motivosPro: "Ofertas de fin de año",
-          eventos: "Campañas de Navidad",
-          competencia: "Falabella extiende horarios"
-        },
-                {
-          mes: "Feb 25",
-          detractores: "37%",
-          motivosDet: "Fallas en la app",
-          promotores: "48%",
-          motivosPro: "Ofertas de fin de año",
-          eventos: "Campañas de Navidad",
-          competencia: "Falabella extiende horarios"
-        },
-                {
-          mes: "Mar 25",
-          detractores: "39%",
-          motivosDet: "Fallas en la app",
-          promotores: "46%",
-          motivosPro: "Ofertas de fin de
+  "Brasil": {
+    "labels": [],
+    "sentimentIndex": [],
+    "events": [],
+    "table": [],
+    "summary": "<p>No hay datos disponibles para Brasil en el período especificado. El índice de sentimiento se considera cercano a 50 debido a la falta de información.</p>"
+  },
+  "México": {
+    "labels": [],
+    "sentimentIndex": [],
+    "events": [],
+    "table": [],
+    "summary": "<p>No hay datos disponibles para México en el período especificado. El índice de sentimiento se considera cercano a 50 debido a la falta de información.</p>"
+  },
+  "Chile": {
+    "labels": [],
+    "sentimentIndex": [],
+    "events": [],
+    "table": [],
+    "summary": "<p>No hay datos disponibles para Chile en el período especificado. El índice de sentimiento se considera cercano a 50 debido a la falta de información.</p>"
+  },
+  "Argentina": {
+    "labels": [],
+    "sentimentIndex": [],
+    "events": [],
+    "table": [],
+    "summary": "<p>No hay datos disponibles para Argentina en el período especificado. El índice de sentimiento se considera cercano a 50 debido a la falta de información.</p>"
+  },
+  "Colombia": {
+    "labels": [],
+    "sentimentIndex": [],
+    "events": [],
+    "table": [],
+    "summary": "<p>No hay datos disponibles para Colombia en el período especificado. El índice de sentimiento se considera cercano a 50 debido a la falta de información.</p>"
+  }
+};
+  const newsData = [
+  {
+    "id": 1,
+    "entity": "Paramount",
+    "country": "",
+    "impact": "Alto",
+    "title": "Larry Ellison ofrece una garantía de 40.400 millones de dólares para adquirir Warner Bros",
+    "url": "https://www.expansion.com/economia-digital/companias/2025/12/22/69495df6468aebb64f8b456f.html",
+    "date": "22-12-2025",
+    "category": "Fusión/Adquisición",
+    "summary": "Paramount asegura haber modificado su oferta para abordar las preocupaciones de WBD, que manifestó que su valor era insuficiente y acarreaba importantes riesgos y costes.",
+    "analysis": "Larry Ellison respalda financieramente la oferta de Paramount por Warner Bros.",
+    "publisher": "Expansion.com",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "Expansion.com"
+    ],
+    "verdict": "confirmed"
+  },
+      {
+    "id": 2,
+    "entity": "Warner Bros",
+    "country": "",
+    "impact": "Alto",
+    "title": "Larry Ellison ofrece una garantía de 40.400 millones de dólares para comprar Warner Bros",
+    "url": "https://www.expansion.com/economia-digital/companias/2025/12/22/69495df6468aebb64f8b456f.html",
+    "date": "22-12-2025",
+    "category": "Fusión/Adquisición",
+    "summary": "Paramount asegura haber modificado su oferta para abordar las preocupaciones de WBD, que manifestó que su valor era insuficiente y acarreaba importantes riesgos y costes.",
+    "analysis": "Larry Ellison respalda financieramente la oferta de Paramount por Warner Bros.",
+    "publisher": "Expansion.com",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "Expansion.com"
+    ],
+    "verdict": "confirmed"
+  },
+    {
+    "id": 3,
+    "entity": "Paramount",
+    "country": "",
+    "impact": "Alto",
+    "title": "Cofundador de Oracle entrega respaldo personal de US$ 40 mil millones a la oferta de Paramount por Warner Bros",
+    "url": "https://www.df.cl/internacional/ft/cofundador-de-oracle-entrega-respaldo-personal-de-us-40-mil-millones-a-la",
+    "date": "22-12-2025",
+    "category": "Fusión/Adquisición",
+    "summary": "Larry Ellison acordó respaldar personalmente la oferta hostil de US$ 108.000 de Paramount.",
+    "analysis": "El cofundador de Oracle, Larry Ellison, apoya la oferta de Paramount por Warner Bros.",
+    "publisher": "Www.df.cl",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "Www.df.cl"
+    ],
+    "verdict": "confirmed"
+  },
+    {
+    "id": 4,
+    "entity": "Warner Bros",
+    "country": "",
+    "impact": "Alto",
+    "title": "Cofundador de Oracle entrega respaldo personal de US$ 40 mil millones a la oferta de Paramount por Warner Bros",
+    "url": "https://www.df.cl/internacional/ft/cofundador-de-oracle-entrega-respaldo-personal-de-us-40-mil-millones-a-la",
+    "date": "22-12-2025",
+    "category": "Fusión/Adquisición",
+    "summary": "Larry Ellison acordó respaldar personalmente la oferta hostil de US$ 108.000 de Paramount.",
+    "analysis": "El cofundador de Oracle, Larry Ellison, apoya la oferta de Paramount por Warner Bros.",
+    "publisher": "Www.df.cl",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "Www.df.cl"
+    ],
+    "verdict": "confirmed"
+  },
+  {
+    "id": 5,
+    "entity": "Netflix",
+    "country": "",
+    "impact": "Medio",
+    "title": "Netflix se endeuda... hasta 2030: Solicita un préstamo ‘puente’ de 59 mil mdd para comprar Warner Bros",
+    "url": "https://www.elfinanciero.com.mx/empresas/2025/12/22/netflix-se-endeuda-hasta-2030-solicita-un-prestamo-puente-de-59-mil-mdd-para-comprar-warner-bros/",
+    "date": "22-12-2025",
+    "category": "Fusión/Adquisición",
+    "summary": "Netflix refinanció parte de un préstamo puente de 59 mil millones de dólares con deuda más barata y a más largo plazo para comprar a Warner Bros.",
+    "analysis": "Netflix busca financiamiento para adquirir Warner Bros.",
+    "publisher": "El Financiero",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "El Financiero"
+    ],
+    "verdict": "confirmed"
+  },
+
+     {
+    "id": 6,
+    "entity": "Warner Bros",
+    "country": "",
+    "impact": "Medio",
+    "title": "Netflix se endeuda... hasta 2030: Solicita un préstamo ‘puente’ de 59 mil mdd para comprar Warner Bros",
+    "url": "https://www.elfinanciero.com.mx/empresas/2025/12/22/netflix-se-endeuda-hasta-2030-solicita-un-prestamo-puente-de-59-mil-mdd-para-comprar-warner-bros/",
+    "date": "22-12-2025",
+    "category": "Fusión/Adquisición",
+    "summary": "Netflix refinanció parte de un préstamo puente de 59 mil millones de dólares con deuda más barata y a más largo plazo para comprar a Warner Bros",
+    "analysis": "Netflix busca financiamiento para adquirir Warner Bros.",
+    "publisher": "El Financiero",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "El Financiero"
+    ],
+    "verdict": "confirmed"
+  },
+  {
+    "id": 7,
+    "entity": "Paramount",
+    "country": "",
+    "impact": "Alto",
+    "title": "Larry Ellison blinda la oferta de Paramount por Warner con una garantía personal de 40.400 millones de dólares",
+    "url": "https://www.lanacion.com.ar/el-mundo/larry-ellison-blinda-la-oferta-de-paramount-por-warner-con-una-garantia-personal-de-40400-millones-nid22122025/",
+    "date": "22-12-2025",
+    "category": "Fusión/Adquisición",
+    "summary": "El fundador de Oracle salió a respaldar con su propio patrimonio la ofensiva encabezada por David Ellison, en una pulseada corporativa que enfrenta a Paramount Skydance con Netflix y pone bajo la lupa a los reguladores",
+    "analysis": "Larry Ellison respalda con una garantía personal de 40.400 millones de dólares la oferta de Paramount por Warner Bros.",
+    "publisher": "La Nacion",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "La Nacion"
+    ],
+    "verdict": "confirmed"
+  },
+   {
+    "id": 8,
+    "entity": "Warner Bros",
+    "country": "",
+    "impact": "Alto",
+    "title": "Larry Ellison blinda la oferta de Paramount por Warner con una garantía personal de 40.400 millones de dólares",
+    "url": "https://www.lanacion.com.ar/el-mundo/larry-ellison-blinda-la-oferta-de-paramount-por-warner-con-una-garantia-personal-de-40400-millones-nid22122025/",
+    "date": "22-12-2025",
+    "category": "Fusión/Adquisición",
+    "summary": "El fundador de Oracle salió a respaldar con su propio patrimonio la ofensiva encabezada por David Ellison, en una pulseada corporativa que enfrenta a Paramount Skydance con Netflix y pone bajo la lupa a los reguladores",
+    "analysis": "Larry Ellison respalda con una garantía personal de 40.400 millones de dólares la oferta de Paramount por Warner Bros.",
+    "publisher": "La Nacion",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "La Nacion"
+    ],
+    "verdict": "confirmed"
+  },
+    {
+    "id": 9,
+    "entity": "Paramount",
+    "country": "",
+    "impact": "Medio",
+    "title": "Larry Elison respalda oferta de Paramount para vencer a Netflix en lucha por Warner Bros",
+    "url": "https://www.latercera.com/pulso/noticia/larry-elison-respalda-oferta-de-paramount-para-vencer-a-netflix-en-lucha-por-warner-bros/",
+    "date": "22-12-2025",
+    "category": "Fusión/Adquisición",
+    "summary": "Paramount Skydance entregó nuevas condiciones para su oferta hostil por Warner Bros. Discovery e imponerse al acuerdo ya pactado de esta última con Netflix.",
+    "analysis": "Paramount Skydance busca comprar Warner Bros. Discovery con el respaldo de Larry Elison.",
+    "publisher": "Latercera.com",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "Latercera.com"
+    ],
+    "verdict": "confirmed"
+  },
+     {
+    "id": 10,
+    "entity": "Warner Bros",
+    "country": "",
+    "impact": "Medio",
+    "title": "Larry Elison respalda oferta de Paramount para vencer a Netflix en lucha por Warner Bros",
+    "url": "https://www.latercera.com/pulso/noticia/larry-elison-respalda-oferta-de-paramount-para-vencer-a-netflix-en-lucha-por-warner-bros/",
+    "date": "22-12-2025",
+    "category": "Fusión/Adquisición",
+    "summary": "Paramount Skydance entregó nuevas condiciones para su oferta hostil por Warner Bros. Discovery e imponerse al acuerdo ya pactado de esta última con Netflix.",
+    "analysis": "Paramount Skydance busca comprar Warner Bros. Discovery con el respaldo de Larry Elison.",
+    "publisher": "Latercera.com",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "Latercera.com"
+    ],
+    "verdict": "confirmed"
+  },
+   {
+    "id": 11,
+    "entity": "Netflix",
+    "country": "",
+    "impact": "Medio",
+    "title": "Larry Elison respalda oferta de Paramount para vencer a Netflix en lucha por Warner Bros",
+    "url": "https://www.latercera.com/pulso/noticia/larry-elison-respalda-oferta-de-paramount-para-vencer-a-netflix-en-lucha-por-warner-bros/",
+    "date": "22-12-2025",
+    "category": "Fusión/Adquisición",
+    "summary": "Paramount Skydance entregó nuevas condiciones para su oferta hostil por Warner Bros. Discovery e imponerse al acuerdo ya pactado de esta última con Netflix.",
+    "analysis": "Paramount Skydance busca comprar Warner Bros. Discovery con el respaldo de Larry Elison, compitiendo con Netflix.",
+    "publisher": "Latercera.com",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "Latercera.com"
+    ],
+    "verdict": "confirmed"
+  }
+];
+  const contentNewsData = [
+  {
+    "id": 1,
+    "entity": "Netflix",
+    "country": "",
+    "impact": "Medio",
+    "title": "Netflix lanza el tráiler y anuncia la fecha de estreno de 'Salvador', la nueva serie de Luis Tosar y Claudia Salas",
+    "url": "https://www.eldiario.es/vertele/series/netflix-trailer-fecha-estreno-salvador-nueva-serie-luis-tosar-claudia-salas_7_12865740.html",
+    "date": "22-12-2025",
+    "category": "Lanzamiento",
+    "summary": "'Salvador', la nueva serie de Netflix con Luis Tosar y Claudia Salas como protagonistas, ya tiene fecha de estreno. Además, Netflix lanza un frenético tráiler donde se puede ver a los personajes principales en acción",
+    "analysis": "Netflix anuncia el estreno de 'Salvador', su nueva serie con Luis Tosar y Claudia Salas.",
+    "publisher": "Eldiario.es",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "Eldiario.es"
+    ],
+    "verdict": "confirmed"
+  },
+       {
+    "id": 2,
+    "entity": "Disney+",
+    "country": "",
+    "impact": "Medio",
+    "title": "Oficial. Ésta es la página CORRECTA para registrarte en la Villa Disney+ en CdMx | Paso a Paso",
+    "url": "https://www.milenio.com/comunidad/como-hacer-el-registro-a-la-villa-navidena-disney-guia",
+    "date": "22-12-2025",
+    "category": "Producto",
+    "summary": "La Navidad por fin se asoma y las actividades de temporada se vuelven un imperdible, en especial las que son gratuitas. ¿Ya supiste de la Villa Navideña de Disney? Ahora no necesitas viajar tan lejos para vivir una de las experiencias con más magia.",
+    "analysis": "Disney+ promociona su Villa Navideña en Ciudad de México.",
+    "publisher": "Milenio",
+    "language": "Spanish",
+    "out_of_window": false,
+    "evidence_count": 1,
+    "evidence_sources": [
+      "Milenio"
+    ],
+    "verdict": "confirmed"
+  },
+    {
+    "id": 3,
+    "entity": "OpenAI",
+    "country": "",
+    "impact": "Medio",
+    "title": "Más entusiasta o empático: ChatGPT introduce nuevas opciones para personalizar sus respuestas",
+    "url": "https://www.lanacion.com.ar/tecnologia/mas-entusiasta-o-empatico-chatgpt-introduce-nuevas-opciones-para-personalizar-sus-respuestas-nid22122025/",
+    "date": "22-12-2025",
+    "category": "Producto",
+    "summary
