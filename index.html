@@ -25,7 +25,7 @@
       <div class="flex items-center space-x-3">
         <div class="bg-main-accent p-2 rounded-lg">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 003 3v8a3 3 0 003 3z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
           </svg>
         </div>
         <div class="flex flex-col">
@@ -173,311 +173,149 @@
 
 <script>
   const sentimentData = {
-    "Brasil": {
-      labels: [],
-      sentimentIndex: [],
-      events: [],
-      table: [],
-      summary: "<p>No hay datos suficientes para Brasil en el rango de fechas solicitado.</p>"
-    },
-    "México": {
-      labels: [],
-      sentimentIndex: [],
-      events: [],
-      table: [],
-      summary: "<p>No hay datos suficientes para México en el rango de fechas solicitado.</p>"
-    },
-    "Chile": {
-      labels: [],
-      sentimentIndex: [],
-      events: [],
-      table: [],
-      summary: "<p>No hay datos suficientes para Chile en el rango de fechas solicitado.</p>"
-    },
-    "Argentina": {
-      labels: [],
-      sentimentIndex: [],
-      events: [],
-      table: [],
-      summary: "<p>No hay datos suficientes para Argentina en el rango de fechas solicitado.</p>"
-    },
-    "Colombia": {
-      labels: [],
-      sentimentIndex: [],
-      events: [],
-      table: [],
-      summary: "<p>No hay datos suficientes para Colombia en el rango de fechas solicitado.</p>"
-    }
-  };
+  "Brasil": {
+    labels: [],
+    sentimentIndex: [],
+    events: [],
+    table: [],
+    summary: "<p>No hay datos disponibles para Brasil en el período especificado.</p>"
+  },
+  "México": {
+    labels: [],
+    sentimentIndex: [],
+    events: [],
+    table: [],
+    summary: "<p>No hay datos disponibles para México en el período especificado.</p>"
+  },
+  "Chile": {
+    labels: [],
+    sentimentIndex: [],
+    events: [],
+    table: [],
+    summary: "<p>No hay datos disponibles para Chile en el período especificado.</p>"
+  },
+  "Argentina": {
+    labels: [],
+    sentimentIndex: [],
+    events: [],
+    table: [],
+    summary: "<p>No hay datos disponibles para Argentina en el período especificado.</p>"
+  },
+  "Colombia": {
+    labels: [],
+    sentimentIndex: [],
+    events: [],
+    table: [],
+    summary: "<p>No hay datos disponibles para Colombia en el período especificado.</p>"
+  }
+};
   const newsData = [
 {
 id: 1,
-entity: "Paramount",
+entity: "Larry Ellison/Paramount/Warner Bros",
 country: "",
 impact: "Alto",
 title: "Larry Ellison ofrece una garantía de 40.400 millones de dólares para adquirir Warner Bros",
 url: "https://www.elmundo.es/economia/2025/12/22/69499697fdddfff81e8b457c.html",
 date: "22-12-2025",
 category: "Fusión/Adquisición",
-summary: "Larry Ellison ofrece una garantía personal de 40.400 millones de dólares para la adquisición de Warner Bros por parte de Paramount.",
-analysis: "La oferta de Paramount para adquirir Warner Bros está siendo respaldada por una importante garantía financiera.",
+summary: "Larry Ellison ofrece una garantía personal para la adquisición de Warner Bros por Paramount.",
+analysis: "Larry Ellison apoya financieramente la oferta de Paramount para adquirir Warner Bros.",
 publisher: "El Mundo",
 language: "es",
 out_of_window: false,
-evidence_count: 2,
-evidence_sources: ["title","description"],
+evidence_count: 3,
+evidence_sources: ["El Mundo", "description", "content"],
 verdict: "confirmed"
 },
 {
 id: 2,
-entity: "Warner Bros",
+entity: "Larry Ellison/Paramount/Warner Bros",
 country: "",
 impact: "Alto",
-title: "Larry Ellison ofrece una garantía de 40.400 millones de dólares para adquirir Warner Bros",
-url: "https://www.elmundo.es/economia/2025/12/22/69499697fdddfff81e8b457c.html",
+title: "Larry Elison respalda oferta de Paramount para vencer a Netflix en lucha por Warner Bros",
+url: "https://www.latercera.com/pulso/noticia/larry-elison-respalda-oferta-de-paramount-para-vencer-a-netflix-en-lucha-por-warner-bros/",
 date: "22-12-2025",
 category: "Fusión/Adquisición",
-summary: "Larry Ellison ofrece una garantía personal de 40.400 millones de dólares para la adquisición de Warner Bros por parte de Paramount.",
-analysis: "La oferta de Paramount para adquirir Warner Bros está siendo respaldada por una importante garantía financiera.",
-publisher: "El Mundo",
+summary: "Larry Elison respalda la oferta de Paramount para comprar Warner Bros e imponerse a Netflix.",
+analysis: "Larry Ellison apoya la compra de Warner Bros por Paramount",
+publisher: "Latercera.com",
 language: "es",
 out_of_window: false,
-evidence_count: 2,
-evidence_sources: ["title","description"],
+evidence_count: 3,
+evidence_sources: ["Latercera.com", "description", "content"],
 verdict: "confirmed"
 },
 {
 id: 3,
-entity: "Paramount",
+entity: "Larry Ellison/Paramount/Warner Bros",
 country: "",
 impact: "Alto",
-title: "Larry Elison respalda oferta de Paramount para vencer a Netflix en lucha por Warner Bros",
-url: "https://www.latercera.com/pulso/noticia/larry-elison-respalda-oferta-de-paramount-para-vencer-a-netflix-en-lucha-por-warner-bros/",
+title: "Larry Ellison apoya la oferta de Paramount por Warner con una garantía de 40.000 millones de dólares",
+url: "https://www.expansion.com/economia/financial-times/2025/12/22/694969f6e5fdea9b7c8b45ae.html",
 date: "22-12-2025",
 category: "Fusión/Adquisición",
-summary: "Larry Elison respalda la oferta de Paramount para comprar Warner Bros e imponerse a Netflix.",
-analysis: "Paramount Skydance no cede en su interés por comprar Warner Bros. Discovery (WBD)",
-publisher: "Latercera.com",
+summary: "Larry Ellison respalda con 40.000 millones de dólares la OPA hostil de Paramount por Warner Bros.",
+analysis: "Larry Ellison apoya financieramente la oferta de Paramount para adquirir Warner Bros.",
+publisher: "Expansion.com",
 language: "es",
 out_of_window: false,
-evidence_count: 2,
-evidence_sources: ["title","content"],
+evidence_count: 3,
+evidence_sources: ["Expansion.com", "description", "content"],
 verdict: "confirmed"
 },
 {
 id: 4,
-entity: "Netflix",
+entity: "Netflix/Warner Bros",
 country: "",
 impact: "Alto",
-title: "Larry Elison respalda oferta de Paramount para vencer a Netflix en lucha por Warner Bros",
-url: "https://www.latercera.com/pulso/noticia/larry-elison-respalda-oferta-de-paramount-para-vencer-a-netflix-en-lucha-por-warner-bros/",
+title: "Netflix se endeuda... hasta 2030: Solicita un préstamo ‘puente’ de 59 mil mdd para comprar Warner Bros",
+url: "https://www.elfinanciero.com.mx/empresas/2025/12/22/netflix-se-endeuda-hasta-2030-solicita-un-prestamo-puente-de-59-mil-mdd-para-comprar-warner-bros/",
 date: "22-12-2025",
 category: "Fusión/Adquisición",
-summary: "Larry Elison respalda la oferta de Paramount para comprar Warner Bros e imponerse a Netflix.",
-analysis: "Paramount Skydance no cede en su interés por comprar Warner Bros. Discovery (WBD).",
-publisher: "Latercera.com",
+summary: "Netflix refinancia un préstamo puente para la posible adquisición de Warner Bros.",
+analysis: "Netflix se endeuda para comprar Warner Bros.",
+publisher: "El Financiero",
 language: "es",
 out_of_window: false,
 evidence_count: 2,
-evidence_sources: ["title","content"],
+evidence_sources: ["El Financiero", "description"],
 verdict: "confirmed"
 },
 {
 id: 5,
-entity: "Warner Bros",
+entity: "Paramount/Warner Bros",
 country: "",
-impact: "Alto",
-title: "Larry Elison respalda oferta de Paramount para vencer a Netflix en lucha por Warner Bros",
-url: "https://www.latercera.com/pulso/noticia/larry-elison-respalda-oferta-de-paramount-para-vencer-a-netflix-en-lucha-por-warner-bros/",
+impact: "Medio",
+title: "Paramount se refuerza para comprar Warner Bros con una garantía personal de Larry Ellison",
+url: "https://www.lavozdegalicia.es/noticia/sociedad/2025/12/22/paramount-refuerza-comprar-warner-bros-garantia-personal-larry-ellison/00031766414431264617787.htm",
 date: "22-12-2025",
 category: "Fusión/Adquisición",
-summary: "Larry Elison respalda la oferta de Paramount para comprar Warner Bros e imponerse a Netflix.",
-analysis: "Paramount Skydance no cede en su interés por comprar Warner Bros. Discovery (WBD).",
-publisher: "Latercera.com",
+summary: "Paramount busca comprar Warner Bros con el apoyo de Larry Ellison.",
+analysis: "Estrategia de Paramount para comprar Warner Bros.",
+publisher: "Lavozdegalicia.es",
 language: "es",
 out_of_window: false,
-evidence_count: 2,
-evidence_sources: ["title","content"],
+evidence_count: 3,
+evidence_sources: ["Lavozdegalicia.es", "description", "content"],
 verdict: "confirmed"
 },
 {
 id: 6,
-entity: "Paramount",
+entity: "Paramount/Warner Bros/Larry Ellison",
 country: "",
-impact: "Alto",
-title: "Paramount se refuerza para comprar Warner Bros con una garantía personal de Larry Ellison",
-url: "https://www.lavozdegalicia.es/noticia/sociedad/2025/12/22/paramount-refuerza-comprar-warner-bros-garantia-personal-larry-ellison/00031766414431264617787.htm",
-date: "22-12-2025",
-category: "Fusión/Adquisición",
-summary: "Paramount se refuerza para comprar Warner Bros con una garantía personal de Larry Ellison.",
-analysis: "Paramount busca añadir Warner Bros Discovery a su conglomerado de estudios y medios.",
-publisher: "Lavozdegalicia.es",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 7,
-entity: "Warner Bros",
-country: "",
-impact: "Alto",
-title: "Paramount se refuerza para comprar Warner Bros con una garantía personal de Larry Ellison",
-url: "https://www.lavozdegalicia.es/noticia/sociedad/2025/12/22/paramount-refuerza-comprar-warner-bros-garantia-personal-larry-ellison/00031766414431264617787.htm",
-date: "22-12-2025",
-category: "Fusión/Adquisición",
-summary: "Paramount se refuerza para comprar Warner Bros con una garantía personal de Larry Ellison.",
-analysis: "Paramount busca añadir Warner Bros Discovery a su conglomerado de estudios y medios.",
-publisher: "Lavozdegalicia.es",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 8,
-entity: "Warner Bros",
-country: "",
-impact: "Alto",
-title: "Larry Ellison ofrece una garantía de 40.400 millones de dólares para comprar Warner Bros",
-url: "https://www.expansion.com/economia-digital/companias/2025/12/22/69495df6468aebb64f8b456f.html",
-date: "22-12-2025",
-category: "Fusión/Adquisición",
-summary: "Larry Ellison ofrece una garantía de 40.400 millones de dólares para comprar Warner Bros.",
-analysis: "Paramount asegura haber modificado su oferta para abordar las preocupaciones de WBD.",
-publisher: "Expansion.com",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 9,
-entity: "Paramount",
-country: "",
-impact: "Alto",
-title: "Larry Ellison ofrece una garantía de 40.400 millones de dólares para comprar Warner Bros",
-url: "https://www.expansion.com/economia-digital/companias/2025/12/22/69495df6468aebb64f8b456f.html",
-date: "22-12-2025",
-category: "Fusión/Adquisición",
-summary: "Larry Ellison ofrece una garantía de 40.400 millones de dólares para comprar Warner Bros.",
-analysis: "Paramount asegura haber modificado su oferta para abordar las preocupaciones de WBD.",
-publisher: "Expansion.com",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 10,
-entity: "Paramount",
-country: "",
-impact: "Alto",
+impact: "Medio",
 title: "Paramount ajusta su opa sobre Warner con una \"garantía personal\" de Larry Ellison de 34.500 M",
 url: "https://www.elconfidencial.com/empresas/2025-12-22/paramount-ajusta-su-opa-sobre-warner-larry-ellison_4273323/",
 date: "22-12-2025",
 category: "Fusión/Adquisición",
-summary: "Paramount ajusta su oferta pública de adquisición (OPA) para adquirir la totalidad de Warner Bros Discovery (WDB).",
-analysis: "El padre de David Ellison ha acordado también \"no revocar\" el fideicomiso familiar Ellison ni transferir sus activos de forma adversa mientras esté pendiente la transacción",
+summary: "Paramount ajusta su oferta para adquirir Warner Bros con una garantía personal de Larry Ellison.",
+analysis: "Larry Ellison apoya financieramente la oferta de Paramount para adquirir Warner Bros.",
 publisher: "Elconfidencial.com",
 language: "es",
 out_of_window: false,
-evidence_count: 2,
-evidence_sources: ["title","content"],
-verdict: "confirmed"
-},
-{
-id: 11,
-entity: "Warner",
-country: "",
-impact: "Alto",
-title: "Paramount ajusta su opa sobre Warner con una \"garantía personal\" de Larry Ellison de 34.500 M",
-url: "https://www.elconfidencial.com/empresas/2025-12-22/paramount-ajusta-su-opa-sobre-warner-larry-ellison_4273323/",
-date: "22-12-2025",
-category: "Fusión/Adquisición",
-summary: "Paramount ajusta su oferta pública de adquisición (OPA) para adquirir la totalidad de Warner Bros Discovery (WDB).",
-analysis: "El padre de David Ellison ha acordado también \"no revocar\" el fideicomiso familiar Ellison ni transferir sus activos de forma adversa mientras esté pendiente la transacción",
-publisher: "Elconfidencial.com",
-language: "es",
-out_of_window: false,
-evidence_count: 2,
-evidence_sources: ["title","content"],
-verdict: "confirmed"
-},
-{
-id: 12,
-entity: "Netflix",
-country: "",
-impact: "Medio",
-title: "Netflix se endeuda... hasta 2030: Solicita un préstamo ‘puente’ de 59 mil mdd para comprar Warner Bros",
-url: "https://www.elfinanciero.com.mx/empresas/2025/12/22/netflix-se-endeuda-hasta-2030-solicita-un-prestamo-puente-de-59-mil-mdd-para-comprar-warner-bros/",
-date: "22-12-2025",
-category: "Fusión/Adquisición",
-summary: "Netflix refinanció parte de un préstamo puente de 59 mil millones de dólares con deuda más barata y a más largo plazo para comprar a Warner Bros.",
-analysis: "Netflix reforzando el paquete financiero que sustenta su oferta por Warner Bros. Discovery",
-publisher: "El Financiero",
-language: "es",
-out_of_window: false,
-evidence_count: 2,
-evidence_sources: ["title","content"],
-verdict: "confirmed"
-},
-{
-id: 13,
-entity: "Warner Bros",
-country: "",
-impact: "Alto",
-title: "Netflix se endeuda... hasta 2030: Solicita un préstamo ‘puente’ de 59 mil mdd para comprar Warner Bros",
-url: "https://www.elfinanciero.com.mx/empresas/2025/12/22/netflix-se-endeuda-hasta-2030-solicita-un-prestamo-puente-de-59-mil-mdd-para-comprar-warner-bros/",
-date: "22-12-2025",
-category: "Fusión/Adquisición",
-summary: "Netflix refinanció parte de un préstamo puente de 59 mil millones de dólares con deuda más barata y a más largo plazo para comprar a Warner Bros.",
-analysis: "Netflix reforzando el paquete financiero que sustenta su oferta por Warner Bros. Discovery",
-publisher: "El Financiero",
-language: "es",
-out_of_window: false,
-evidence_count: 2,
-evidence_sources: ["title","content"],
-verdict: "confirmed"
-},
-{
-id: 14,
-entity: "ChatGPT",
-country: "",
-impact: "Medio",
-title: "Más entusiasta o empático: ChatGPT introduce nuevas opciones para personalizar sus respuestas",
-url: "https://www.lanacion.com.ar/tecnologia/mas-entusiasta-o-empatico-chatgpt-introduce-nuevas-opciones-para-personalizar-sus-respuestas-nid22122025/",
-date: "22-12-2025",
-category: "Producto",
-summary: "ChatGPT se renueva con opciones para ajustar el tono de sus respuestas: los usuarios podrán decidir si aumentar o disminuir cuestiones como el entusiasmo o la calidez.",
-analysis: "OpenAI ha actualizado su asistente de inteligencia artificial (IA) ChatGPT",
-publisher: "La Nacion",
-language: "es",
-out_of_window: false,
-evidence_count: 2,
-evidence_sources: ["title","content"],
-verdict: "confirmed"
-},
-{
-id: 15,
-entity: "OpenAI",
-country: "",
-impact: "Medio",
-title: "Más entusiasta o empático: ChatGPT introduce nuevas opciones para personalizar sus respuestas",
-url: "https://www.lanacion.com.ar/tecnologia/mas-entusiasta-o-empatico-chatgpt-introduce-nuevas-opciones-para-personalizar-sus-respuestas-nid22122025/",
-date: "22-12-2025",
-category: "Producto",
-summary: "ChatGPT se renueva con opciones para ajustar el tono de sus respuestas: los usuarios podrán decidir si aumentar o disminuir cuestiones como el entusiasmo o la calidez.",
-analysis: "OpenAI ha actualizado su asistente de inteligencia artificial (IA) ChatGPT",
-publisher: "La Nacion",
-language: "es",
-out_of_window: false,
-evidence_count: 2,
-evidence_sources: ["title","content"],
+evidence_count: 3,
+evidence_sources: ["Elconfidencial.com", "description", "content"],
 verdict: "confirmed"
 }
 ];
@@ -491,24 +329,199 @@ title: "La miniserie de Netflix que da una nueva mirada a la Segunda Guerra Mund
 url: "https://www.adslzone.net/noticias/streaming-tv/miniserie-netflix-segunda-guerra-mundial-historia/",
 date: "22-12-2025",
 category: "Producto",
-summary: "Netflix estrena una miniserie sobre la Segunda Guerra Mundial.",
-analysis: "Netflix cuenta con más de 17.000 series y películas en su catálogo disponible para suscriptores.",
+summary: "Netflix estrena miniserie sobre la Segunda Guerra Mundial.",
+analysis: "Nueva oferta de contenido en Netflix.",
 publisher: "Adslzone.net",
 language: "es",
 out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
+evidence_count: 2,
+evidence_sources: ["Adslzone.net", "description"],
 verdict: "confirmed"
 },
 {
 id: 2,
 entity: "Disney+",
 country: "",
-impact: "Estrategia",
-title: "‘Percy Jackson y los dioses del Olimpo' ya ha sentado las bases de la profecía que marcará el destino de la serie. Cambiará por completo el rumbo de los protagonistas",
+impact: "Medio",
+title: "'Percy Jackson y los dioses del Olimpo' ya ha sentado las bases de la profecía que marcará el destino de la serie. Cambiará por completo el rumbo de los protagonistas",
 url: "https://www.espinof.com/series-de-ficcion/percy-jackson-dioses-olimpo-ha-sentado-bases-profecia-que-marcara-destino-serie-cambiara-completo-rumbo-protagonistas",
 date: "22-12-2025",
 category: "Estrategia",
-summary: "La serie 'Percy Jackson y los dioses del Olimpo' de Disney+ establece las bases de su trama principal.",
-analysis: "Además de una reivindicación tardía de una saga que no se trató como merecía en Hollywood, 'Percy Jackson y los dioses del Olimpo' es uno de los mayores triunfos recientes de Disney+.",
-publisher: "E
+summary: "'Percy Jackson y los dioses del Olimpo' en Disney+ establece las bases para el futuro de la serie.",
+analysis: "Análisis de la estrategia narrativa de 'Percy Jackson' en Disney+.",
+publisher: "Espinof.com",
+language: "es",
+out_of_window: false,
+evidence_count: 2,
+evidence_sources: ["Espinof.com", "description"],
+verdict: "confirmed"
+},
+{
+id: 3,
+entity: "Netflix",
+country: "",
+impact: "Medio",
+title: "La nueva serie española de Netflix, con Imanol Arias y Elena Anaya, llega en la víspera de Nochebuena y no es apta para estómagos sensibles",
+url: "https://andro4all.com/series/la-nueva-serie-espanola-de-netflix-con-imanol-arias-y-elena-anaya-llega-en-la-vispera-de-nochebuena-y-no-es-apta-para-estomagos-sensibles",
+date: "22-12-2025",
+category: "Producto",
+summary: "Netflix estrena serie española con Imanol Arias y Elena Anaya.",
+analysis: "Nueva oferta de contenido en Netflix.",
+publisher: "Andro4all.com",
+language: "es",
+out_of_window: false,
+evidence_count: 2,
+evidence_sources: ["Andro4all.com", "description"],
+verdict: "confirmed"
+},
+{
+id: 4,
+entity: "Christopher Nolan",
+country: "",
+impact: "Medio",
+title: "Quién es quién en ‘La Odisea’ de Christopher Nolan: elenco, personajes y rumores",
+url: "https://www.sopitas.com/cine-y-tv/quien-es-quien-la-odisea-christopher-nolan-elenco-personajes-rumores/",
+date: "22-12-2025",
+category: "Producto",
+summary: "Detalles sobre la adaptación de 'La Odisea' por Christopher Nolan.",
+analysis: "Información sobre la nueva película de Christopher Nolan.",
+publisher: "Sopitas.com",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["Sopitas.com"],
+verdict: "confirmed"
+},
+{
+id: 5,
+entity: "Netflix",
+country: "",
+impact: "Medio",
+title: "Netflix arranca 2026 con misterio, romance y eventos en vivo: estos son los estrenos de enero",
+url: "https://www.enter.co/cultura-digital/entretenimiento/netflix-arranca-2026-con-misterio-romance-y-eventos-en-vivo-estos-son-los-estrenos-de-enero/",
+date: "22-12-2025",
+category: "Producto",
+summary: "Netflix anuncia los estrenos para enero de 2026.",
+analysis: "Nueva oferta de contenido en Netflix.",
+publisher: "Enter.co",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["Enter.co"],
+verdict: "confirmed"
+},
+{
+id: 6,
+entity: "OpenAI",
+country: "",
+impact: "Medio",
+title: "Algunos usuarios de ChatGPT dicen que cambiar de modelo es como ‘reemplazar a un animal de servicio’",
+url: "https://forbes.com.mx/algunos-usuarios-de-chatgpt-dicen-que-cambiar-de-modelo-es-como-reemplazar-a-un-animal-de-servicio/",
+date: "22-12-2025",
+category: "Estrategia",
+summary: "Usuarios de ChatGPT expresan su sentir sobre los cambios en el modelo.",
+analysis: "Reacciones de los usuarios a los cambios en ChatGPT.",
+publisher: "Forbes.com.mx",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["Forbes.com.mx"],
+verdict: "confirmed"
+},
+{
+id: 7,
+entity: "One Piece/Netflix",
+country: "",
+impact: "Medio",
+title: "One Piece: Chopper conece a Luffy y compañía en el nuevo adelanto de la temporada 2",
+url: "https://www.culturaocio.com/tv/noticia-one-piece-chopper-conece-luffy-compania-nuevo-adelanto-temporada-20251222151920.html",
+date: "22-12-2025",
+category: "Producto",
+summary: "La segunda temporada de One Piece llegará a Netflix el 10 de marzo de 2026 e incorporará a Tony Tony Chopper.",
+analysis: "Anuncio de la nueva temporada de One Piece en Netflix.",
+publisher: "Culturaocio.com",
+language: "es",
+out_of_window: false,
+evidence_count: 2,
+evidence_sources: ["Culturaocio.com", "description"],
+verdict: "confirmed"
+}
+];
+
+  const ALL_NEWS_COUNTRIES = ['Argentina','Brasil','Chile','México'];
+  const ALL_NEWS_COMPANIES = [
+    'Amazon Prime','Shein','Temu','Shopee','Tiendanube','Rappi Pro','Uber One','Netflix',
+    'Spotify Premium','OpenAI (ChatGPT Premium)','Disney+','Nubank Ultravioleta','Smiles',
+    'Globoplay','Nubank','Ualá','Cablevisión Flow','Amazon Prime Video','DGO','Mach'
+  ];
+  const ALL_NEWS_CATEGORIES = [
+    'Cambio de Precio','Lanzamiento','Fusión/Adquisición','Sanción Legal','Estrategia',
+    'Producto','Resultados Financieros','Derechos/Deportes','Flagship AI'
+  ];
+
+  const ALL_CONTENT_COUNTRIES = ['Argentina','Brasil','Chile','México'];
+  const ALL_CONTENT_COMPANIES = [
+    'Disney+','Netflix','Apple TV+','Max','Paramount+','Universal+','Vix Premium',
+    'Globoplay','Spotify','Deezer','OpenAI'
+  ];
+  const ALL_CONTENT_CATEGORIES = ALL_NEWS_CATEGORIES.slice();
+
+  const chartColors = { main:'#2563eb', event:'#f59e0b' };
+
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const countryName = document.getElementById('country-name');
+  const sentimentTableBody = document.getElementById('sentiment-table-body');
+  const sentimentSummary = document.getElementById('sentiment-summary');
+  let sentimentChart = null;
+
+  const alertsGrid = document.getElementById('alerts-grid');
+  const newsNoResults = document.getElementById('no-news-results');
+  const newsFilterCountryContainer = document.getElementById('news-filter-country');
+  const newsFilterCompanyContainer = document.getElementById('news-filter-company');
+  const newsFilterCategoryContainer = document.getElementById('news-filter-category');
+  let newsFilters = { country:[], company:[], category:[] };
+
+  const contentAlertsGrid = document.getElementById('content-alerts-grid');
+  const contentNewsNoResults = document.getElementById('no-content-results');
+  const contentFilterCountryContainer = document.getElementById('content-filter-country');
+  const contentFilterCompanyContainer = document.getElementById('content-filter-company');
+  const contentFilterCategoryContainer = document.getElementById('content-filter-category');
+  let contentFilters = { country:[], company:[], category:[] };
+
+  function renderChart(data){
+    const ctx = document.getElementById('sentimentChart').getContext('2d');
+    if (sentimentChart) sentimentChart.destroy();
+    sentimentChart = new Chart(ctx,{
+      type:'line',
+      data:{
+        labels:data.labels,
+        datasets:[{
+          label:'Índice de Sentimiento',
+          data:data.sentimentIndex,
+          borderColor:chartColors.main,
+          backgroundColor:'rgba(37,99,235,0.2)',
+          borderWidth:2,fill:true,
+          pointBackgroundColor:data.labels.map(l=>data.events.find(e=>e.month===l)?chartColors.event:chartColors.main),
+          pointRadius:data.labels.map(l=>data.events.find(e=>e.month===l)?6:4),
+          pointHoverRadius:8
+        }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        scales:{y:{beginAtZero:true,max:100,title:{display:true,text:'Índice de Sentimiento (0-100)',font:{weight:'bold'}}}},
+        plugins:{tooltip:{callbacks:{title:(items)=>{
+          const m=items[0].label; const ev=data.events.find(e=>e.month===m);
+          return m+(ev?`\nEvento: ${ev.text}`:'');
+        }}}}
+      }
+    });
+  }
+
+  function renderSentimentTable(rows){
+    sentimentTableBody.innerHTML='';
+    rows.forEach(r=>{
+      const tr=document.createElement('tr');
+      tr.className='hover:bg-gray-50';
+      tr.innerHTML = `
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${r.mes}</td>
+        <td class="px-6 py-4 text-sm text-gray-500">${r.detract
