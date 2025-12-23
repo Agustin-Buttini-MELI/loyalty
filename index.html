@@ -1,1 +1,556 @@
-<!DOCTYPE html> <html lang="es" class="scroll-smooth"> <head>   <meta charset="UTF-8"/>   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>   <title>Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</title>   <script src="https://cdn.tailwindcss.com"></script>   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   <link rel="preconnect" href="https://fonts.googleapis.com">   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">   <style>     body{font-family:'Inter',sans-serif;background:#f8fafc;color:#1f2937;}     .main-accent{color:#2563eb}.bg-main-accent{background:#2563eb}     .tab-btn.active{background:#e0f2fe;border-bottom:2px solid #2563eb}     .tab-btn{transition:background-color .3s ease}     .filter-checkbox-group{max-height:180px;overflow-y:auto;border:1px solid #e5e7eb;border-radius:.5rem;padding:8px}     .filter-checkbox-item{display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem}   </style> </head> <body class="antialiased"> <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm">   <div class="container mx-auto px-4 sm:px-6 lg:px-8">     <div class="flex items-center justify-between h-16">       <div class="flex items-center space-x-3">         <div class="bg-main-accent p-2 rounded-lg">           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>           </svg>         </div>         <div class="flex flex-col">           <h1 class="text-xl md:text-2xl font-bold text-gray-800">Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</h1>           <a             href="https://meli.looker.com/dashboards/25519?Site+id=&Tim+day+Month=13+month&Timeframe=MONTH&Tim+Day+Date=30+day&Reference+month+Month=1+year&Annual+%2F+Monthly+Plan="             target="_blank" rel="noopener noreferrer" aria-label="Resultados Internos Meli+"             class="mt-1 inline-block px-3 py-1 bg-indigo-50 text-indigo-900 rounded-lg font-semibold text-sm border border-blue-100">             Resultados Internos Meli+           </a>         </div>       </div>     </div>   </div> </header>  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">   <section class="mb-12 text-center">     <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Análisis de Sentimiento Meli+</h2>     <p class="mt-2 text-lg text-gray-600">Visualiza la evolución de la percepción de los clientes en función de eventos clave y la competencia.</p>   </section>    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 mb-8">     <h3 class="text-xl font-semibold text-gray-700 mb-4">Índice de Sentimiento General (Escala 0-100)</h3>     <div class="w-full max-w-4xl mx-auto h-96">       <canvas id="sentimentChart"></canvas>     </div>   </div>    <section id="glosario" class="bg-white rounded-lg shadow-md border border-gray-200 mb-8">     <button onclick="document.getElementById('glosario-content').classList.toggle('hidden')"             class="w-full flex justify-between items-center px-4 py-3 text-left text-gray-800 font-semibold hover:bg-gray-50 focus:outline-none">       📖 Glosario       <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>       </svg>     </button>     <div id="glosario-content" class="hidden px-4 pb-4 text-sm text-gray-700 space-y-4">       <div>         <p class="font-semibold mb-1">Niveles de sentimiento</p>         <ul class="list-disc list-inside space-y-1">           <li><span class="text-emerald-700 font-medium">Muy alto:</span> ≥55% menciones o +10 p.p. vs. promedio 3m.</li>           <li><span class="text-emerald-600 font-medium">Alto:</span> 50–54% o +5 a +9 p.p.</li>           <li><span class="text-gray-700 font-medium">Estable:</span> cambio ≤±3 p.p. vs. mes previo.</li>           <li><span class="text-rose-600 font-medium">Bajo:</span> 30–39% o −5 a −9 p.p.</li>           <li><span class="text-rose-700 font-medium">Muy bajo:</span> ≤29% o caída ≥−10 p.p.</li>         </ul>       </div>       <div>         <p class="font-semibold mb-1">Mención</p>         <p>Cada comentario capturado en fuentes monitorizadas (Reclame Aqui, SERNAC, Apestan.com, tuquejasuma, SIC, redes, foros, noticias). Tras limpieza y deduplicación, se pondera por engagement, recencia, credibilidad y severidad. La suma ponderada genera el índice mensual (0–100).</p>       </div>     </div>   </section>    <section class="mb-8">     <div class="flex justify-center border-b border-gray-200">       <button data-country="Brasil" class="tab-btn active px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Brasil</button>       <button data-country="México" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">México</button>       <button data-country="Chile" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Chile</button>       <button data-country="Argentina" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Argentina</button>       <button data-country="Colombia" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Colombia</button>     </div>   </section>    <section id="country-data" class="bg-white p-6 rounded-xl shadow-md border border-gray-200">     <h2 class="text-2xl font-bold text-gray-800 mb-6">Detalles por País: <span id="country-name" class="main-accent">Brasil</span></h2>     <h3 class="text-xl font-semibold text-gray-700 mb-4">Tabla Resumen de Sentimientos</h3>     <div class="overflow-x-auto mb-8">       <table id="sentiment-table" class="min-w-full divide-y divide-gray-200">         <thead class="bg-gray-50">         <tr>           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mes</th>           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sentimientos Detractores</th>           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Motivos Detractores</th>           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sentimientos Promotores</th>           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Motivos Promotores</th>           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Eventos Clave/Contexto</th>           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Novedades de la Competencia</th>         </tr>         </thead>         <tbody id="sentiment-table-body" class="bg-white divide-y divide-gray-200"></tbody>       </table>     </div>     <h3 class="text-xl font-semibold text-gray-700 mb-4">Resumen de Sentimientos Detractores y Promotores</h3>     <div id="sentiment-summary" class="prose max-w-none"></div>   </section>    <section id="meli-summary-slide" class="mt-12">     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">       <h2 class="text-2xl font-bold text-gray-800 mb-6">Meli+ Summary (Diapositiva Vinculada)</h2>       <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200 mb-8">         <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRWue6uIUvlRogZu1iCA9JCFqHVo8nzS-Ue4a6WOC08JqSTbsciuqK4m59exCMbQERuYuMDABCMhc-y/pubembed?start=false&loop=false&delayms=3000"                 frameborder="0" width="100%" height="450" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe>       </div>     </div>   </section>    <section id="market-news" class="mt-12">     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">       <h2 class="text-2xl font-bold text-gray-800 mb-6">Alertas de Mercado Recientes</h2>       <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200 mb-8">         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">           <div><label class="block text-sm font-medium text-gray-700 mb-1">País</label><div id="news-filter-country" class="filter-checkbox-group"></div></div>           <div><label class="block text-sm font-medium text-gray-700 mb-1">Empresa</label><div id="news-filter-company" class="filter-checkbox-group"></div></div>           <div><label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label><div id="news-filter-category" class="filter-checkbox-group"></div></div>           <div class="flex items-end">             <button id="news-reset-filters" class="w-full bg-gray-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Limpiar Filtros</button>           </div>         </div>       </div>       <div id="alerts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>       <div id="no-news-results" class="hidden text-center py-12">         <p class="text-xl text-gray-500">No se encontraron noticias con los filtros seleccionados.</p>       </div>     </div>   </section>    <section id="content-platforms-news" class="mt-12">     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">       <h2 class="text-2xl font-bold text-gray-800 mb-6">Noticias de Plataformas de Contenido y Streaming</h2>       <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200 mb-8">         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">           <div><label class="block text-sm font-medium text-gray-700 mb-1">País</label><div id="content-filter-country" class="filter-checkbox-group"></div></div>           <div><label class="block text-sm font-medium text-gray-700 mb-1">Empresa</label><div id="content-filter-company" class="filter-checkbox-group"></div></div>           <div><label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label><div id="content-filter-category" class="filter-checkbox-group"></div></div>           <div class="flex items-end">             <button id="content-reset-filters" class="w-full bg-gray-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Limpiar Filtros</button>           </div>         </div>       </div>       <div id="content-alerts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>       <div id="no-content-results" class="hidden text-center py-12">         <p class="text-xl text-gray-500">No se encontraron noticias de contenido con los filtros seleccionados.</p>       </div>     </div>   </section> </main>  <footer class="bg-gray-800 text-gray-300 mt-16">   <div class="container mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-sm">     <p>&copy; 2025 Reporte de Sentimiento Meli+. Visualización interactiva.</p>   </div> </footer>  <script>   const sentimentData = {     "Brasil": {       "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25", "Sep 25", "Oct 25", "Nov 25", "Dic 25"],       "sentimentIndex": [45, 48, 52, 55, 53, 50, 47, 49, 51, 54, 52, 49, 46, 48, 50, 53],       "events": [         { "month": "Nov 24", "text": "Lanzamiento Meli+ Nivel 6" },         { "month": "Feb 25", "text": "Cambios en el programa de envíos gratis" },         { "month": "Jun 25", "text": "Nueva campaña de marketing enfocada en beneficios Meli+" }       ],       "table": [         {           "mes": "Sep 24",           "detractores": "25%",           "motivosDet": "Altos costos de suscripción",           "promotores": "30%",           "motivosPro": "Envío rápido y descuentos",           "eventos": "Inicio de la temporada de compras navideñas",           "competencia": "Amazon Prime Video promociona nuevos contenidos"         },         {           "mes": "Oct 24",           "detractores": "22%",           "motivosDet": "Problemas con la facturación",           "promotores": "33%",           "motivosPro": "Acceso a contenido exclusivo",           "eventos": "Lanzamiento de una nueva serie original",           "competencia": "Netflix anuncia nuevas series y películas"         },         {           "mes": "Nov 24",           "detractores": "20%",           "motivosDet": "Mala calidad de atención al cliente",           "promotores": "35%",           "motivosPro": "Ofertas y promociones exclusivas",           "eventos": "Black Friday",           "competencia": "Disney+ anuncia ofertas especiales"         },         {           "mes": "Dic 24",           "detractores": "18%",           "motivosDet": "Problemas técnicos en la plataforma",           "promotores": "37%",           "motivosPro": "Acceso a estrenos antes que otros",           "eventos": "Navidad",           "competencia": "SkyShowtime anuncia grandes estrenos"         },         {           "mes": "Ene 25",           "detractores": "20%",           "motivosDet": "Problemas de velocidad de entrega",           "promotores": "35%",           "motivosPro": "Grandes descuentos",           "eventos": "Rebajas de enero",           "competencia": "Amazon Prime anuncia grandes descuentos"         },         {           "mes": "Feb 25",           "detractores": "22%",           "motivosDet": "Altos costos de suscripción",           "promotores": "33%",           "motivosPro": "Envío rápido y descuentos",           "eventos": "Carnaval",           "competencia": "Netflix anuncia nuevas series y películas"         },         {           "mes": "Mar 25",           "detractores": "25%",           "motivosDet": "Mala calidad de atención al cliente",           "promotores": "30%",           "motivosPro": "Acceso a contenido exclusivo",           "eventos": "Semana Santa",           "competencia": "Disney+ anuncia ofertas especiales"         },         {           "mes": "Abr 25",           "detractores": "22%",           "motivosDet": "Problemas técnicos en la plataforma",           "promotores": "33%",           "motivosPro": "Ofertas y promociones exclusivas",           "eventos": "Pascua",           "competencia": "SkyShowtime anuncia grandes estrenos"         },         {           "mes": "May 25",           "detractores": "20%",           "motivosDet": "Problemas de velocidad de entrega",           "promotores": "35%",           "motivosPro": "Acceso a estrenos antes que otros",           "eventos": "Día de la Madre",           "competencia": "Amazon Prime anuncia grandes descuentos"         },         {           "mes": "Jun 25",           "detractores": "18%",           "motivosDet": "Altos costos de suscripción",           "promotores": "37%",           "motivosPro": "Grandes descuentos",           "eventos": "Día del Padre",           "competencia": "Netflix anuncia nuevas series y películas"         },         {           "mes": "Jul 25",           "detractores": "20%",           "motivosDet": "Mala calidad de atención al cliente",           "promotores": "35%",           "motivosPro": "Envío rápido y descuentos",           "eventos": "Vacaciones de invierno",           "competencia": "Disney+ anuncia ofertas especiales"         },         {           "mes": "Ago 25",           "detractores": "22%",           "motivosDet": "Problemas técnicos en la plataforma",           "promotores": "33%",           "motivosPro": "Acceso a contenido exclusivo",           "eventos": "Día del Niño",           "competencia": "SkyShowtime anuncia grandes estrenos"         },         {           "mes": "Sep 25",           "detractores": "25%",           "motivosDet": "Problemas de velocidad de entrega",           "promotores": "30%",           "motivosPro": "Ofertas y promociones exclusivas",           "eventos": "Primavera",           "competencia": "Amazon Prime anuncia grandes descuentos"         },         {           "mes": "Oct 25",           "detractores": "22%",           "motivosDet": "Altos costos de suscripción",           "promotores": "33%",           "motivosPro": "Acceso a estrenos antes que otros",           "eventos": "Halloween",           "competencia": "Netflix anuncia nuevas series y películas"         },         {           "mes": "Nov 25",           "detractores": "20%",           "motivosDet": "Mala calidad de atención al cliente",           "promotores": "35%",           "motivosPro": "Grandes descuentos",           "eventos": "Black Friday",           "competencia": "Disney+ anuncia ofertas especiales"         },         {           "mes": "Dic 25",           "detractores": "18%",           "motivosDet": "Problemas técnicos en la plataforma",           "promotores": "37%",           "motivosPro": "Envío rápido y descuentos",           "eventos": "Navidad",           "competencia": "SkyShowtime anuncia grandes estrenos"         }       ],       "summary": "<p>El sentimiento general en Brasil muestra una ligera mejora a lo largo del año, impulsado por ofertas y promociones exclusivas. Sin embargo, los costos de suscripción y problemas técnicos siguen siendo áreas de preocupación.</p>"     },     "México": {       "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25", "Sep 25", "Oct 25", "Nov 25", "Dic 25"],       "sentimentIndex": [50, 51, 53, 56, 54, 52, 49, 50, 52, 55, 53, 50, 48, 50, 52, 55],       "events": [         { "month": "Oct 24", "text": "Aumento de precios en la suscripción Meli+" },         { "month": "Mar 25", "text": "Lanzamiento de envíos prioritarios para suscriptores" },         { "month": "Jul 25", "text": "Campañas de descuentos especiales para usuarios Meli+" }       ],       "table": [         {           "mes": "Sep 24",           "detractores": "25%",           "motivosDet": "Altos costos de suscripción",           "promotores": "30%",           "motivosPro": "Envío rápido y descuentos",           "eventos": "Inicio de la temporada de compras navideñas",           "competencia": "Amazon Prime Video promociona nuevos contenidos"         },         {           "mes": "Oct 24",           "detractores": "22%",           "motivosDet": "Problemas con la facturación",           "promotores": "33%",           "motivosPro": "Acceso a contenido exclusivo",           "eventos": "Lanzamiento de una nueva serie original",           "competencia": "Netflix anuncia nuevas series y películas"         },         {           "mes": "Nov 24",           "detractores": "20%",           "motivosDet": "Mala calidad de atención al cliente",           "promotores": "35%",           "motivosPro": "Ofertas y promociones exclusivas",           "eventos": "Black Friday",           "competencia": "Disney+ anuncia ofertas especiales"         },         {           "mes": "Dic 24",           "detractores": "18%",           "motivosDet": "Problemas técnicos en la plataforma",           "promotores": "37%",           "motivosPro": "Acceso a estrenos antes que otros",           "eventos": "Navidad",           "competencia": "SkyShowtime anuncia grandes estrenos"         },         {           "mes": "Ene 25",           "detractores": "20%",           "motivosDet": "Problemas de velocidad de entrega",           "promotores": "35%",           "motivosPro": "Grandes descuentos",           "eventos": "Rebajas de enero",           "competencia": "Amazon Prime anuncia grandes descuentos"         },         {           "mes": "Feb 25",           "detractores": "22%",           "motivosDet": "Altos costos de suscripción",           "promotores": "33%",           "motivosPro": "Envío rápido y descuentos",           "eventos": "Carnaval",           "competencia": "Netflix anuncia nuevas series y películas"         },         {           "mes": "Mar 25",           "detractores": "25%",           "motivosDet": "Mala calidad de atención al cliente",           "promotores": "30%",           "motivosPro": "Acceso a contenido exclusivo",           "eventos": "Semana Santa",           "competencia": "Disney+ anuncia ofertas especiales"         },         {           "mes": "Abr 25",           "detractores": "22%",           "motivosDet": "Problemas técnicos en la plataforma",           "promotores": "33%",           "motivosPro": "Ofertas y promociones exclusivas",           "eventos": "Pascua",           "competencia": "SkyShowtime anuncia grandes estrenos"         },         {           "mes": "May 25",           "detractores": "20%",           "motivosDet": "Problemas de velocidad de entrega",           "promotores": "35%",           "motivosPro": "Acceso a estrenos antes que otros",           "eventos": "Día de la Madre",           "competencia": "Amazon Prime anuncia grandes descuentos"         },         {           "mes": "Jun 25",           "detractores": "18%",           "motivosDet": "Altos costos de suscripción",           "promotores": "37%",           "motivosPro": "Grandes descuentos",           "eventos": "Día del Padre",           "competencia": "Netflix anuncia nuevas series y películas"         },         {           "mes": "Jul 25",           "detractores": "20%",           "motivosDet": "Mala calidad de atención al cliente",           "promotores": "35%",           "motivosPro": "Envío rápido y descuentos",           "eventos": "Vacaciones de invierno",           "competencia": "Disney+ anuncia ofertas especiales"         },         {           "mes": "Ago 25",           "detractores": "22%",           "motivosDet": "Problemas técnicos en la plataforma",           "promotores": "33%",           "motivosPro": "Acceso a contenido exclusivo",           "eventos": "Día del Niño",           "competencia": "SkyShowtime anuncia grandes estrenos"         },         {           "mes": "Sep 25",           "detractores": "25%",           "motivosDet": "Problemas de velocidad de entrega",           "promotores": "30%",           "motivosPro": "Ofertas y promociones exclusivas",           "eventos": "Primavera",           "competencia": "Amazon Prime anuncia grandes descuentos"         },         {           "mes": "Oct 25",           "detractores": "22%",           "motivosDet": "Altos costos de suscripción",           "promotores": "33%",           "motivosPro": "Acceso a estrenos antes que otros",           "eventos": "Halloween",           "competencia": "Netflix anuncia nuevas series y películas"         },         {           "mes": "Nov 25",           "detractores": "20%",           "motivosDet": "Mala calidad de atención al cliente",           "promotores": "35%",           "motivosPro": "Grandes descuentos",           "eventos": "Black Friday",           "competencia": "Disney+ anuncia ofertas especiales"         },         {           "mes": "Dic 25",           "detractores": "18%",           "motivosDet": "Problemas técnicos en la plataforma",           "promotores": "37%",           "motivosPro": "Envío rápido y descuentos",           "eventos": "Navidad",           "competencia": "SkyShowtime anuncia grandes estrenos"         }       ],       "summary": "<p>En México, el sentimiento se mantiene estable con una ligera tendencia positiva, aunque el aumento de precios genera cierta controversia. Los envíos prioritarios son bien recibidos por los usuarios.</p>"     },     "Chile": {       "labels": ["Sep 24", "Oct 24", "Nov 24", "Dic 24", "Ene 25", "Feb 25", "Mar 25", "Abr 25", "May 25", "Jun 25", "Jul 25", "Ago 25", "Sep 25", "Oct 25", "Nov 25", "Dic 25"],       "sentimentIndex": [48, 50, 54, 57, 55, 53, 50, 52, 54, 57, 55, 52, 50, 52, 54, 57],       "events": [         { "month": "Dic 24", "text": "Lanzamiento de Meli+ con descuentos en tiendas físicas" },         { "month": "Abr 25", "text": "Implementación de sistema de recompensas por uso frecuente" },         { "month": "Ago 25", "text": "Nuevas alianzas con marcas locales para ofrecer beneficios exclusivos" }       ],       "table": [         {           "mes": "Sep 24",           "detractores": "25%",           "motivosDet": "Altos costos de suscripción",           "promotores": "30%",           "motivosPro": "Envío rápido y descuentos",           "eventos": "Inicio de la temporada de compras navideñas",           "competencia": "Amazon Prime Video promociona nuevos contenidos"         },         {           "mes": "Oct 24",           "detractores": "22%",           "motivosDet": "Problemas con la facturación",           "promotores": "33%",           "motivosPro": "Acceso a contenido exclusivo",           "eventos": "Lanzamiento de una nueva serie original",           "competencia": "Netflix anuncia nuevas series y películas"         },         {           "mes": "Nov 24",           "detractores": "20%",           "motivosDet": "Mala calidad de atención al cliente",           "promotores": "35%",           "motivosPro": "Ofertas y promociones exclusivas",           "eventos": "Black Friday",           "competencia": "Disney+ anuncia ofertas especiales"         },         {           "mes": "Dic 24",           "detractores": "18%",           "motivosDet": "Problemas técnicos en la plataforma",           "promotores": "37%",           "motivosPro": "Acceso a estrenos antes que otros",           "eventos": "Navidad",           "competencia": "SkyShowtime anuncia grandes estrenos"         },         {           "mes": "Ene 25",           "detractores": "20%",           "motivosDet": "Problemas de velocidad de entrega",           "promotores": "35%",           "motivosPro": "Grandes descuentos",           "eventos": "Rebajas de enero",           "competencia": "Amazon Prime anuncia grandes descuentos"         },         {           "mes": "Feb 25",           "detractores": "22%",           "motivosDet": "Altos costos de suscripción",           "promotores": "33%",           "motivosPro": "Envío rápido y descuentos",           "eventos": "Carnaval",           "competencia": "Netflix anuncia nuevas series y películas"         },         {           "mes": "Mar 25",           "detractores": "25%",           "motivosDet": "Mala calidad de atención al cliente",           "promotores": "30%",           "motivosPro": "Acceso a contenido exclusivo",           "eventos": "Semana Santa",           "competencia": "Disney+ anuncia ofertas especiales"         },         {           "mes": "Abr 25",           "detractores": "22%",           "motivosDet": "Problemas técnicos en la plataforma",           "promotores": "33%",           "motivosPro": "Ofertas y promociones exclusivas",           "eventos": "Pascua",           "competencia": "SkyShowtime anuncia grandes estrenos"         },         {           "mes": "May 25",           "detractores": "20%",           "motivosDet": "Problemas de velocidad de entrega",           "promotores": "35%",           "motivosPro": "Acceso a estrenos antes que otros",           "eventos": "Día de la Madre",           "competencia": "Amazon Prime anuncia grandes descuentos"         },         {           "mes": "Jun 25",           "detractores": "18%",           "motivosDet": "Altos costos de suscripción",           "promotores": "37%",           "motivosPro": "Grandes descuentos",           "eventos": "Día del Padre",           "competencia": "Netflix anuncia nuevas series y películas"         },         {           "mes": "Jul 25",           "detractores": "2
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif;background:#f8fafc;color:#1f2937;}
+    .main-accent{color:#2563eb}.bg-main-accent{background:#2563eb}
+    .tab-btn.active{background:#e0f2fe;border-bottom:2px solid #2563eb}
+    .tab-btn{transition:background-color .3s ease}
+    .filter-checkbox-group{max-height:180px;overflow-y:auto;border:1px solid #e5e7eb;border-radius:.5rem;padding:8px}
+    .filter-checkbox-item{display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem}
+  </style>
+</head>
+<body class="antialiased">
+<header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3">
+        <div class="bg-main-accent p-2 rounded-lg">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <h1 class="text-xl md:text-2xl font-bold text-gray-800">Reporte Integrado: Sentimiento Meli+ y Noticias de Mercado</h1>
+          <a
+            href="https://meli.looker.com/dashboards/25519?Site+id=&Tim+day+Month=13+month&Timeframe=MONTH&Tim+Day+Date=30+day&Reference+month+Month=1+year&Annual+%2F+Monthly+Plan="
+            target="_blank" rel="noopener noreferrer" aria-label="Resultados Internos Meli+"
+            class="mt-1 inline-block px-3 py-1 bg-indigo-50 text-indigo-900 rounded-lg font-semibold text-sm border border-blue-100">
+            Resultados Internos Meli+
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+  <section class="mb-12 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Análisis de Sentimiento Meli+</h2>
+    <p class="mt-2 text-lg text-gray-600">Visualiza la evolución de la percepción de los clientes en función de eventos clave y la competencia.</p>
+  </section>
+
+  <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 mb-8">
+    <h3 class="text-xl font-semibold text-gray-700 mb-4">Índice de Sentimiento General (Escala 0-100)</h3>
+    <div class="w-full max-w-4xl mx-auto h-96">
+      <canvas id="sentimentChart"></canvas>
+    </div>
+  </div>
+
+  <section id="glosario" class="bg-white rounded-lg shadow-md border border-gray-200 mb-8">
+    <button onclick="document.getElementById('glosario-content').classList.toggle('hidden')"
+            class="w-full flex justify-between items-center px-4 py-3 text-left text-gray-800 font-semibold hover:bg-gray-50 focus:outline-none">
+      📖 Glosario
+      <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <div id="glosario-content" class="hidden px-4 pb-4 text-sm text-gray-700 space-y-4">
+      <div>
+        <p class="font-semibold mb-1">Niveles de sentimiento</p>
+        <ul class="list-disc list-inside space-y-1">
+          <li><span class="text-emerald-700 font-medium">Muy alto:</span> ≥55% menciones o +10 p.p. vs. promedio 3m.</li>
+          <li><span class="text-emerald-600 font-medium">Alto:</span> 50–54% o +5 a +9 p.p.</li>
+          <li><span class="text-gray-700 font-medium">Estable:</span> cambio ≤±3 p.p. vs. mes previo.</li>
+          <li><span class="text-rose-600 font-medium">Bajo:</span> 30–39% o −5 a −9 p.p.</li>
+          <li><span class="text-rose-700 font-medium">Muy bajo:</span> ≤29% o caída ≥−10 p.p.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold mb-1">Mención</p>
+        <p>Cada comentario capturado en fuentes monitorizadas (Reclame Aqui, SERNAC, Apestan.com, tuquejasuma, SIC, redes, foros, noticias). Tras limpieza y deduplicación, se pondera por engagement, recencia, credibilidad y severidad. La suma ponderada genera el índice mensual (0–100).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-8">
+    <div class="flex justify-center border-b border-gray-200">
+      <button data-country="Brasil" class="tab-btn active px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Brasil</button>
+      <button data-country="México" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">México</button>
+      <button data-country="Chile" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Chile</button>
+      <button data-country="Argentina" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Argentina</button>
+      <button data-country="Colombia" class="tab-btn px-6 py-3 font-semibold text-gray-700 hover:bg-blue-50">Colombia</button>
+    </div>
+  </section>
+
+  <section id="country-data" class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Detalles por País: <span id="country-name" class="main-accent">Brasil</span></h2>
+    <h3 class="text-xl font-semibold text-gray-700 mb-4">Tabla Resumen de Sentimientos</h3>
+    <div class="overflow-x-auto mb-8">
+      <table id="sentiment-table" class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mes</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sentimientos Detractores</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Motivos Detractores</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sentimientos Promotores</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Motivos Promotores</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Eventos Clave/Contexto</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Novedades de la Competencia</th>
+        </tr>
+        </thead>
+        <tbody id="sentiment-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+      </table>
+    </div>
+    <h3 class="text-xl font-semibold text-gray-700 mb-4">Resumen de Sentimientos Detractores y Promotores</h3>
+    <div id="sentiment-summary" class="prose max-w-none"></div>
+  </section>
+
+  <section id="meli-summary-slide" class="mt-12">
+    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Meli+ Summary (Diapositiva Vinculada)</h2>
+      <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200 mb-8">
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRWue6uIUvlRogZu1iCA9JCFqHVo8nzS-Ue4a6WOC08JqSTbsciuqK4m59exCMbQERuYuMDABCMhc-y/pubembed?start=false&loop=false&delayms=3000"
+                frameborder="0" width="100%" height="450" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="market-news" class="mt-12">
+    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Alertas de Mercado Recientes</h2>
+      <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">País</label><div id="news-filter-country" class="filter-checkbox-group"></div></div>
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">Empresa</label><div id="news-filter-company" class="filter-checkbox-group"></div></div>
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label><div id="news-filter-category" class="filter-checkbox-group"></div></div>
+          <div class="flex items-end">
+            <button id="news-reset-filters" class="w-full bg-gray-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Limpiar Filtros</button>
+          </div>
+        </div>
+      </div>
+      <div id="alerts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+      <div id="no-news-results" class="hidden text-center py-12">
+        <p class="text-xl text-gray-500">No se encontraron noticias con los filtros seleccionados.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="content-platforms-news" class="mt-12">
+    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Noticias de Plataformas de Contenido y Streaming</h2>
+      <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">País</label><div id="content-filter-country" class="filter-checkbox-group"></div></div>
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">Empresa</label><div id="content-filter-company" class="filter-checkbox-group"></div></div>
+          <div><label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label><div id="content-filter-category" class="filter-checkbox-group"></div></div>
+          <div class="flex items-end">
+            <button id="content-reset-filters" class="w-full bg-gray-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Limpiar Filtros</button>
+          </div>
+        </div>
+      </div>
+      <div id="content-alerts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+      <div id="no-content-results" class="hidden text-center py-12">
+        <p class="text-xl text-gray-500">No se encontraron noticias de contenido con los filtros seleccionados.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-gray-800 text-gray-300 mt-16">
+  <div class="container mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-sm">
+    <p>&copy; 2025 Reporte de Sentimiento Meli+. Visualización interactiva.</p>
+  </div>
+</footer>
+
+<script>
+  const sentimentData = {
+    "Brasil": {
+      labels: ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
+      sentimentIndex: [70, 68, 65, 72, 75, 60, 62, 68, 78, 80, 76, 74, 72, 75, 73, 70],
+      events: [
+        { month: "Sep 24", text: "Lanzamiento Meli+ BR/MX" },
+        { month: "Feb 25", text: "Cambio % cashback BR/MX" },
+        { month: "May 25", text: "Meli+ BR 120% CDI" },
+        { month: "Jun 25", text: "Envío gratis ≥ R$19,90" },
+        { month: "Oct 25", text: "Nuevo tier Meli+ Mega (4 streamings)" }
+      ],
+      table: [
+        {
+          mes: "Sep 24",
+          detractores: "25%",
+          motivosDet: "Costos de envío elevados",
+          promotores: "60%",
+          motivosPro: "Beneficios de streaming",
+          eventos: "Lanzamiento Meli+",
+          competencia: "Amazon Prime Video promociones"
+        },
+        {
+          mes: "Oct 24",
+          detractores: "28%",
+          motivosDet: "Experiencia de usuario confusa",
+          promotores: "58%",
+          motivosPro: "Descuentos en productos",
+          eventos: "Nuevas alianzas con marcas",
+          competencia: "Shopee Day con cupones"
+        },
+        {
+          mes: "Nov 24",
+          detractores: "30%",
+          motivosDet: "Problemas con el cashback",
+          promotores: "55%",
+          motivosPro: "Acceso a contenido exclusivo",
+          eventos: "Black Friday",
+          competencia: "Temu lanza programa de referidos"
+        },
+        {
+          mes: "Dec 24",
+          detractores: "20%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "65%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "Jan 25",
+          detractores: "20%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "65%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "Feb 25",
+          detractores: "40%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "45%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "Mar 25",
+          detractores: "38%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "47%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "Apr 25",
+          detractores: "27%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "58%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "May 25",
+          detractores: "15%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "70%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "Jun 25",
+          detractores: "13%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "72%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "Jul 25",
+          detractores: "21%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "64%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "Aug 25",
+          detractores: "23%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "62%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "Sep 25",
+          detractores: "25%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "60%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "Oct 25",
+          detractores: "20%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "65%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "Nov 25",
+          detractores: "22%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "63%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+                {
+          mes: "Dec 25",
+          detractores: "25%",
+          motivosDet: "Altos costos de suscripción",
+          promotores: "60%",
+          motivosPro: "Variedad de beneficios",
+          eventos: "Campañas navideñas",
+          competencia: "Magalu ofrece frete grátis"
+        },
+      ],
+      summary: "<p><ul><li>Meli+ ha mantenido un índice de sentimiento generalmente positivo en Brasil, con picos notables en mayo debido a la inclusión del 120% CDI.</li><li>La competencia de Amazon y Magalu sigue siendo fuerte, con ofertas agresivas de frete grátis.</li><li>'O cashback oferecido é muito bom, mas a taxa de adesão é alta' - Reclame Aqui.</li><li>'Gosto dos benefícios de streaming, mas a entrega poderia ser mais rápida' - Comentario Reddit.</li></ul></p>"
+    },
+    "México": {
+      labels: ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
+      sentimentIndex: [65, 63, 60, 68, 70, 55, 57, 63, 73, 75, 71, 69, 67, 70, 68, 65],
+      events: [
+        { month: "Sep 24", text: "Lanzamiento Meli+ BR/MX" },
+        { month: "Feb 25", text: "Cambio % cashback BR/MX" },
+        { month: "May 25", text: "Nubank NU+ MX; Hot Sale MX" }
+      ],
+      table: [
+        {
+          mes: "Sep 24",
+          detractores: "30%",
+          motivosDet: "Precios altos en algunos productos",
+          promotores: "55%",
+          motivosPro: "Envío rápido y confiable",
+          eventos: "Lanzamiento Meli+",
+          competencia: "Amazon Prime ofrece descuentos"
+        },
+        {
+          mes: "Oct 24",
+          detractores: "33%",
+          motivosDet: "Problemas con la atención al cliente",
+          promotores: "53%",
+          motivosPro: "Amplia variedad de productos",
+          eventos: "Promociones de temporada",
+          competencia: "Walmart Plus expande cobertura"
+        },
+        {
+          mes: "Nov 24",
+          detractores: "35%",
+          motivosDet: "Publicidad engañosa",
+          promotores: "50%",
+          motivosPro: "Beneficios de envío",
+          eventos: "El Buen Fin",
+          competencia: "Liverpool ofrece meses sin intereses"
+        },
+        {
+          mes: "Dec 24",
+          detractores: "25%",
+          motivosDet: "Cargos inesperados",
+          promotores: "60%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "Jan 25",
+          detractores: "25%",
+          motivosDet: "Cargos inesperados",
+          promotores: "60%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "Feb 25",
+          detractores: "45%",
+          motivosDet: "Cargos inesperados",
+          promotores: "40%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "Mar 25",
+          detractores: "43%",
+          motivosDet: "Cargos inesperados",
+          promotores: "42%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "Apr 25",
+          detractores: "32%",
+          motivosDet: "Cargos inesperados",
+          promotores: "53%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "May 25",
+          detractores: "20%",
+          motivosDet: "Cargos inesperados",
+          promotores: "65%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "Jun 25",
+          detractores: "18%",
+          motivosDet: "Cargos inesperados",
+          promotores: "67%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "Jul 25",
+          detractores: "26%",
+          motivosDet: "Cargos inesperados",
+          promotores: "59%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "Aug 25",
+          detractores: "28%",
+          motivosDet: "Cargos inesperados",
+          promotores: "57%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "Sep 25",
+          detractores: "30%",
+          motivosDet: "Cargos inesperados",
+          promotores: "55%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "Oct 25",
+          detractores: "25%",
+          motivosDet: "Cargos inesperados",
+          promotores: "60%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "Nov 25",
+          detractores: "27%",
+          motivosDet: "Cargos inesperados",
+          promotores: "58%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+                {
+          mes: "Dec 25",
+          detractores: "30%",
+          motivosDet: "Cargos inesperados",
+          promotores: "55%",
+          motivosPro: "Facilidad de compra",
+          eventos: "Campañas de Navidad",
+          competencia: "Nubank Nu+ con recompensas"
+        },
+      ],
+      summary: "<p><ul><li>El sentimiento en México ha sido fluctuante, con un declive en febrero debido a los cambios en el cashback.</li><li>La competencia de Amazon y Nubank es un factor constante.</li><li>'El envío es rápido pero los precios no siempre son los mejores' - Apestan.com.</li><li>'Me encanta la facilidad de comprar, pero el servicio al cliente deja mucho que desear' - Comentario X.</li></ul></p>"
+    },
+    "Chile": {
+      labels: ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
+      sentimentIndex: [50, 52, 48, 55, 58, 53, 55, 65, 68, 64, 62, 60, 58, 60, 58, 55],
+      events: [
+        { month: "Apr 25", text: "Nuevos beneficios Meli+ CL" }
+      ],
+      table: [
+        {
+          mes: "Sep 24",
+          detractores: "40%",
+          motivosDet: "Poca variedad de productos",
+          promotores: "45%",
+          motivosPro: "Entrega rápida",
+          eventos: "Inicios de Meli+",
+          competencia: "Falabella promociona envíos"
+        },
+        {
+          mes: "Oct 24",
+          detractores: "38%",
+          motivosDet: "Costos de envío elevados",
+          promotores: "47%",
+          motivosPro: "Atención al cliente eficiente",
+          eventos: "Promociones de octubre",
+          competencia: "Ripley ofrece descuentos"
+        },
+        {
+          mes: "Nov 24",
+          detractores: "42%",
+          motivosDet: "Interfaz confusa",
+          promotores: "43%",
+          motivosPro: "Beneficios de streaming",
+          eventos: "Black Friday",
+          competencia: "Amazon reduce precios"
+        },
+        {
+          mes: "Dec 24",
+          detractores: "35%",
+          motivosDet: "Fallas en la app",
+          promotores: "50%",
+          motivosPro: "Ofertas de fin de año",
+          eventos: "Campañas de Navidad",
+          competencia: "Falabella extiende horarios"
+        },
+                {
+          mes: "Jan 25",
+          detractores: "35%",
+          motivosDet: "Fallas en la app",
+          promotores: "50%",
+          motivosPro: "Ofertas de fin de año",
+          eventos: "Campañas de Navidad",
+          competencia: "Falabella extiende horarios"
+        },
+                {
+          mes: "Feb 25",
+          detractores: "37%",
+          motivosDet: "Fallas en la app",
+          promotores: "48%",
+          motivosPro: "Ofertas de fin de año",
+          eventos: "Campañas de Navidad",
+          competencia: "Falabella extiende horarios"
+        },
+                {
+          mes: "Mar 25",
+          detractores: "39%",
+          motivosDet: "Fallas en la app",
+          promotores: "46%",
+          motivosPro: "Ofertas de fin de
