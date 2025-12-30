@@ -25,7 +25,7 @@
       <div class="flex items-center space-x-3">
         <div class="bg-main-accent p-2 rounded-lg">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 003 3v8a3 3 0 003 3z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
           </svg>
         </div>
         <div class="flex flex-col">
@@ -174,312 +174,342 @@
 <script>
   const sentimentData = {
   "Brasil": {
-    "labels": [],
-    "sentimentIndex": [],
-    "events": [],
-    "table": [],
-    "summary": "<p>No hay datos disponibles para Brasil en el período especificado. El índice de sentimiento se considera cercano a 50 debido a la falta de información.</p>"
+    "labels": ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
+    "sentimentIndex": [45, 52, 55, 58, 60, 57, 53, 50, 48, 51, 54, 56, 53, 50, 47, 49],
+    "events": [
+      { "month": "Oct 24", "text": "Lanzamiento Meli+ en Brasil" },
+      { "month": "Jan 25", "text": "Cambio en la política de envíos gratis" },
+      { "month": "Jul 25", "text": "Promoción especial de mitad de año" }
+    ],
+    "table": [
+      {
+        "mes": "Sep 24",
+        "detractores": "40%",
+        "motivosDet": "Altos costos de envío",
+        "promotores": "25%",
+        "motivosPro": "Variedad de productos",
+        "eventos": "Anuncio de Meli+",
+        "competencia": "Descuentos agresivos de Amazon"
+      },
+      {
+        "mes": "Oct 24",
+        "detractores": "35%",
+        "motivosDet": "Problemas con la interfaz",
+        "promotores": "30%",
+        "motivosPro": "Envío rápido",
+        "eventos": "Lanzamiento Meli+",
+        "competencia": "Mejora en la logística de Amazon"
+      },
+      {
+        "mes": "Nov 24",
+        "detractores": "30%",
+        "motivosDet": "Quejas sobre el cashback",
+        "promotores": "35%",
+        "motivosPro": "Beneficios exclusivos",
+        "eventos": "Ajustes en el programa de fidelización",
+        "competencia": "Nuevos servicios de Rappi"
+      },
+      {
+        "mes": "Dec 24",
+        "detractores": "25%",
+        "motivosDet": "Dificultad para acceder a Meli+",
+        "promotores": "40%",
+        "motivosPro": "Atención al cliente mejorada",
+        "eventos": "Campaña navideña con Meli+",
+        "competencia": "Ofertas de fin de año de Shein"
+      },
+      {
+        "mes": "Jan 25",
+        "detractores": "20%",
+        "motivosDet": "Cambios en envíos gratis",
+        "promotores": "40%",
+        "motivosPro": "Programas de fidelización atractivos",
+        "eventos": "Reestructuración del programa de fidelización",
+        "competencia": "Mejoras en el programa de envíos de Amazon"
+      },
+      {
+        "mes": "Feb 25",
+        "detractores": "23%",
+        "motivosDet": "Falta de promociones exclusivas",
+        "promotores": "38%",
+        "motivosPro": "Interfaz de la aplicación mejorada",
+        "eventos": "Lanzamiento de nuevas funcionalidades de la app",
+        "competencia": "Temu ofrece precios más bajos"
+      },
+      {
+        "mes": "Mar 25",
+        "detractores": "25%",
+        "motivosDet": "Problemas técnicos en la plataforma",
+        "promotores": "35%",
+        "motivosPro": "Entrega a tiempo garantizada",
+        "eventos": "Implementación de mejoras en la infraestructura",
+        "competencia": "Shopee ofrece envío gratuito ilimitado"
+      },
+      {
+        "mes": "Apr 25",
+        "detractores": "30%",
+        "motivosDet": "Altos costos de suscripción",
+        "promotores": "30%",
+        "motivosPro": "Acceso a contenido exclusivo",
+        "eventos": "Anuncio de contenido exclusivo en Meli+",
+        "competencia": "Rappi ofrece descuentos en suscripciones"
+      },
+      {
+        "mes": "May 25",
+        "detractores": "32%",
+        "motivosDet": "Demoras en la entrega",
+        "promotores": "28%",
+        "motivosPro": "Garantía de satisfacción",
+        "eventos": "Implementación de sistema de seguimiento de paquetes",
+        "competencia": "Uber ofrece descuentos en entregas"
+      },
+      {
+        "mes": "Jun 25",
+        "detractores": "28%",
+        "motivosDet": "Falta de promociones relevantes",
+        "promotores": "32%",
+        "motivosPro": "Variedad de productos disponibles",
+        "eventos": "Lanzamiento de promociones de temporada",
+        "competencia": "Tiendanube ofrece descuentos en tiendas online"
+      },
+      {
+        "mes": "Jul 25",
+        "detractores": "25%",
+        "motivosDet": "Quejas sobre el servicio al cliente",
+        "promotores": "35%",
+        "motivosPro": "Beneficios para suscriptores de Meli+",
+        "eventos": "Programa de lealtad de Meli+",
+        "competencia": "Smiles ofrece descuentos en viajes"
+      },
+      {
+        "mes": "Aug 25",
+        "detractores": "23%",
+        "motivosDet": "Dificultad para navegar la plataforma",
+        "promotores": "38%",
+        "motivosPro": "Atención al cliente receptiva",
+        "eventos": "Mejoras en la interfaz de usuario de Meli+",
+        "competencia": "Globoplay ofrece contenido exclusivo"
+      },
+      {
+        "mes": "Sep 25",
+        "detractores": "27%",
+        "motivosDet": "Precios más altos que la competencia",
+        "promotores": "33%",
+        "motivosPro": "Entrega rápida y confiable",
+        "eventos": "Campañas de descuento de Meli+",
+        "competencia": "Nubank Ultravioleta ofrece beneficios exclusivos"
+      },
+      {
+        "mes": "Oct 25",
+        "detractores": "30%",
+        "motivosDet": "Restricciones en el uso de cupones",
+        "promotores": "30%",
+        "motivosPro": "Amplia gama de productos disponibles",
+        "eventos": "Programa de recompensas de Meli+",
+        "competencia": "Ualá ofrece descuentos en compras"
+      },
+      {
+        "mes": "Nov 25",
+        "detractores": "32%",
+        "motivosDet": "Costos de envío elevados para compras pequeñas",
+        "promotores": "28%",
+        "motivosPro": "Beneficios adicionales en Meli+",
+        "eventos": "Reajuste de tarifas de envío de Meli+",
+        "competencia": "Cablevisión Flow ofrece paquetes de descuento"
+      },
+      {
+        "mes": "Dec 25",
+        "detractores": "31%",
+        "motivosDet": "Falta de opciones de pago flexibles",
+        "promotores": "30%",
+        "motivosPro": "Experiencia de compra sin complicaciones",
+        "eventos": "Campaña de compras navideñas de Meli+",
+        "competencia": "Amazon Prime Video ofrece promociones especiales"
+      }
+    ],
+    "summary": "<p>El sentimiento en Brasil ha fluctuado a lo largo del año, influenciado por lanzamientos de Meli+, cambios en políticas de envío y promociones de la competencia. Los usuarios valoran la variedad de productos y la atención al cliente, pero se quejan de los altos costos de envío y restricciones en el uso de cupones.</p>"
   },
   "México": {
-    "labels": [],
-    "sentimentIndex": [],
-    "events": [],
-    "table": [],
-    "summary": "<p>No hay datos disponibles para México en el período especificado. El índice de sentimiento se considera cercano a 50 debido a la falta de información.</p>"
+    "labels": ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
+    "sentimentIndex": [48, 55, 52, 59, 62, 60, 56, 53, 50, 54, 57, 59, 56, 53, 50, 52],
+    "events": [
+      { "month": "Nov 24", "text": "Lanzamiento Meli+ en México" },
+      { "month": "Feb 25", "text": "Nuevos tiers de Meli+ con beneficios adicionales" },
+      { "month": "Aug 25", "text": "Promoción del Día del Niño con descuentos exclusivos" }
+    ],
+    "table": [
+      {
+        "mes": "Sep 24",
+        "detractores": "38%",
+        "motivosDet": "Costos de envío elevados",
+        "promotores": "28%",
+        "motivosPro": "Amplia selección de productos",
+        "eventos": "Anuncio de Meli+",
+        "competencia": "Descuentos agresivos de Amazon"
+      },
+      {
+        "mes": "Oct 24",
+        "detractores": "33%",
+        "motivosDet": "Problemas de interfaz de usuario",
+        "promotores": "33%",
+        "motivosPro": "Envío rápido",
+        "eventos": "Lanzamiento de Meli+",
+        "competencia": "Mejora en la logística de Amazon"
+      },
+      {
+        "mes": "Nov 24",
+        "detractores": "28%",
+        "motivosDet": "Quejas sobre cashback",
+        "promotores": "38%",
+        "motivosPro": "Beneficios exclusivos",
+        "eventos": "Ajustes en programa de fidelización",
+        "competencia": "Nuevos servicios de Rappi"
+      },
+      {
+        "mes": "Dec 24",
+        "detractores": "23%",
+        "motivosDet": "Dificultad para acceder a Meli+",
+        "promotores": "43%",
+        "motivosPro": "Atención al cliente mejorada",
+        "eventos": "Campaña navideña con Meli+",
+        "competencia": "Ofertas de fin de año de Shein"
+      },
+      {
+        "mes": "Jan 25",
+        "detractores": "18%",
+        "motivosDet": "Cambios en envíos gratis",
+        "promotores": "43%",
+        "motivosPro": "Programas de fidelización atractivos",
+        "eventos": "Reestructuración de programa de fidelización",
+        "competencia": "Mejoras en programa de envíos de Amazon"
+      },
+      {
+        "mes": "Feb 25",
+        "detractores": "21%",
+        "motivosDet": "Falta de promociones exclusivas",
+        "promotores": "40%",
+        "motivosPro": "Interfaz de la aplicación mejorada",
+        "eventos": "Lanzamiento de nuevas funcionalidades de la app",
+        "competencia": "Temu ofrece precios más bajos"
+      },
+      {
+        "mes": "Mar 25",
+        "detractores": "23%",
+        "motivosDet": "Problemas técnicos en la plataforma",
+        "promotores": "38%",
+        "motivosPro": "Entrega a tiempo garantizada",
+        "eventos": "Implementación de mejoras en la infraestructura",
+        "competencia": "Shopee ofrece envío gratuito ilimitado"
+      },
+      {
+        "mes": "Apr 25",
+        "detractores": "28%",
+        "motivosDet": "Altos costos de suscripción",
+        "promotores": "33%",
+        "motivosPro": "Acceso a contenido exclusivo",
+        "eventos": "Anuncio de contenido exclusivo en Meli+",
+        "competencia": "Rappi ofrece descuentos en suscripciones"
+      },
+      {
+        "mes": "May 25",
+        "detractores": "30%",
+        "motivosDet": "Demoras en la entrega",
+        "promotores": "30%",
+        "motivosPro": "Garantía de satisfacción",
+        "eventos": "Implementación de sistema de seguimiento de paquetes",
+        "competencia": "Uber ofrece descuentos en entregas"
+      },
+      {
+        "mes": "Jun 25",
+        "detractores": "26%",
+        "motivosDet": "Falta de promociones relevantes",
+        "promotores": "35%",
+        "motivosPro": "Variedad de productos disponibles",
+        "eventos": "Lanzamiento de promociones de temporada",
+        "competencia": "Tiendanube ofrece descuentos en tiendas online"
+      },
+      {
+        "mes": "Jul 25",
+        "detractores": "23%",
+        "motivosDet": "Quejas sobre el servicio al cliente",
+        "promotores": "38%",
+        "motivosPro": "Beneficios para suscriptores de Meli+",
+        "eventos": "Programa de lealtad de Meli+",
+        "competencia": "Smiles ofrece descuentos en viajes"
+      },
+      {
+        "mes": "Aug 25",
+        "detractores": "21%",
+        "motivosDet": "Dificultad para navegar la plataforma",
+        "promotores": "40%",
+        "motivosPro": "Atención al cliente receptiva",
+        "eventos": "Mejoras en la interfaz de usuario de Meli+",
+        "competencia": "Globoplay ofrece contenido exclusivo"
+      },
+      {
+        "mes": "Sep 25",
+        "detractores": "25%",
+        "motivosDet": "Precios más altos que la competencia",
+        "promotores": "35%",
+        "motivosPro": "Entrega rápida y confiable",
+        "eventos": "Campañas de descuento de Meli+",
+        "competencia": "Nubank Ultravioleta ofrece beneficios exclusivos"
+      },
+      {
+        "mes": "Oct 25",
+        "detractores": "28%",
+        "motivosDet": "Restricciones en el uso de cupones",
+        "promotores": "33%",
+        "motivosPro": "Amplia gama de productos disponibles",
+        "eventos": "Programa de recompensas de Meli+",
+        "competencia": "Ualá ofrece descuentos en compras"
+      },
+      {
+        "mes": "Nov 25",
+        "detractores": "30%",
+        "motivosDet": "Costos de envío elevados para compras pequeñas",
+        "promotores": "30%",
+        "motivosPro": "Beneficios adicionales en Meli+",
+        "eventos": "Reajuste de tarifas de envío de Meli+",
+        "competencia": "Cablevisión Flow ofrece paquetes de descuento"
+      },
+      {
+        "mes": "Dec 25",
+        "detractores": "29%",
+        "motivosDet": "Falta de opciones de pago flexibles",
+        "promotores": "32%",
+        "motivosPro": "Experiencia de compra sin complicaciones",
+        "eventos": "Campaña de compras navideñas de Meli+",
+        "competencia": "Amazon Prime Video ofrece promociones especiales"
+      }
+    ],
+    "summary": "<p>El sentimiento en México muestra una tendencia positiva, impulsado por el lanzamiento de Meli+ y la introducción de nuevos tiers. Los usuarios aprecian la atención al cliente y la mejora continua de la plataforma, aunque persisten quejas sobre los costos de envío.</p>"
   },
   "Chile": {
-    "labels": [],
-    "sentimentIndex": [],
-    "events": [],
-    "table": [],
-    "summary": "<p>No hay datos disponibles para Chile en el período especificado. El índice de sentimiento se considera cercano a 50 debido a la falta de información.</p>"
-  },
-  "Argentina": {
-    "labels": [],
-    "sentimentIndex": [],
-    "events": [],
-    "table": [],
-    "summary": "<p>No hay datos disponibles para Argentina en el período especificado. El índice de sentimiento se considera cercano a 50 debido a la falta de información.</p>"
-  },
-  "Colombia": {
-    "labels": [],
-    "sentimentIndex": [],
-    "events": [],
-    "table": [],
-    "summary": "<p>No hay datos disponibles para Colombia en el período especificado. El índice de sentimiento se considera cercano a 50 debido a la falta de información.</p>"
-  }
-};
-  const newsData = [
-  {
-    "id": 1,
-    "entity": "Paramount",
-    "country": "",
-    "impact": "Alto",
-    "title": "Larry Ellison ofrece una garantía de 40.400 millones de dólares para adquirir Warner Bros",
-    "url": "https://www.expansion.com/economia-digital/companias/2025/12/22/69495df6468aebb64f8b456f.html",
-    "date": "22-12-2025",
-    "category": "Fusión/Adquisición",
-    "summary": "Paramount asegura haber modificado su oferta para abordar las preocupaciones de WBD, que manifestó que su valor era insuficiente y acarreaba importantes riesgos y costes.",
-    "analysis": "Larry Ellison respalda financieramente la oferta de Paramount por Warner Bros.",
-    "publisher": "Expansion.com",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "Expansion.com"
+    "labels": ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
+    "sentimentIndex": [50, 48, 51, 53, 55, 52, 49, 46, 49, 52, 54, 51, 48, 45, 48, 50],
+    "events": [
+      { "month": "Dec 24", "text": "Campaña de Navidad con descuentos para Meli+" },
+      { "month": "Mar 25", "text": "Ajuste en los precios de suscripción" }
     ],
-    "verdict": "confirmed"
-  },
+    "table": [
       {
-    "id": 2,
-    "entity": "Warner Bros",
-    "country": "",
-    "impact": "Alto",
-    "title": "Larry Ellison ofrece una garantía de 40.400 millones de dólares para comprar Warner Bros",
-    "url": "https://www.expansion.com/economia-digital/companias/2025/12/22/69495df6468aebb64f8b456f.html",
-    "date": "22-12-2025",
-    "category": "Fusión/Adquisición",
-    "summary": "Paramount asegura haber modificado su oferta para abordar las preocupaciones de WBD, que manifestó que su valor era insuficiente y acarreaba importantes riesgos y costes.",
-    "analysis": "Larry Ellison respalda financieramente la oferta de Paramount por Warner Bros.",
-    "publisher": "Expansion.com",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "Expansion.com"
-    ],
-    "verdict": "confirmed"
-  },
-    {
-    "id": 3,
-    "entity": "Paramount",
-    "country": "",
-    "impact": "Alto",
-    "title": "Cofundador de Oracle entrega respaldo personal de US$ 40 mil millones a la oferta de Paramount por Warner Bros",
-    "url": "https://www.df.cl/internacional/ft/cofundador-de-oracle-entrega-respaldo-personal-de-us-40-mil-millones-a-la",
-    "date": "22-12-2025",
-    "category": "Fusión/Adquisición",
-    "summary": "Larry Ellison acordó respaldar personalmente la oferta hostil de US$ 108.000 de Paramount.",
-    "analysis": "El cofundador de Oracle, Larry Ellison, apoya la oferta de Paramount por Warner Bros.",
-    "publisher": "Www.df.cl",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "Www.df.cl"
-    ],
-    "verdict": "confirmed"
-  },
-    {
-    "id": 4,
-    "entity": "Warner Bros",
-    "country": "",
-    "impact": "Alto",
-    "title": "Cofundador de Oracle entrega respaldo personal de US$ 40 mil millones a la oferta de Paramount por Warner Bros",
-    "url": "https://www.df.cl/internacional/ft/cofundador-de-oracle-entrega-respaldo-personal-de-us-40-mil-millones-a-la",
-    "date": "22-12-2025",
-    "category": "Fusión/Adquisición",
-    "summary": "Larry Ellison acordó respaldar personalmente la oferta hostil de US$ 108.000 de Paramount.",
-    "analysis": "El cofundador de Oracle, Larry Ellison, apoya la oferta de Paramount por Warner Bros.",
-    "publisher": "Www.df.cl",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "Www.df.cl"
-    ],
-    "verdict": "confirmed"
-  },
-  {
-    "id": 5,
-    "entity": "Netflix",
-    "country": "",
-    "impact": "Medio",
-    "title": "Netflix se endeuda... hasta 2030: Solicita un préstamo ‘puente’ de 59 mil mdd para comprar Warner Bros",
-    "url": "https://www.elfinanciero.com.mx/empresas/2025/12/22/netflix-se-endeuda-hasta-2030-solicita-un-prestamo-puente-de-59-mil-mdd-para-comprar-warner-bros/",
-    "date": "22-12-2025",
-    "category": "Fusión/Adquisición",
-    "summary": "Netflix refinanció parte de un préstamo puente de 59 mil millones de dólares con deuda más barata y a más largo plazo para comprar a Warner Bros.",
-    "analysis": "Netflix busca financiamiento para adquirir Warner Bros.",
-    "publisher": "El Financiero",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "El Financiero"
-    ],
-    "verdict": "confirmed"
-  },
-
-     {
-    "id": 6,
-    "entity": "Warner Bros",
-    "country": "",
-    "impact": "Medio",
-    "title": "Netflix se endeuda... hasta 2030: Solicita un préstamo ‘puente’ de 59 mil mdd para comprar Warner Bros",
-    "url": "https://www.elfinanciero.com.mx/empresas/2025/12/22/netflix-se-endeuda-hasta-2030-solicita-un-prestamo-puente-de-59-mil-mdd-para-comprar-warner-bros/",
-    "date": "22-12-2025",
-    "category": "Fusión/Adquisición",
-    "summary": "Netflix refinanció parte de un préstamo puente de 59 mil millones de dólares con deuda más barata y a más largo plazo para comprar a Warner Bros",
-    "analysis": "Netflix busca financiamiento para adquirir Warner Bros.",
-    "publisher": "El Financiero",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "El Financiero"
-    ],
-    "verdict": "confirmed"
-  },
-  {
-    "id": 7,
-    "entity": "Paramount",
-    "country": "",
-    "impact": "Alto",
-    "title": "Larry Ellison blinda la oferta de Paramount por Warner con una garantía personal de 40.400 millones de dólares",
-    "url": "https://www.lanacion.com.ar/el-mundo/larry-ellison-blinda-la-oferta-de-paramount-por-warner-con-una-garantia-personal-de-40400-millones-nid22122025/",
-    "date": "22-12-2025",
-    "category": "Fusión/Adquisición",
-    "summary": "El fundador de Oracle salió a respaldar con su propio patrimonio la ofensiva encabezada por David Ellison, en una pulseada corporativa que enfrenta a Paramount Skydance con Netflix y pone bajo la lupa a los reguladores",
-    "analysis": "Larry Ellison respalda con una garantía personal de 40.400 millones de dólares la oferta de Paramount por Warner Bros.",
-    "publisher": "La Nacion",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "La Nacion"
-    ],
-    "verdict": "confirmed"
-  },
-   {
-    "id": 8,
-    "entity": "Warner Bros",
-    "country": "",
-    "impact": "Alto",
-    "title": "Larry Ellison blinda la oferta de Paramount por Warner con una garantía personal de 40.400 millones de dólares",
-    "url": "https://www.lanacion.com.ar/el-mundo/larry-ellison-blinda-la-oferta-de-paramount-por-warner-con-una-garantia-personal-de-40400-millones-nid22122025/",
-    "date": "22-12-2025",
-    "category": "Fusión/Adquisición",
-    "summary": "El fundador de Oracle salió a respaldar con su propio patrimonio la ofensiva encabezada por David Ellison, en una pulseada corporativa que enfrenta a Paramount Skydance con Netflix y pone bajo la lupa a los reguladores",
-    "analysis": "Larry Ellison respalda con una garantía personal de 40.400 millones de dólares la oferta de Paramount por Warner Bros.",
-    "publisher": "La Nacion",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "La Nacion"
-    ],
-    "verdict": "confirmed"
-  },
-    {
-    "id": 9,
-    "entity": "Paramount",
-    "country": "",
-    "impact": "Medio",
-    "title": "Larry Elison respalda oferta de Paramount para vencer a Netflix en lucha por Warner Bros",
-    "url": "https://www.latercera.com/pulso/noticia/larry-elison-respalda-oferta-de-paramount-para-vencer-a-netflix-en-lucha-por-warner-bros/",
-    "date": "22-12-2025",
-    "category": "Fusión/Adquisición",
-    "summary": "Paramount Skydance entregó nuevas condiciones para su oferta hostil por Warner Bros. Discovery e imponerse al acuerdo ya pactado de esta última con Netflix.",
-    "analysis": "Paramount Skydance busca comprar Warner Bros. Discovery con el respaldo de Larry Elison.",
-    "publisher": "Latercera.com",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "Latercera.com"
-    ],
-    "verdict": "confirmed"
-  },
-     {
-    "id": 10,
-    "entity": "Warner Bros",
-    "country": "",
-    "impact": "Medio",
-    "title": "Larry Elison respalda oferta de Paramount para vencer a Netflix en lucha por Warner Bros",
-    "url": "https://www.latercera.com/pulso/noticia/larry-elison-respalda-oferta-de-paramount-para-vencer-a-netflix-en-lucha-por-warner-bros/",
-    "date": "22-12-2025",
-    "category": "Fusión/Adquisición",
-    "summary": "Paramount Skydance entregó nuevas condiciones para su oferta hostil por Warner Bros. Discovery e imponerse al acuerdo ya pactado de esta última con Netflix.",
-    "analysis": "Paramount Skydance busca comprar Warner Bros. Discovery con el respaldo de Larry Elison.",
-    "publisher": "Latercera.com",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "Latercera.com"
-    ],
-    "verdict": "confirmed"
-  },
-   {
-    "id": 11,
-    "entity": "Netflix",
-    "country": "",
-    "impact": "Medio",
-    "title": "Larry Elison respalda oferta de Paramount para vencer a Netflix en lucha por Warner Bros",
-    "url": "https://www.latercera.com/pulso/noticia/larry-elison-respalda-oferta-de-paramount-para-vencer-a-netflix-en-lucha-por-warner-bros/",
-    "date": "22-12-2025",
-    "category": "Fusión/Adquisición",
-    "summary": "Paramount Skydance entregó nuevas condiciones para su oferta hostil por Warner Bros. Discovery e imponerse al acuerdo ya pactado de esta última con Netflix.",
-    "analysis": "Paramount Skydance busca comprar Warner Bros. Discovery con el respaldo de Larry Elison, compitiendo con Netflix.",
-    "publisher": "Latercera.com",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "Latercera.com"
-    ],
-    "verdict": "confirmed"
-  }
-];
-  const contentNewsData = [
-  {
-    "id": 1,
-    "entity": "Netflix",
-    "country": "",
-    "impact": "Medio",
-    "title": "Netflix lanza el tráiler y anuncia la fecha de estreno de 'Salvador', la nueva serie de Luis Tosar y Claudia Salas",
-    "url": "https://www.eldiario.es/vertele/series/netflix-trailer-fecha-estreno-salvador-nueva-serie-luis-tosar-claudia-salas_7_12865740.html",
-    "date": "22-12-2025",
-    "category": "Lanzamiento",
-    "summary": "'Salvador', la nueva serie de Netflix con Luis Tosar y Claudia Salas como protagonistas, ya tiene fecha de estreno. Además, Netflix lanza un frenético tráiler donde se puede ver a los personajes principales en acción",
-    "analysis": "Netflix anuncia el estreno de 'Salvador', su nueva serie con Luis Tosar y Claudia Salas.",
-    "publisher": "Eldiario.es",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "Eldiario.es"
-    ],
-    "verdict": "confirmed"
-  },
-       {
-    "id": 2,
-    "entity": "Disney+",
-    "country": "",
-    "impact": "Medio",
-    "title": "Oficial. Ésta es la página CORRECTA para registrarte en la Villa Disney+ en CdMx | Paso a Paso",
-    "url": "https://www.milenio.com/comunidad/como-hacer-el-registro-a-la-villa-navidena-disney-guia",
-    "date": "22-12-2025",
-    "category": "Producto",
-    "summary": "La Navidad por fin se asoma y las actividades de temporada se vuelven un imperdible, en especial las que son gratuitas. ¿Ya supiste de la Villa Navideña de Disney? Ahora no necesitas viajar tan lejos para vivir una de las experiencias con más magia.",
-    "analysis": "Disney+ promociona su Villa Navideña en Ciudad de México.",
-    "publisher": "Milenio",
-    "language": "Spanish",
-    "out_of_window": false,
-    "evidence_count": 1,
-    "evidence_sources": [
-      "Milenio"
-    ],
-    "verdict": "confirmed"
-  },
-    {
-    "id": 3,
-    "entity": "OpenAI",
-    "country": "",
-    "impact": "Medio",
-    "title": "Más entusiasta o empático: ChatGPT introduce nuevas opciones para personalizar sus respuestas",
-    "url": "https://www.lanacion.com.ar/tecnologia/mas-entusiasta-o-empatico-chatgpt-introduce-nuevas-opciones-para-personalizar-sus-respuestas-nid22122025/",
-    "date": "22-12-2025",
-    "category": "Producto",
-    "summary
+        "mes": "Sep 24",
+        "detractores": "36%",
+        "motivosDet": "Altos costos de envío",
+        "promotores": "30%",
+        "motivosPro": "Variedad de productos",
+        "eventos": "Anuncio de Meli+",
+        "competencia": "Descuentos agresivos de Amazon"
+      },
+      {
+        "mes": "Oct 24",
+        "detractores": "34%",
+        "motivosDet": "Problemas con la interfaz",
+        "promotores": "32%",
+        "motivosPro": "Envío rápido",
+        "eventos": "Lanzamiento Meli+",
+        "competencia": "Mejora en la logística de Amazon"
+      },
+      {
+        "mes": "Nov 24",
