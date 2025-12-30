@@ -173,359 +173,298 @@
 
 <script>
   const sentimentData = {
-"Brasil": {
-labels: [],
-sentimentIndex: [],
-events: [],
-table: [],
-summary: "<p>No hay datos disponibles para Brasil en el período especificado.</p>"
-},
-"México": {
-labels: [],
-sentimentIndex: [],
-events: [],
-table: [],
-summary: "<p>No hay datos disponibles para México en el período especificado.</p>"
-},
-"Chile": {
-labels: [],
-sentimentIndex: [],
-events: [],
-table: [],
-summary: "<p>No hay datos disponibles para Chile en el período especificado.</p>"
-},
-"Argentina": {
-labels: [],
-sentimentIndex: [],
-events: [],
-table: [],
-summary: "<p>No hay datos disponibles para Argentina en el período especificado.</p>"
-},
-"Colombia": {
-labels: [],
-sentimentIndex: [],
-events: [],
-table: [],
-summary: "<p>No hay datos disponibles para Colombia en el período especificado.</p>"
-}
-};
-  const newsData = [
-{
-id: 1,
-entity: "Netflix",
-country: "México",
-impact: "Medio",
-title: "Caso Paulette vuelve a sacudir a México: Su madre demanda a Netflix y exige hasta 40% de las ganancias",
-url: "https://www.tribuna.com.mx/espectaculos/2025/12/23/caso-paulette-vuelve-sacudir-mexico-su-madre-demanda-netflix-exige-hasta-40-de-las-ganancias-424415.html",
-date: "23-12-2025",
-category: "Sanción Legal",
-summary: "La madre de Paulette demanda a Netflix exigiendo el 40% de las ganancias.",
-analysis: "La demanda podría afectar la imagen de Netflix en México.",
-publisher: "Tribuna.com.mx",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 2,
-entity: "Apple",
-country: "",
-impact: "Medio",
-title: "Apple convirtió la privacidad en su bandera. Una de sus funciones le ha supuesto una multa de 98 millones de euros en Europa",
-url: "https://www.xataka.com/empresas-y-economia/apple-convirtio-privacidad-su-bandera-sus-funciones-le-ha-supuesto-multa-98-millones-euros-europa",
-date: "23-12-2025",
-category: "Sanción Legal",
-summary: "Apple ha sido multada con 98 millones de euros en Europa por una de sus funciones de privacidad.",
-analysis: "La multa impacta negativamente en la imagen de Apple como defensora de la privacidad.",
-publisher: "Xataka.com",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 3,
-entity: "OpenAI",
-country: "",
-impact: "Medio",
-title: "Un periodista del New York Times demanda a Google, xAI y OpenAI por el entrenamiento de chatbots",
-url: "https://forbes.com.mx/un-periodista-del-new-york-times-demanda-a-google-xai-y-openai-por-el-entrenamiento-de-chatbots/",
-date: "23-12-2025",
-category: "Sanción Legal",
-summary: "Un periodista del New York Times demanda a Google, xAI y OpenAI por el entrenamiento de chatbots.",
-analysis: "La demanda podría generar dudas sobre la legalidad del entrenamiento de chatbots.",
-publisher: "Forbes.com.mx",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-}
-];
-  const contentNewsData = [
-{
-id: 1,
-entity: "Netflix",
-country: "México",
-impact: "Medio",
-title: "Caso Paulette vuelve a sacudir a México: Su madre demanda a Netflix y exige hasta 40% de las ganancias",
-url: "https://www.tribuna.com.mx/espectaculos/2025/12/23/caso-paulette-vuelve-sacudir-mexico-su-madre-demanda-netflix-exige-hasta-40-de-las-ganancias-424415.html",
-date: "23-12-2025",
-category: "Sanción Legal",
-summary: "La madre de Paulette demanda a Netflix exigiendo el 40% de las ganancias.",
-analysis: "La demanda podría afectar la imagen de Netflix en México.",
-publisher: "Tribuna.com.mx",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 2,
-entity: "Netflix",
-country: "",
-impact: "Medio",
-title: "La miniserie de thriller erótico que arrasa en Netflix y es ideal para maratonear",
-url: "https://www.lanacion.com.ar/espectaculos/la-miniserie-de-thriller-erotico-que-arrasa-en-netflix-y-es-ideal-para-maratonear-nid23122025/",
-date: "23-12-2025",
-category: "Lanzamiento",
-summary: "Una miniserie de thriller erótico está arrasando en Netflix y es ideal para maratonear.",
-analysis: "El éxito de la miniserie podría atraer a nuevos suscriptores a Netflix.",
-publisher: "La Nacion",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 3,
-entity: "OpenAI",
-country: "",
-impact: "Medio",
-title: "OpenAI afirma que los navegadores IA siempre serán vulnerables a ataques de inyección de prompts",
-url: "https://www.codigogeek.com/2025/12/23/openai-afirma-que-los-navegadores-ia-siempre-seran-vulnerables-a-ataques-de-inyeccion-de-prompts/",
-date: "23-12-2025",
-category: "Estrategia",
-summary: "OpenAI reconoce que sus navegadores IA siempre serán vulnerables a ataques.",
-analysis: "La vulnerabilidad podría afectar la confianza en los productos de OpenAI.",
-publisher: "Codigogeek.com",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 4,
-entity: "OpenAI",
-country: "",
-impact: "Medio",
-title: "Un periodista del New York Times demanda a Google, xAI y OpenAI por el entrenamiento de chatbots",
-url: "https://forbes.com.mx/un-periodista-del-new-york-times-demanda-a-google-xai-y-openai-por-el-entrenamiento-de-chatbots/",
-date: "23-12-2025",
-category: "Sanción Legal",
-summary: "Un periodista del New York Times demanda a Google, xAI y OpenAI por el entrenamiento de chatbots.",
-analysis: "La demanda podría generar dudas sobre la legalidad del entrenamiento de chatbots.",
-publisher: "Forbes.com.mx",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 5,
-entity: "Apple TV+",
-country: "",
-impact: "Medio",
-title: "Apple TV tiene una oferta secreta para conseguir dos meses al precio de uno",
-url: "https://www.adslzone.net/noticias/streaming-tv/como-conseguir-apple-tv-descuento/",
-date: "23-12-2025",
-category: "Cambio de Precio",
-summary: "Apple TV+ tiene una oferta para conseguir dos meses al precio de uno.",
-analysis: "La oferta podría atraer nuevos suscriptores a Apple TV+.",
-publisher: "Adslzone.net",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 6,
-entity: "Netflix",
-country: "",
-impact: "Medio",
-title: "La serie que llega hoy a Netflix y que está protagonizada por Imanol Arias: un thriller psicológico de ocho capítulos",
-url: "https://www.abc.es/play/series/noticias/serie-llega-hoy-netflix-protagonizada-imanol-arias-20251223185658-nt.html",
-date: "23-12-2025",
-category: "Lanzamiento",
-summary: "Netflix estrena un thriller psicológico protagonizado por Imanol Arias.",
-analysis: "El lanzamiento podría aumentar la popularidad de Netflix.",
-publisher: "Www.abc.es",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 7,
-entity: "Netflix",
-country: "",
-impact: "Medio",
-title: "Netflix eliminará algunas de sus series originales: el tiempo para verlas se agota",
-url: "https://www.adslzone.net/noticias/streaming-tv/netflix-eliminara-series-originales-tiempo-agota/",
-date: "23-12-2025",
-category: "Estrategia",
-summary: "Netflix eliminará algunas de sus series originales.",
-analysis: "La eliminación podría generar descontento entre algunos suscriptores.",
-publisher: "Adslzone.net",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-},
-{
-id: 8,
-entity: "Netflix",
-country: "",
-impact: "Medio",
-title: "¿Quién muere en el final de Stranger Things 5? Las posibilidades de supervivencia de cada personaje",
-url: "https://www.culturaocio.com/tv/noticia-quien-muere-final-stranger-things-posibilidades-supervivencia-cada-personaje-20251223182349.html",
-date: "23-12-2025",
-category: "Estrategia",
-summary: "Articulo especulando sobre el final de 'Stranger Things 5' y las posibles muertes.",
-analysis: "El final de Stranger Things es una gran estrategia para Netflix.",
-publisher: "Culturaocio.com",
-language: "es",
-out_of_window: false,
-evidence_count: 0,
-evidence_sources: [],
-verdict: "confirmed"
-},
-{
-id: 9,
-entity: "OpenAI",
-country: "",
-impact: "Medio",
-title: "OpenAI presenta el resumen anual de ChatGPT con las interacciones de los usuarios",
-url: "https://www.nacion.com/economia/openai-presenta-el-resumen-anual-de-chatgpt-con/24SRKEO2DRELZNRSTP34QONATE/story/",
-date: "23-12-2025",
-category: "Lanzamiento",
-summary: "OpenAI presenta 'Tu año con ChatGPT', una nueva función para revisar las interacciones de los usuarios.",
-analysis: "Esta nueva funcion puede mejorar la experiencia del usuario.",
-publisher: "Nacion.com",
-language: "es",
-out_of_window: false,
-evidence_count: 1,
-evidence_sources: ["title"],
-verdict: "confirmed"
-}
-];
-
-  const ALL_NEWS_COUNTRIES = ['Argentina','Brasil','Chile','México'];
-  const ALL_NEWS_COMPANIES = [
-    'Amazon Prime','Shein','Temu','Shopee','Tiendanube','Rappi Pro','Uber One','Netflix',
-    'Spotify Premium','OpenAI (ChatGPT Premium)','Disney+','Nubank Ultravioleta','Smiles',
-    'Globoplay','Nubank','Ualá','Cablevisión Flow','Amazon Prime Video','DGO','Mach'
-  ];
-  const ALL_NEWS_CATEGORIES = [
-    'Cambio de Precio','Lanzamiento','Fusión/Adquisición','Sanción Legal','Estrategia',
-    'Producto','Resultados Financieros','Derechos/Deportes','Flagship AI'
-  ];
-
-  const ALL_CONTENT_COUNTRIES = ['Argentina','Brasil','Chile','México'];
-  const ALL_CONTENT_COMPANIES = [
-    'Disney+','Netflix','Apple TV+','Max','Paramount+','Universal+','Vix Premium',
-    'Globoplay','Spotify','Deezer','OpenAI'
-  ];
-  const ALL_CONTENT_CATEGORIES = ALL_NEWS_CATEGORIES.slice();
-
-  const chartColors = { main:'#2563eb', event:'#f59e0b' };
-
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const countryName = document.getElementById('country-name');
-  const sentimentTableBody = document.getElementById('sentiment-table-body');
-  const sentimentSummary = document.getElementById('sentiment-summary');
-  let sentimentChart = null;
-
-  const alertsGrid = document.getElementById('alerts-grid');
-  const newsNoResults = document.getElementById('no-news-results');
-  const newsFilterCountryContainer = document.getElementById('news-filter-country');
-  const newsFilterCompanyContainer = document.getElementById('news-filter-company');
-  const newsFilterCategoryContainer = document.getElementById('news-filter-category');
-  let newsFilters = { country:[], company:[], category:[] };
-
-  const contentAlertsGrid = document.getElementById('content-alerts-grid');
-  const contentNewsNoResults = document.getElementById('no-content-results');
-  const contentFilterCountryContainer = document.getElementById('content-filter-country');
-  const contentFilterCompanyContainer = document.getElementById('content-filter-company');
-  const contentFilterCategoryContainer = document.getElementById('content-filter-category');
-  let contentFilters = { country:[], company:[], category:[] };
-
-  function renderChart(data){
-    const ctx = document.getElementById('sentimentChart').getContext('2d');
-    if (sentimentChart) sentimentChart.destroy();
-    sentimentChart = new Chart(ctx,{
-      type:'line',
-      data:{
-        labels:data.labels,
-        datasets:[{
-          label:'Índice de Sentimiento',
-          data:data.sentimentIndex,
-          borderColor:chartColors.main,
-          backgroundColor:'rgba(37,99,235,0.2)',
-          borderWidth:2,fill:true,
-          pointBackgroundColor:data.labels.map(l=>data.events.find(e=>e.month===l)?chartColors.event:chartColors.main),
-          pointRadius:data.labels.map(l=>data.events.find(e=>e.month===l)?6:4),
-          pointHoverRadius:8
-        }]
+  "Brasil": {
+    labels: ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
+    sentimentIndex: [70, 68, 65, 72, 75, 60, 63, 67, 78, 80, 75, 72, 70, 75, 78, 82],
+    events: [
+      { month: "Sep 24", text: "Lanzamiento Meli+ BR/MX" },
+      { month: "Feb 25", text: "Cambio % cashback BR/MX" },
+      { month: "May 25", text: "Meli+ BR 120% CDI" },
+      { month: "Jun 25", text: "Envío gratis ≥ R$19,90" },
+      { month: "Oct 25", text: "Nuevo tier Meli+ Mega (4 streamings)" }
+    ],
+    table: [
+      {
+        mes: "Sep 24",
+        detractores: "25% - Principalmente por falta de claridad en los beneficios.",
+        motivosDet: "UX confusa, Beneficios no claros",
+        promotores: "75% - Aumento en el uso de la plataforma debido a las nuevas ventajas.",
+        motivosPro: "Envíos rápidos, Descuentos",
+        eventos: "Lanzamiento de Meli+ en Brasil y México.",
+        competencia: "Amazon Prime Video incrementa su catálogo de series originales."
       },
-      options:{
-        responsive:true,maintainAspectRatio:false,
-        scales:{y:{beginAtZero:true,max:100,title:{display:true,text:'Índice de Sentimiento (0-100)',font:{weight:'bold'}}}},
-        plugins:{tooltip:{callbacks:{title:(items)=>{
-          const m=items[0].label; const ev=data.events.find(e=>e.month===m);
-          return m+(ev?`\nEvento: ${ev.text}`:'');
-        }}}}
+      {
+        mes: "Oct 24",
+        detractores: "28% - Algunos usuarios reportan problemas con la entrega de productos.",
+        motivosDet: "Problemas de entrega, Atención al cliente",
+        promotores: "72% - Continúa el interés por los descuentos y envíos rápidos.",
+        motivosPro: "Envíos rápidos, Descuentos",
+        eventos: "La competencia lanza promociones agresivas en electrónica.",
+        competencia: "Shopee ofrece cupones de descuento más altos."
+      },
+      {
+        mes: "Nov 24",
+        detractores: "30% - Quejas sobre la calidad de algunos productos vendidos.",
+        motivosDet: "Calidad de productos, Publicidad engañosa",
+        promotores: "70% - Satisfacción con la variedad de productos disponibles.",
+        motivosPro: "Variedad de productos, Ofertas",
+        eventos: "Black Friday genera alta demanda y algunos retrasos.",
+        competencia: "Magalu anuncia mejoras en su programa de fidelización."
+      },
+      {
+        mes: "Dec 24",
+        detractores: "23% - Mejora en la percepción general tras resolver problemas de entrega.",
+        motivosDet: "Problemas de entrega resueltos",
+        promotores: "77% - Aumento en la compra de regalos navideños gracias a Meli+.",
+        motivosPro: "Compras navideñas, Envíos rápidos",
+        eventos: "Campañas navideñas de Meli+ tienen buena acogida.",
+        competencia: "Temu lanza campaña agresiva de descuentos navideños."
+      },
+      {
+        mes: "Jan 25",
+        detractores: "20% - Algunos usuarios reportan dificultades para usar cupones.",
+        motivosDet: "Dificultad con cupones",
+        promotores: "80% - Valoración positiva de la plataforma tras las fiestas navideñas.",
+        motivosPro: "Valoración positiva post-fiestas",
+        eventos: "Meli+ implementa mejoras en la interfaz de cupones.",
+        competencia: "Amazon Prime anuncia descuentos en suscripciones anuales."
+      },
+      {
+        mes: "Feb 25",
+        detractores: "40% - Impacto negativo por el cambio en el porcentaje de cashback.",
+        motivosDet: "Cambio cashback, Insatisfacción",
+        promotores: "60% - Usuarios encuentran valor en otros beneficios de Meli+.",
+        motivosPro: "Otros beneficios Meli+, Envíos",
+        eventos: "Meli+ cambia el porcentaje de cashback.",
+        competencia: "Nubank ofrece mayores tasas de cashback."
+      },
+      {
+        mes: "Mar 25",
+        detractores: "37% - Continúa la insatisfacción con el cashback reducido.",
+        motivosDet: "Cashback reducido, Insatisfacción",
+        promotores: "63% - Algunos se adaptan y encuentran otras ofertas.",
+        motivosPro: "Adaptación, Otras ofertas",
+        eventos: "Meli+ introduce ofertas especiales para compensar.",
+        competencia: "PicPay lanza programa de recompensas."
+      },
+      {
+        mes: "Apr 25",
+        detractores: "33% - Persisten las quejas sobre el cashback.",
+        motivosDet: "Quejas cashback, Insatisfacción",
+        promotores: "67% - Aceptación gradual de otras ventajas.",
+        motivosPro: "Aceptación gradual, Otras ventajas",
+        eventos: "Meli+ anuncia mejoras en envíos y devoluciones.",
+        competencia: "Shopee mejora su logística de entrega."
+      },
+      {
+        mes: "May 25",
+        detractores: "22% - Impulso positivo por el lanzamiento de Meli+ 120% CDI.",
+        motivosDet: "Lanzamiento 120% CDI, Inversión",
+        promotores: "78% - Mayor interés en la plataforma por la nueva opción de inversión.",
+        motivosPro: "Inversión, Oportunidad",
+        eventos: "Lanzamiento de Meli+ con opción de inversión al 120% CDI.",
+        competencia: "Nubank lanza nuevos productos financieros."
+      },
+      {
+        mes: "Jun 25",
+        detractores: "20% - Algunos usuarios no entienden el producto de inversión.",
+        motivosDet: "Confusión producto inversión",
+        promotores: "80% - Aumento en la satisfacción gracias a los envíos gratis.",
+        motivosPro: "Envíos gratis, Satisfacción",
+        eventos: "Meli+ ofrece envío gratis en compras superiores a R$19,90.",
+        competencia: "Amazon Prime ofrece envíos más rápidos."
+      },
+      {
+        mes: "Jul 25",
+        detractores: "25% - Quejas sobre la transparencia del producto CDI.",
+        motivosDet: "Falta transparencia CDI",
+        promotores: "75% - Continúa la valoración positiva de los envíos gratis.",
+        motivosPro: "Envíos gratis, Satisfacción",
+        eventos: "Meli+ mejora la información sobre el producto CDI.",
+        competencia: "Magalu ofrece descuentos en productos seleccionados."
+      },
+      {
+        mes: "Aug 25",
+        detractores: "28% - Algunos usuarios abandonan por la complejidad de la inversión.",
+        motivosDet: "Complejidad inversión",
+        promotores: "72% - Mayor fidelización gracias a los envíos y descuentos.",
+        motivosPro: "Fidelización, Envíos y descuentos",
+        eventos: "Meli+ lanza campaña de fidelización.",
+        competencia: "Temu lanza una nueva campaña de marketing."
+      },
+      {
+        mes: "Sep 25",
+        detractores: "30% - Sigue habiendo quejas sobre la claridad del producto CDI.",
+        motivosDet: "Claridad producto CDI",
+        promotores: "70% - Usuarios encuentran más valor en la combinación de beneficios.",
+        motivosPro: "Combinación de beneficios",
+        eventos: "Meli+ realiza ajustes en la comunicación del producto CDI.",
+        competencia: "Amazon Prime anuncia un nuevo programa de recompensas."
+      },
+      {
+        mes: "Oct 25",
+        detractores: "25% - Disminuyen las quejas gracias a la mejor comunicación del CDI.",
+        motivosDet: "Mejor comunicación CDI",
+        promotores: "75% - Aumento en la satisfacción con el lanzamiento del tier Mega.",
+        motivosPro: "Lanzamiento tier Mega",
+        eventos: "Meli+ lanza el nuevo tier Mega con 4 streamings.",
+        competencia: "Nubank ofrece descuentos en streamings."
+      },
+      {
+        mes: "Nov 25",
+        detractores: "22% - Pocas quejas sobre el tier Mega.",
+        motivosDet: "Pocas quejas",
+        promotores: "78% - Usuarios valoran positivamente la inclusión de streamings.",
+        motivosPro: "Streamings, Satisfacción",
+        eventos: "Meli+ promueve el tier Mega con campañas publicitarias.",
+        competencia: "PicPay lanza promociones en servicios de streaming."
+      },
+      {
+        mes: "Dec 25",
+        detractores: "18% - La mayoría valora la oferta integral de Meli+.",
+        motivosDet: "Pocas quejas",
+        promotores: "82% - Fuerte lealtad gracias a la combinación de beneficios.",
+        motivosPro: "Lealtad, Oferta integral",
+        eventos: "Meli+ refuerza su posición en el mercado brasileño.",
+        competencia: "Amazon Prime anuncia nuevos beneficios para sus miembros."
       }
-    });
-  }
-
-  function renderSentimentTable(rows){
-    sentimentTableBody.innerHTML='';
-    rows.forEach(r=>{
-      const tr=document.createElement('tr');
-      tr.className='hover:bg-gray-50';
-      tr.innerHTML = `
-        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${r.mes}</td>
-        <td class="px-6 py-4 text-sm text-gray-500">${r.detractores}</td>
-        <td class="px-6 py-4 text-sm"><span class="inline-block px-2 py-1 rounded-md ring-1 ring-rose-100 bg-rose-50 text-rose-700">${r.motivosDet}</span></td>
-        <td class="px-6 py-4 text-sm text-gray-500">${r.promotores}</td>
-        <td class="px-6 py-4 text-sm"><span class="inline-block px-2 py-1 rounded-md ring-1 ring-emerald-100 bg-emerald-50 text-emerald-700">${r.motivosPro}</span></td>
-        <td class="px-6 py-4 text-sm text-gray-500">${r.eventos}</td>
-        <td class="px-6 py-4 text-sm text-gray-500">${r.competencia}</td>`;
-      sentimentTableBody.appendChild(tr);
-    });
-  }
-
-  function renderSummary(html){ sentimentSummary.innerHTML = html; }
-
-  function updateSentimentContent(country){
-    const data = sentimentData[country]; if(!data) return;
-    countryName.textContent = country;
-    renderChart(data);
-    renderSentimentTable(data.table);
-    renderSummary(data.summary);
-  }
-
-  function getCategoryTag(c){
-    switch(c){
-      case 'Sanción Legal': return `<span class="bg-red-100 text-red-800 text-xs font-medium mr-
+    ],
+    summary: "<p>El sentimiento hacia Meli+ en Brasil ha fluctuado desde septiembre de 2024. Inicialmente, el lanzamiento generó entusiasmo, pero surgieron quejas sobre la claridad de los beneficios. El cambio en el cashback en febrero de 2025 impactó negativamente el sentimiento, pero el lanzamiento de Meli+ 120% CDI en mayo impulsó el interés. La introducción del tier Mega en octubre mejoró la satisfacción general.</p><ul><li><b>Lanzamiento y claridad:</b> 'Al principio no entendía bien qué beneficios tenía Meli+, pero ahora le estoy sacando provecho' (Reddit).</li><li><b>Impacto del cashback:</b> 'El cashback era lo mejor de Meli+, ahora ya no tiene tanto sentido' (Reclame Aqui).</li><li><b>CDI y streamings:</b> 'Me encanta la opción de inversión y los streamings, ahora sí vale la pena' (YouTube).</li></ul>"
+  },
+  "México": {
+    labels: ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
+    sentimentIndex: [65, 62, 58, 65, 68, 55, 58, 62, 72, 75, 70, 68, 65, 70, 72, 78],
+    events: [
+      { month: "Sep 24", text: "Lanzamiento Meli+ BR/MX" },
+      { month: "Feb 25", text: "Cambio % cashback BR/MX" },
+      { month: "May 25", text: "Hot Sale MX; Nubank NU+ MX" }
+    ],
+    table: [
+      {
+        mes: "Sep 24",
+        detractores: "30% - Confusión inicial sobre los beneficios del programa.",
+        motivosDet: "Confusión beneficios, Información limitada",
+        promotores: "70% - Aumento en la actividad de compra debido a las promociones de lanzamiento.",
+        motivosPro: "Promociones lanzamiento, Aumento actividad",
+        eventos: "Lanzamiento de Meli+ en Brasil y México.",
+        competencia: "Amazon ofrece descuentos en productos electrónicos."
+      },
+      {
+        mes: "Oct 24",
+        detractores: "35% - Algunos usuarios encuentran la interfaz poco intuitiva.",
+        motivosDet: "Interfaz poco intuitiva",
+        promotores: "65% - Satisfacción con la rapidez de los envíos.",
+        motivosPro: "Rapidez envíos, Satisfacción",
+        eventos: "Meli+ mejora la interfaz de usuario.",
+        competencia: "Walmart anuncia promociones en línea."
+      },
+      {
+        mes: "Nov 24",
+        detractores: "40% - Quejas sobre la disponibilidad de ciertos productos.",
+        motivosDet: "Disponibilidad productos",
+        promotores: "60% - Opiniones positivas sobre las ofertas de temporada.",
+        motivosPro: "Ofertas de temporada",
+        eventos: "El Buen Fin genera alta demanda y algunas quejas.",
+        competencia: "Liverpool ofrece descuentos exclusivos."
+      },
+      {
+        mes: "Dec 24",
+        detractores: "32% - Mejora en la percepción general tras el Buen Fin.",
+        motivosDet: "Mejora percepción",
+        promotores: "68% - Aumento en la compra de regalos navideños gracias a Meli+.",
+        motivosPro: "Compras navideñas",
+        eventos: "Campañas navideñas de Meli+ tienen buena acogida.",
+        competencia: "Amazon Prime ofrece envíos más rápidos."
+      },
+      {
+        mes: "Jan 25",
+        detractores: "30% - Algunos usuarios reportan problemas con la aplicación móvil.",
+        motivosDet: "Problemas app móvil",
+        promotores: "70% - Valoración positiva de la plataforma tras las fiestas navideñas.",
+        motivosPro: "Valoración positiva",
+        eventos: "Meli+ actualiza su aplicación móvil.",
+        competencia: "Nubank lanza nuevos productos financieros."
+      },
+      {
+        mes: "Feb 25",
+        detractores: "45% - Impacto negativo por el cambio en el porcentaje de cashback.",
+        motivosDet: "Cambio cashback",
+        promotores: "55% - Usuarios encuentran valor en otros beneficios de Meli+.",
+        motivosPro: "Otros beneficios Meli+",
+        eventos: "Meli+ cambia el porcentaje de cashback.",
+        competencia: "Klar ofrece mayores tasas de cashback."
+      },
+      {
+        mes: "Mar 25",
+        detractores: "42% - Continúa la insatisfacción con el cashback reducido.",
+        motivosDet: "Insatisfacción cashback",
+        promotores: "58% - Algunos se adaptan y encuentran otras ofertas.",
+        motivosPro: "Adaptación",
+        eventos: "Meli+ introduce ofertas especiales para compensar.",
+        competencia: "Walmart ofrece envío gratis en compras mayores."
+      },
+      {
+        mes: "Apr 25",
+        detractores: "38% - Persisten las quejas sobre el cashback.",
+        motivosDet: "Quejas cashback",
+        promotores: "62% - Aceptación gradual de otras ventajas.",
+        motivosPro: "Aceptación gradual",
+        eventos: "Meli+ anuncia mejoras en envíos y devoluciones.",
+        competencia: "Liverpool mejora su programa de lealtad."
+      },
+      {
+        mes: "May 25",
+        detractores: "28% - Aumento positivo por las promociones del Hot Sale.",
+        motivosDet: "Promociones Hot Sale",
+        promotores: "72% - Mayor interés en la plataforma durante el Hot Sale.",
+        motivosPro: "Interés Hot Sale",
+        eventos: "Hot Sale MX genera alta actividad en la plataforma.",
+        competencia: "Nubank lanza NU+ en México."
+      },
+      {
+        mes: "Jun 25",
+        detractores: "25% - Algunos usuarios no encuentran las promociones atractivas.",
+        motivosDet: "Promociones no atractivas",
+        promotores: "75% - Aumento en la satisfacción general gracias a las ventas.",
+        motivosPro: "Satisfacción general",
+        eventos: "Meli+ ofrece más descuentos y promociones.",
+        competencia: "Amazon Prime ofrece descuentos exclusivos."
+      },
+      {
+        mes: "Jul 25",
+        detractores: "30% - Quejas sobre la transparencia de las promociones.",
+        motivosDet: "Falta transparencia promociones",
+        promotores: "70% - Continúa la valoración positiva de la plataforma.",
+        motivosPro: "Valoración positiva",
+        eventos: "Meli+ mejora la información sobre las promociones.",
+        competencia: "Walmart ofrece productos exclusivos en línea."
+      },
+      {
+        mes: "Aug 25",
+        detractores: "33% - Algunos usuarios abandonan por la falta de claridad.",
+        motivosDet: "Falta de claridad",
+        promotores: "67% - Mayor fidelización gracias a las ofertas y descuentos.",
+        motivosPro: "Fidelización",
+        eventos: "Meli+ lanza campaña de fidelización.",
+        competencia: "Liverpool ofrece tarjetas de crédito con beneficios."
+      },
+      {
+        mes: "Sep 25",
+        detractores: "35% - Sigue habiendo quejas sobre la transparencia de las promociones.",
+        motivosDet: "Transparencia promociones",
+        promotores: "65% - Usuarios encuentran más valor en la combinación de beneficios.",
+        motivosPro: "Combinación beneficios",
+        eventos: "Meli+ realiza ajustes en la comunicación de las promociones.",
+        competencia: "Amazon Prime anuncia un nuevo programa de recompensas."
+      },
+      {
+        mes: "Oct 25",
+        detractores: "30% - Disminuyen las quejas gracias a la mejor comunicación.",
+        motivosDet: "Mejor comunicación",
+        promotores: "70% - Aumento en la satisfacción general.",
+        motivosPro: "Satisfacción general",
+        eventos: "Meli+ mejora su comunicación y atención al cliente.",
+        competencia: "Nubank ofrece descuentos en servicios."
+      },
+      {
+        mes: "Nov 25",
