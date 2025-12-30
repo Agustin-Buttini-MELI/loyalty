@@ -1,1 +1,107 @@
-<!DOCTYPE html> <html lang="es" class="scroll-smooth"> <head> <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Reporte Meli+</title><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><link href="https://www.google.com/search?q=https://fonts.googleapis.com/css2%3Ffamily%3DInter:wght%40400%3B600%3B700%26display%3Dswap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif;background:#f8fafc;color:#1f2937}.main-accent{color:#2563eb}.bg-main-accent{background:#2563eb}.tab-btn.active{background:#e0f2fe;border-bottom:2px solid #2563eb}.filter-checkbox-group{max-height:150px;overflow-y:auto;border:1px solid #e5e7eb;border-radius:.5rem;padding:8px;font-size:12px}</style></head> <body class="antialiased"> <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm"><div class="container mx-auto px-4 h-16 flex items-center justify-between"><div class="flex items-center space-x-3"><div class="bg-main-accent p-2 rounded-lg"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg></div><h1 class="text-lg font-bold">Reporte Meli+ y Mercado</h1></div><a href="https://www.google.com/search?q=https://meli.looker.com/dashboards/25519" target="_blank" class="text-xs bg-indigo-50 px-3 py-1 rounded-full border border-blue-100 font-semibold">Looker Interno</a></div></header> <main class="container mx-auto px-4 py-8"><section class="mb-8 text-center"><h2 class="text-2xl font-bold">Análisis de Sentimiento</h2></section><div class="bg-white p-4 rounded-xl shadow-sm border mb-6"><div class="h-80"><canvas id="sentimentChart"></canvas></div></div><section id="glosario" class="bg-white rounded-lg border mb-6"><button onclick="document.getElementById('gc').classList.toggle('hidden')" class="w-full flex justify-between p-3 font-semibold">📖 Glosario <span>▼</span></button><div id="gc" class="hidden p-3 text-xs border-t bg-gray-50"><p><b>Niveles:</b> Muy alto (≥55%), Alto (50-54%), Estable (±3%), Bajo (30-39%), Muy bajo (≤29%).</p></div></section><nav class="flex justify-center border-b mb-6 space-x-2"><button data-country="Brasil" class="tab-btn active px-4 py-2 text-sm font-semibold">Brasil</button><button data-country="México" class="tab-btn px-4 py-2 text-sm font-semibold">México</button><button data-country="Chile" class="tab-btn px-4 py-2 text-sm font-semibold">Chile</button><button data-country="Argentina" class="tab-btn px-4 py-2 text-sm font-semibold">Argentina</button><button data-country="Colombia" class="tab-btn px-4 py-2 text-sm font-semibold">Colombia</button></nav><section class="bg-white p-4 rounded-xl border shadow-sm"><h2 class="text-xl font-bold mb-4">Detalles: <span id="country-name" class="main-accent">Brasil</span></h2><div class="overflow-x-auto mb-6"><table class="min-w-full text-xs text-left"><thead class="bg-gray-50"><tr><th class="p-2">Mes</th><th class="p-2">Detractores</th><th class="p-2">Motivos Det.</th><th class="p-2">Promotores</th><th class="p-2">Motivos Pro.</th><th class="p-2">Contexto</th><th class="p-2">Competencia</th></tr></thead><tbody id="sentiment-table-body" class="divide-y"></tbody></table></div><div id="sentiment-summary" class="text-sm prose max-w-none"></div></section><section class="mt-8"><div class="bg-white p-4 rounded-xl border shadow-sm"><h2 class="text-xl font-bold mb-4">Meli+ Summary</h2><iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRWue6uIUvlRogZu1iCA9JCFqHVo8nzS-Ue4a6WOC08JqSTbsciuqK4m59exCMbQERuYuMDABCMhc-y/pubembed" frameborder="0" width="100%" height="400"></iframe></div></section><section class="mt-8"><h2 class="text-xl font-bold mb-4">Alertas Mercado</h2><div class="grid grid-cols-1 md:grid-cols-4 gap-2 mb-4 text-xs"><div id="news-filter-country" class="filter-checkbox-group"></div><div id="news-filter-company" class="filter-checkbox-group"></div><div id="news-filter-category" class="filter-checkbox-group"></div><button id="news-reset-filters" class="bg-gray-200 py-1 rounded">Limpiar</button></div><div id="alerts-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section><section class="mt-8"><h2 class="text-xl font-bold mb-4">Streaming & Contenido</h2><div class="grid grid-cols-1 md:grid-cols-4 gap-2 mb-4 text-xs"><div id="content-filter-country" class="filter-checkbox-group"></div><div id="content-filter-company" class="filter-checkbox-group"></div><div id="content-filter-category" class="filter-checkbox-group"></div><button id="content-reset-filters" class="bg-gray-200 py-1 rounded">Limpiar</button></div><div id="content-alerts-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section></main><script>const sentimentData={"Brasil":{"sentimentIndex":[50,50,50],"summary":"Falta de menciones"},"México":{"sentimentIndex":[50,50,50],"summary":"Falta de menciones"},"Chile":{"sentimentIndex":[50,50,50],"summary":"Falta de menciones"},"Argentina":{"sentimentIndex":[50,50,50],"summary":"Falta de menciones"},"Colombia":{"sentimentIndex":[50,50,50],"summary":"Falta de menciones"}};const newsData=[{"entity":"Paramount","country":"Global","title":"La nueva oferta de Paramount por Warner Bros no es suficiente, revela importante inversor","url":"https://forbes.com.mx/la-nueva-oferta-de-paramount-por-warner-bros-no-es-suficiente-revela-importante-inversor/","category":"Fusión/Adquisición"},{"entity":"Forbes","country":"México","title":"Los centros de datos de IA están obligando a las plantas de energía sucia a volver a funcionar","url":"https://forbes.com.mx/los-centros-de-datos-de-ia-estan-obligando-a-las-plantas-de-energia-sucia-a-volver-a-funcionar/", "category":"Estrategia"},{"entity":"Google","country":"Global","title":"Google invierte más de US$4 mil millones en una compañía de centro de datos","url":"https://es.gizmodo.com/google-invierte-mas-de-us4-mil-millones-en-una-compania-de-centro-de-datos-2000211145","category":"Fusión/Adquisición"},{"entity":"OpenAI","country":"Global","title":"Un periodista del New York Times demanda a Google, xAI y OpenAI por el entrenamiento de chatbots","url":"https://forbes.com.mx/un-periodista-del-new-york-times-demanda-a-google-xai-y-openai-por-el-entrenamiento-de-chatbots/","category":"Sanción Legal"},{"entity":"Forbes","country":"Global","title":"Inversores globales recurren a la IA china ante el temor de una burbuja en Wall Street","url":"https://forbes.com.mx/inversores-globales-recurren-a-la-ia-china-ante-el-temor-de-una-burbuja-en-wall-street/","category":"Estrategia"}];const contentNewsData=[{"entity":"Netflix","country":"Global","title":"Caso Paulette vuelve a sacudir a México: Su madre demanda a Netflix y exige hasta 40% de las ganancias","url":"https://www.tribuna.com.mx/espectaculos/2025/12/23/caso-paulette-vuelve-sacudir-mexico-su-madre-demanda-netflix-exige-hasta-40-de-las-ganancias-424415.html","category":"Sanción Legal"},{"entity":"OpenAI","country":"Global","title":"OpenAI afirma que los navegadores IA siempre serán vulnerables a ataques de inyección de prompts","url":"https://www.codigogeek.com/2025/12/23/openai-afirma-que-los-navegadores-ia-siempre-seran-vulnerables-a-ataques-de-inyeccion-de-prompts/","category":"Estrategia"},{"entity":"Apple","country":"Global","title":"Apple convirtió la privacidad en su bandera. Una de sus funciones le ha supuesto una multa de 98 millones de euros en Europa","url":"https://www.xataka.com/empresas-y-economia/apple-convirtio-privacidad-su-bandera-sus-funciones-le-ha-supuesto-multa-98-millones-euros-europa","category":"Sanción Legal"},{"entity":"OpenAI","country":"Global","title":"OpenAI presenta el resumen anual de ChatGPT con las interacciones de los usuarios","url":"https://www.nacion.com/economia/openai-presenta-el-resumen-anual-de-chatgpt-con/24SRKEO2DRELZNRSTP34QONATE/story/","category":"Producto"},{"entity":"Netflix","country":"Global","title":"La reciente adquisición de Netflix va a cambiar la manera en la que interactuamos con sus videojuegos","url":"https://es.ign.com/netflix/225003/news/la-reciente-adquisicion-de-netflix-va-a-cambiar-la-manera-en-la-que-interactuamos-con-sus-videojuego","category":"Estrategia"}];/...Logica de filtrado y renderizado idéntica a la anterior.../</script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Reporte Meli+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body{font-family:sans-serif;background:#f8fafc;color:#1f2937}
+        .main-accent{color:#2563eb}
+        .bg-main-accent{background:#2563eb}
+        .tab-btn.active{background:#e0f2fe;border-bottom:2px solid #2563eb}
+        .filter-checkbox-group{max-height:150px;overflow-y:auto;border:1px solid #e5e7eb;border-radius:.5rem;padding:8px;font-size:12px}
+    </style>
+</head>
+<body class="antialiased">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+            <h1 class="text-lg font-bold flex items-center gap-2">
+                <span class="bg-main-accent p-1.5 rounded text-white text-xs">M+</span> Reporte Integrado
+            </h1>
+            <a href="#" class="text-xs bg-indigo-50 px-3 py-1 rounded-full border border-blue-100 font-semibold text-indigo-700">Looker Interno</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-6">
+        <div class="bg-white p-4 rounded-xl border mb-6 shadow-sm">
+            <div class="h-64"><canvas id="sentimentChart"></canvas></div>
+        </div>
+
+        <nav class="flex justify-center border-b mb-6 overflow-x-auto space-x-2">
+            <button data-country="Brasil" class="tab-btn active px-4 py-2 text-sm font-semibold">Brasil</button>
+            <button data-country="México" class="tab-btn px-4 py-2 text-sm font-semibold">México</button>
+            <button data-country="Chile" class="tab-btn px-4 py-2 text-sm font-semibold">Chile</button>
+            <button data-country="Argentina" class="tab-btn px-4 py-2 text-sm font-semibold">Argentina</button>
+            <button data-country="Colombia" class="tab-btn px-4 py-2 text-sm font-semibold">Colombia</button>
+        </nav>
+
+        <section class="bg-white p-4 rounded-xl border shadow-sm mb-8">
+            <h2 class="text-xl font-bold mb-4">Detalles: <span id="country-name" class="main-accent">Brasil</span></h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-xs text-left">
+                    <thead class="bg-gray-50 uppercase text-gray-500">
+                        <tr><th class="p-2">Mes</th><th class="p-2">Detractores</th><th class="p-2">Motivos</th><th class="p-2">Promotores</th><th class="p-2">Contexto</th></tr>
+                    </thead>
+                    <tbody id="sentiment-table-body" class="divide-y"></tbody>
+                </table>
+            </div>
+            <div id="sentiment-summary" class="mt-4 text-sm text-gray-600 italic"></div>
+        </section>
+
+        <h2 class="text-xl font-bold mb-4">Alertas Mercado</h2>
+        <div id="alerts-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"></div>
+
+        <h2 class="text-xl font-bold mb-4">Streaming & Contenido</h2>
+        <div id="content-alerts-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12"></div>
+    </main>
+
+    <script>
+        // DATOS (Inyectados por n8n)
+        const sentimentData={"Brasil":{"labels":["Oct","Nov","Dic"],"sentimentIndex":[50,50,50],"table":[],"summary":"Falta de menciones"},"México":{"labels":["Oct","Nov","Dic"],"sentimentIndex":[50,50,50],"table":[],"summary":"Falta de menciones"},"Chile":{"labels":["Oct","Nov","Dic"],"sentimentIndex":[50,50,50],"table":[],"summary":"Falta de menciones"},"Argentina":{"labels":["Oct","Nov","Dic"],"sentimentIndex":[50,50,50],"table":[],"summary":"Falta de menciones"},"Colombia":{"labels":["Oct","Nov","Dic"],"sentimentIndex":[50,50,50],"table":[],"summary":"Falta de menciones"}};
+        const newsData=[{"entity":"Paramount","country":"Global","title":"La nueva oferta de Paramount por Warner Bros no es suficiente, revela importante inversor","url":"https://forbes.com.mx/la-nueva-oferta-de-paramount-por-warner-bros-no-es-suficiente-revela-importante-inversor/","category":"Fusión/Adquisición"},{"entity":"Forbes","country":"Global","title":"Inversores globales recurren a la IA china ante el temor de una burbuja en Wall Street","url":"https://forbes.com.mx/inversores-globales-recurren-a-la-ia-china-ante-el-temor-de-una-burbuja-en-Wall-Street/","category":"Estrategia"},{"entity":"Bolivia","country":"Global","title":"Bolivia abre sus puertas a Starlink de Elon Musk y a otras empresas tecnológicas tras restricciones","url":"https://www.bostonherald.com/2025/12/23/bolivia-abre-sus-puertas-a-starlink-de-elon-musk-y-a-otras-empresas-tecnolgicas-tras-restricciones/","category":"Estrategia"},{"entity":"Fórmula 1","country":"Global","title":"Calendario 2026 de la Fórmula 1, con todas las modificaciones","url":"https://www.lanacion.com.ar/deportes/automovilismo/calendario-2026-de-la-formula-1-con-todas-las-modificaciones-nid23122025/","category":"Derechos/Deportes"},{"entity":"OpenAI","country":"Global","title":"OpenAI afirma que los navegadores IA siempre serán vulnerables a ataques de inyección de prompts","url":"https://www.codigogeek.com/2025/12/23/openai-afirma-que-los-navegadores-ia-siempre-seran-vulnerables-a-ataques-de-inyeccion-de-prompts/","category":"Producto"}];
+        const contentNewsData=[{"entity":"Netflix","country":"México","title":"Caso Paulette vuelve a sacudir a México: Su madre demanda a Netflix y exige hasta 40% de las ganancias","url":"https://www.tribuna.com.mx/espectaculos/2025/12/23/caso-paulette-vuelve-sacudir-mexico-su-madre-demanda-netflix-exige-hasta-40-de-las-ganancias-424415.html","category":"Sanción Legal"},{"entity":"OpenAI","country":"Global","title":"Un periodista del New York Times demanda a Google, xAI y OpenAI por el entrenamiento de chatbots","url":"https://forbes.com.mx/un-periodista-del-new-york-times-demanda-a-google-xai-y-openai-por-el-entrenamiento-de-chatbots/","category":"Sanción Legal"},{"entity":"Apple","country":"Global","title":"Apple convirtió la privacidad en su bandera. Una de sus funciones le ha supuesto una multa de 98 millones de euros en Europa","url":"https://www.xataka.com/empresas-y-economia/apple-convirtio-privacidad-su-bandera-sus-funciones-le-ha-supuesto-multa-98-millones-euros-europa","category":"Sanción Legal"},{"entity":"OpenAI","country":"Global","title":"OpenAI presenta el resumen anual de ChatGPT con las interacciones de los usuarios","url":"https://www.nacion.com/economia/openai-presenta-el-resumen-anual-de-chatgpt-con/24SRKEO2DRELZNRSTP34QONATE/story/","category":"Producto"},{"entity":"OpenAI","country":"Global","title":"Sam Altman explica por qué no quiere que OpenAI salga a bolsa","url":"https://andro4all.com/tecnologia/sam-altman-explica-por-que-no-quiere-que-openai-salga-a-bolsa","category":"Estrategia"}];
+
+        let chart;
+        function updateUI(country) {
+            const data = sentimentData[country] || sentimentData["Brasil"];
+            document.getElementById('country-name').innerText = country;
+            
+            // Tabla
+            const body = document.getElementById('sentiment-table-body');
+            body.innerHTML = (data.table || []).map(r => `<tr><td class="p-2 font-bold">${r.mes}</td><td class="p-2">${r.detractores}</td><td class="p-2"><span class="bg-red-50 text-red-700 px-2 rounded">${r.motivosDet}</span></td><td class="p-2">${r.promotores}</td><td class="p-2">${r.eventos}</td></tr>`).join('');
+            document.getElementById('sentiment-summary').innerText = data.summary;
+
+            // Chart
+            if(chart) chart.destroy();
+            chart = new Chart(document.getElementById('sentimentChart'), {
+                type: 'line',
+                data: { labels: data.labels, datasets: [{ label: 'Sentimiento', data: data.sentimentIndex, borderColor: '#2563eb', fill: true, backgroundColor: 'rgba(37,99,235,0.1)', tension: 0.3 }] },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        function renderCards(data, gridId) {
+            document.getElementById(gridId).innerHTML = data.map(item => `
+                <div class="bg-white p-4 rounded-xl border shadow-sm hover:shadow-md">
+                    <div class="flex justify-between items-start mb-2"><span class="text-[10px] font-bold text-gray-400 uppercase">${item.entity}</span><span class="text-[9px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">${item.category}</span></div>
+                    <p class="text-sm font-semibold leading-tight mb-2">${item.title}</p>
+                    <a href="${item.url}" target="_blank" class="text-xs text-blue-600 hover:underline">Ver noticia →</a>
+                </div>
+            `).join('');
+        }
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                updateUI(e.target.dataset.country);
+            });
+        });
+
+        // Inicio
+        updateUI('Brasil');
+        renderCards(newsData, 'alerts-grid');
+        renderCards(contentNewsData, 'content-alerts-grid');
+    </script>
+</body>
+</html>
