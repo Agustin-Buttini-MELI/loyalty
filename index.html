@@ -25,7 +25,7 @@
       <div class="flex items-center space-x-3">
         <div class="bg-main-accent p-2 rounded-lg">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 003 3v8a3 3 0 003 3z"/>
           </svg>
         </div>
         <div class="flex flex-col">
@@ -173,343 +173,359 @@
 
 <script>
   const sentimentData = {
-  "Brasil": {
-    "labels": ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
-    "sentimentIndex": [45, 52, 55, 58, 60, 57, 53, 50, 48, 51, 54, 56, 53, 50, 47, 49],
-    "events": [
-      { "month": "Oct 24", "text": "Lanzamiento Meli+ en Brasil" },
-      { "month": "Jan 25", "text": "Cambio en la política de envíos gratis" },
-      { "month": "Jul 25", "text": "Promoción especial de mitad de año" }
-    ],
-    "table": [
-      {
-        "mes": "Sep 24",
-        "detractores": "40%",
-        "motivosDet": "Altos costos de envío",
-        "promotores": "25%",
-        "motivosPro": "Variedad de productos",
-        "eventos": "Anuncio de Meli+",
-        "competencia": "Descuentos agresivos de Amazon"
+"Brasil": {
+labels: [],
+sentimentIndex: [],
+events: [],
+table: [],
+summary: "<p>No hay datos disponibles para Brasil en el período especificado.</p>"
+},
+"México": {
+labels: [],
+sentimentIndex: [],
+events: [],
+table: [],
+summary: "<p>No hay datos disponibles para México en el período especificado.</p>"
+},
+"Chile": {
+labels: [],
+sentimentIndex: [],
+events: [],
+table: [],
+summary: "<p>No hay datos disponibles para Chile en el período especificado.</p>"
+},
+"Argentina": {
+labels: [],
+sentimentIndex: [],
+events: [],
+table: [],
+summary: "<p>No hay datos disponibles para Argentina en el período especificado.</p>"
+},
+"Colombia": {
+labels: [],
+sentimentIndex: [],
+events: [],
+table: [],
+summary: "<p>No hay datos disponibles para Colombia en el período especificado.</p>"
+}
+};
+  const newsData = [
+{
+id: 1,
+entity: "Netflix",
+country: "México",
+impact: "Medio",
+title: "Caso Paulette vuelve a sacudir a México: Su madre demanda a Netflix y exige hasta 40% de las ganancias",
+url: "https://www.tribuna.com.mx/espectaculos/2025/12/23/caso-paulette-vuelve-sacudir-mexico-su-madre-demanda-netflix-exige-hasta-40-de-las-ganancias-424415.html",
+date: "23-12-2025",
+category: "Sanción Legal",
+summary: "La madre de Paulette demanda a Netflix exigiendo el 40% de las ganancias.",
+analysis: "La demanda podría afectar la imagen de Netflix en México.",
+publisher: "Tribuna.com.mx",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["title"],
+verdict: "confirmed"
+},
+{
+id: 2,
+entity: "Apple",
+country: "",
+impact: "Medio",
+title: "Apple convirtió la privacidad en su bandera. Una de sus funciones le ha supuesto una multa de 98 millones de euros en Europa",
+url: "https://www.xataka.com/empresas-y-economia/apple-convirtio-privacidad-su-bandera-sus-funciones-le-ha-supuesto-multa-98-millones-euros-europa",
+date: "23-12-2025",
+category: "Sanción Legal",
+summary: "Apple ha sido multada con 98 millones de euros en Europa por una de sus funciones de privacidad.",
+analysis: "La multa impacta negativamente en la imagen de Apple como defensora de la privacidad.",
+publisher: "Xataka.com",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["title"],
+verdict: "confirmed"
+},
+{
+id: 3,
+entity: "OpenAI",
+country: "",
+impact: "Medio",
+title: "Un periodista del New York Times demanda a Google, xAI y OpenAI por el entrenamiento de chatbots",
+url: "https://forbes.com.mx/un-periodista-del-new-york-times-demanda-a-google-xai-y-openai-por-el-entrenamiento-de-chatbots/",
+date: "23-12-2025",
+category: "Sanción Legal",
+summary: "Un periodista del New York Times demanda a Google, xAI y OpenAI por el entrenamiento de chatbots.",
+analysis: "La demanda podría generar dudas sobre la legalidad del entrenamiento de chatbots.",
+publisher: "Forbes.com.mx",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["title"],
+verdict: "confirmed"
+}
+];
+  const contentNewsData = [
+{
+id: 1,
+entity: "Netflix",
+country: "México",
+impact: "Medio",
+title: "Caso Paulette vuelve a sacudir a México: Su madre demanda a Netflix y exige hasta 40% de las ganancias",
+url: "https://www.tribuna.com.mx/espectaculos/2025/12/23/caso-paulette-vuelve-sacudir-mexico-su-madre-demanda-netflix-exige-hasta-40-de-las-ganancias-424415.html",
+date: "23-12-2025",
+category: "Sanción Legal",
+summary: "La madre de Paulette demanda a Netflix exigiendo el 40% de las ganancias.",
+analysis: "La demanda podría afectar la imagen de Netflix en México.",
+publisher: "Tribuna.com.mx",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["title"],
+verdict: "confirmed"
+},
+{
+id: 2,
+entity: "Netflix",
+country: "",
+impact: "Medio",
+title: "La miniserie de thriller erótico que arrasa en Netflix y es ideal para maratonear",
+url: "https://www.lanacion.com.ar/espectaculos/la-miniserie-de-thriller-erotico-que-arrasa-en-netflix-y-es-ideal-para-maratonear-nid23122025/",
+date: "23-12-2025",
+category: "Lanzamiento",
+summary: "Una miniserie de thriller erótico está arrasando en Netflix y es ideal para maratonear.",
+analysis: "El éxito de la miniserie podría atraer a nuevos suscriptores a Netflix.",
+publisher: "La Nacion",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["title"],
+verdict: "confirmed"
+},
+{
+id: 3,
+entity: "OpenAI",
+country: "",
+impact: "Medio",
+title: "OpenAI afirma que los navegadores IA siempre serán vulnerables a ataques de inyección de prompts",
+url: "https://www.codigogeek.com/2025/12/23/openai-afirma-que-los-navegadores-ia-siempre-seran-vulnerables-a-ataques-de-inyeccion-de-prompts/",
+date: "23-12-2025",
+category: "Estrategia",
+summary: "OpenAI reconoce que sus navegadores IA siempre serán vulnerables a ataques.",
+analysis: "La vulnerabilidad podría afectar la confianza en los productos de OpenAI.",
+publisher: "Codigogeek.com",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["title"],
+verdict: "confirmed"
+},
+{
+id: 4,
+entity: "OpenAI",
+country: "",
+impact: "Medio",
+title: "Un periodista del New York Times demanda a Google, xAI y OpenAI por el entrenamiento de chatbots",
+url: "https://forbes.com.mx/un-periodista-del-new-york-times-demanda-a-google-xai-y-openai-por-el-entrenamiento-de-chatbots/",
+date: "23-12-2025",
+category: "Sanción Legal",
+summary: "Un periodista del New York Times demanda a Google, xAI y OpenAI por el entrenamiento de chatbots.",
+analysis: "La demanda podría generar dudas sobre la legalidad del entrenamiento de chatbots.",
+publisher: "Forbes.com.mx",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["title"],
+verdict: "confirmed"
+},
+{
+id: 5,
+entity: "Apple TV+",
+country: "",
+impact: "Medio",
+title: "Apple TV tiene una oferta secreta para conseguir dos meses al precio de uno",
+url: "https://www.adslzone.net/noticias/streaming-tv/como-conseguir-apple-tv-descuento/",
+date: "23-12-2025",
+category: "Cambio de Precio",
+summary: "Apple TV+ tiene una oferta para conseguir dos meses al precio de uno.",
+analysis: "La oferta podría atraer nuevos suscriptores a Apple TV+.",
+publisher: "Adslzone.net",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["title"],
+verdict: "confirmed"
+},
+{
+id: 6,
+entity: "Netflix",
+country: "",
+impact: "Medio",
+title: "La serie que llega hoy a Netflix y que está protagonizada por Imanol Arias: un thriller psicológico de ocho capítulos",
+url: "https://www.abc.es/play/series/noticias/serie-llega-hoy-netflix-protagonizada-imanol-arias-20251223185658-nt.html",
+date: "23-12-2025",
+category: "Lanzamiento",
+summary: "Netflix estrena un thriller psicológico protagonizado por Imanol Arias.",
+analysis: "El lanzamiento podría aumentar la popularidad de Netflix.",
+publisher: "Www.abc.es",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["title"],
+verdict: "confirmed"
+},
+{
+id: 7,
+entity: "Netflix",
+country: "",
+impact: "Medio",
+title: "Netflix eliminará algunas de sus series originales: el tiempo para verlas se agota",
+url: "https://www.adslzone.net/noticias/streaming-tv/netflix-eliminara-series-originales-tiempo-agota/",
+date: "23-12-2025",
+category: "Estrategia",
+summary: "Netflix eliminará algunas de sus series originales.",
+analysis: "La eliminación podría generar descontento entre algunos suscriptores.",
+publisher: "Adslzone.net",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["title"],
+verdict: "confirmed"
+},
+{
+id: 8,
+entity: "Netflix",
+country: "",
+impact: "Medio",
+title: "¿Quién muere en el final de Stranger Things 5? Las posibilidades de supervivencia de cada personaje",
+url: "https://www.culturaocio.com/tv/noticia-quien-muere-final-stranger-things-posibilidades-supervivencia-cada-personaje-20251223182349.html",
+date: "23-12-2025",
+category: "Estrategia",
+summary: "Articulo especulando sobre el final de 'Stranger Things 5' y las posibles muertes.",
+analysis: "El final de Stranger Things es una gran estrategia para Netflix.",
+publisher: "Culturaocio.com",
+language: "es",
+out_of_window: false,
+evidence_count: 0,
+evidence_sources: [],
+verdict: "confirmed"
+},
+{
+id: 9,
+entity: "OpenAI",
+country: "",
+impact: "Medio",
+title: "OpenAI presenta el resumen anual de ChatGPT con las interacciones de los usuarios",
+url: "https://www.nacion.com/economia/openai-presenta-el-resumen-anual-de-chatgpt-con/24SRKEO2DRELZNRSTP34QONATE/story/",
+date: "23-12-2025",
+category: "Lanzamiento",
+summary: "OpenAI presenta 'Tu año con ChatGPT', una nueva función para revisar las interacciones de los usuarios.",
+analysis: "Esta nueva funcion puede mejorar la experiencia del usuario.",
+publisher: "Nacion.com",
+language: "es",
+out_of_window: false,
+evidence_count: 1,
+evidence_sources: ["title"],
+verdict: "confirmed"
+}
+];
+
+  const ALL_NEWS_COUNTRIES = ['Argentina','Brasil','Chile','México'];
+  const ALL_NEWS_COMPANIES = [
+    'Amazon Prime','Shein','Temu','Shopee','Tiendanube','Rappi Pro','Uber One','Netflix',
+    'Spotify Premium','OpenAI (ChatGPT Premium)','Disney+','Nubank Ultravioleta','Smiles',
+    'Globoplay','Nubank','Ualá','Cablevisión Flow','Amazon Prime Video','DGO','Mach'
+  ];
+  const ALL_NEWS_CATEGORIES = [
+    'Cambio de Precio','Lanzamiento','Fusión/Adquisición','Sanción Legal','Estrategia',
+    'Producto','Resultados Financieros','Derechos/Deportes','Flagship AI'
+  ];
+
+  const ALL_CONTENT_COUNTRIES = ['Argentina','Brasil','Chile','México'];
+  const ALL_CONTENT_COMPANIES = [
+    'Disney+','Netflix','Apple TV+','Max','Paramount+','Universal+','Vix Premium',
+    'Globoplay','Spotify','Deezer','OpenAI'
+  ];
+  const ALL_CONTENT_CATEGORIES = ALL_NEWS_CATEGORIES.slice();
+
+  const chartColors = { main:'#2563eb', event:'#f59e0b' };
+
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const countryName = document.getElementById('country-name');
+  const sentimentTableBody = document.getElementById('sentiment-table-body');
+  const sentimentSummary = document.getElementById('sentiment-summary');
+  let sentimentChart = null;
+
+  const alertsGrid = document.getElementById('alerts-grid');
+  const newsNoResults = document.getElementById('no-news-results');
+  const newsFilterCountryContainer = document.getElementById('news-filter-country');
+  const newsFilterCompanyContainer = document.getElementById('news-filter-company');
+  const newsFilterCategoryContainer = document.getElementById('news-filter-category');
+  let newsFilters = { country:[], company:[], category:[] };
+
+  const contentAlertsGrid = document.getElementById('content-alerts-grid');
+  const contentNewsNoResults = document.getElementById('no-content-results');
+  const contentFilterCountryContainer = document.getElementById('content-filter-country');
+  const contentFilterCompanyContainer = document.getElementById('content-filter-company');
+  const contentFilterCategoryContainer = document.getElementById('content-filter-category');
+  let contentFilters = { country:[], company:[], category:[] };
+
+  function renderChart(data){
+    const ctx = document.getElementById('sentimentChart').getContext('2d');
+    if (sentimentChart) sentimentChart.destroy();
+    sentimentChart = new Chart(ctx,{
+      type:'line',
+      data:{
+        labels:data.labels,
+        datasets:[{
+          label:'Índice de Sentimiento',
+          data:data.sentimentIndex,
+          borderColor:chartColors.main,
+          backgroundColor:'rgba(37,99,235,0.2)',
+          borderWidth:2,fill:true,
+          pointBackgroundColor:data.labels.map(l=>data.events.find(e=>e.month===l)?chartColors.event:chartColors.main),
+          pointRadius:data.labels.map(l=>data.events.find(e=>e.month===l)?6:4),
+          pointHoverRadius:8
+        }]
       },
-      {
-        "mes": "Oct 24",
-        "detractores": "35%",
-        "motivosDet": "Problemas con la interfaz",
-        "promotores": "30%",
-        "motivosPro": "Envío rápido",
-        "eventos": "Lanzamiento Meli+",
-        "competencia": "Mejora en la logística de Amazon"
-      },
-      {
-        "mes": "Nov 24",
-        "detractores": "30%",
-        "motivosDet": "Quejas sobre el cashback",
-        "promotores": "35%",
-        "motivosPro": "Beneficios exclusivos",
-        "eventos": "Ajustes en el programa de fidelización",
-        "competencia": "Nuevos servicios de Rappi"
-      },
-      {
-        "mes": "Dec 24",
-        "detractores": "25%",
-        "motivosDet": "Dificultad para acceder a Meli+",
-        "promotores": "40%",
-        "motivosPro": "Atención al cliente mejorada",
-        "eventos": "Campaña navideña con Meli+",
-        "competencia": "Ofertas de fin de año de Shein"
-      },
-      {
-        "mes": "Jan 25",
-        "detractores": "20%",
-        "motivosDet": "Cambios en envíos gratis",
-        "promotores": "40%",
-        "motivosPro": "Programas de fidelización atractivos",
-        "eventos": "Reestructuración del programa de fidelización",
-        "competencia": "Mejoras en el programa de envíos de Amazon"
-      },
-      {
-        "mes": "Feb 25",
-        "detractores": "23%",
-        "motivosDet": "Falta de promociones exclusivas",
-        "promotores": "38%",
-        "motivosPro": "Interfaz de la aplicación mejorada",
-        "eventos": "Lanzamiento de nuevas funcionalidades de la app",
-        "competencia": "Temu ofrece precios más bajos"
-      },
-      {
-        "mes": "Mar 25",
-        "detractores": "25%",
-        "motivosDet": "Problemas técnicos en la plataforma",
-        "promotores": "35%",
-        "motivosPro": "Entrega a tiempo garantizada",
-        "eventos": "Implementación de mejoras en la infraestructura",
-        "competencia": "Shopee ofrece envío gratuito ilimitado"
-      },
-      {
-        "mes": "Apr 25",
-        "detractores": "30%",
-        "motivosDet": "Altos costos de suscripción",
-        "promotores": "30%",
-        "motivosPro": "Acceso a contenido exclusivo",
-        "eventos": "Anuncio de contenido exclusivo en Meli+",
-        "competencia": "Rappi ofrece descuentos en suscripciones"
-      },
-      {
-        "mes": "May 25",
-        "detractores": "32%",
-        "motivosDet": "Demoras en la entrega",
-        "promotores": "28%",
-        "motivosPro": "Garantía de satisfacción",
-        "eventos": "Implementación de sistema de seguimiento de paquetes",
-        "competencia": "Uber ofrece descuentos en entregas"
-      },
-      {
-        "mes": "Jun 25",
-        "detractores": "28%",
-        "motivosDet": "Falta de promociones relevantes",
-        "promotores": "32%",
-        "motivosPro": "Variedad de productos disponibles",
-        "eventos": "Lanzamiento de promociones de temporada",
-        "competencia": "Tiendanube ofrece descuentos en tiendas online"
-      },
-      {
-        "mes": "Jul 25",
-        "detractores": "25%",
-        "motivosDet": "Quejas sobre el servicio al cliente",
-        "promotores": "35%",
-        "motivosPro": "Beneficios para suscriptores de Meli+",
-        "eventos": "Programa de lealtad de Meli+",
-        "competencia": "Smiles ofrece descuentos en viajes"
-      },
-      {
-        "mes": "Aug 25",
-        "detractores": "23%",
-        "motivosDet": "Dificultad para navegar la plataforma",
-        "promotores": "38%",
-        "motivosPro": "Atención al cliente receptiva",
-        "eventos": "Mejoras en la interfaz de usuario de Meli+",
-        "competencia": "Globoplay ofrece contenido exclusivo"
-      },
-      {
-        "mes": "Sep 25",
-        "detractores": "27%",
-        "motivosDet": "Precios más altos que la competencia",
-        "promotores": "33%",
-        "motivosPro": "Entrega rápida y confiable",
-        "eventos": "Campañas de descuento de Meli+",
-        "competencia": "Nubank Ultravioleta ofrece beneficios exclusivos"
-      },
-      {
-        "mes": "Oct 25",
-        "detractores": "30%",
-        "motivosDet": "Restricciones en el uso de cupones",
-        "promotores": "30%",
-        "motivosPro": "Amplia gama de productos disponibles",
-        "eventos": "Programa de recompensas de Meli+",
-        "competencia": "Ualá ofrece descuentos en compras"
-      },
-      {
-        "mes": "Nov 25",
-        "detractores": "32%",
-        "motivosDet": "Costos de envío elevados para compras pequeñas",
-        "promotores": "28%",
-        "motivosPro": "Beneficios adicionales en Meli+",
-        "eventos": "Reajuste de tarifas de envío de Meli+",
-        "competencia": "Cablevisión Flow ofrece paquetes de descuento"
-      },
-      {
-        "mes": "Dec 25",
-        "detractores": "31%",
-        "motivosDet": "Falta de opciones de pago flexibles",
-        "promotores": "30%",
-        "motivosPro": "Experiencia de compra sin complicaciones",
-        "eventos": "Campaña de compras navideñas de Meli+",
-        "competencia": "Amazon Prime Video ofrece promociones especiales"
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        scales:{y:{beginAtZero:true,max:100,title:{display:true,text:'Índice de Sentimiento (0-100)',font:{weight:'bold'}}}},
+        plugins:{tooltip:{callbacks:{title:(items)=>{
+          const m=items[0].label; const ev=data.events.find(e=>e.month===m);
+          return m+(ev?`\nEvento: ${ev.text}`:'');
+        }}}}
       }
-    ],
-    "summary": "<p>El sentimiento en Brasil ha fluctuado a lo largo del año, influenciado por lanzamientos de Meli+, cambios en políticas de envío y promociones de la competencia. Los usuarios valoran la variedad de productos y la atención al cliente, pero se quejan de los altos costos de envío y restricciones en el uso de cupones.</p>"
-  },
-  "México": {
-    "labels": ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
-    "sentimentIndex": [48, 55, 52, 59, 62, 60, 56, 53, 50, 54, 57, 59, 56, 53, 50, 52],
-    "events": [
-      { "month": "Nov 24", "text": "Lanzamiento Meli+ en México" },
-      { "month": "Feb 25", "text": "Nuevos tiers de Meli+ con beneficios adicionales" },
-      { "month": "Aug 25", "text": "Promoción del Día del Niño con descuentos exclusivos" }
-    ],
-    "table": [
-      {
-        "mes": "Sep 24",
-        "detractores": "38%",
-        "motivosDet": "Costos de envío elevados",
-        "promotores": "28%",
-        "motivosPro": "Amplia selección de productos",
-        "eventos": "Anuncio de Meli+",
-        "competencia": "Descuentos agresivos de Amazon"
-      },
-      {
-        "mes": "Oct 24",
-        "detractores": "33%",
-        "motivosDet": "Problemas de interfaz de usuario",
-        "promotores": "33%",
-        "motivosPro": "Envío rápido",
-        "eventos": "Lanzamiento de Meli+",
-        "competencia": "Mejora en la logística de Amazon"
-      },
-      {
-        "mes": "Nov 24",
-        "detractores": "28%",
-        "motivosDet": "Quejas sobre cashback",
-        "promotores": "38%",
-        "motivosPro": "Beneficios exclusivos",
-        "eventos": "Ajustes en programa de fidelización",
-        "competencia": "Nuevos servicios de Rappi"
-      },
-      {
-        "mes": "Dec 24",
-        "detractores": "23%",
-        "motivosDet": "Dificultad para acceder a Meli+",
-        "promotores": "43%",
-        "motivosPro": "Atención al cliente mejorada",
-        "eventos": "Campaña navideña con Meli+",
-        "competencia": "Ofertas de fin de año de Shein"
-      },
-      {
-        "mes": "Jan 25",
-        "detractores": "18%",
-        "motivosDet": "Cambios en envíos gratis",
-        "promotores": "43%",
-        "motivosPro": "Programas de fidelización atractivos",
-        "eventos": "Reestructuración de programa de fidelización",
-        "competencia": "Mejoras en programa de envíos de Amazon"
-      },
-      {
-        "mes": "Feb 25",
-        "detractores": "21%",
-        "motivosDet": "Falta de promociones exclusivas",
-        "promotores": "40%",
-        "motivosPro": "Interfaz de la aplicación mejorada",
-        "eventos": "Lanzamiento de nuevas funcionalidades de la app",
-        "competencia": "Temu ofrece precios más bajos"
-      },
-      {
-        "mes": "Mar 25",
-        "detractores": "23%",
-        "motivosDet": "Problemas técnicos en la plataforma",
-        "promotores": "38%",
-        "motivosPro": "Entrega a tiempo garantizada",
-        "eventos": "Implementación de mejoras en la infraestructura",
-        "competencia": "Shopee ofrece envío gratuito ilimitado"
-      },
-      {
-        "mes": "Apr 25",
-        "detractores": "28%",
-        "motivosDet": "Altos costos de suscripción",
-        "promotores": "33%",
-        "motivosPro": "Acceso a contenido exclusivo",
-        "eventos": "Anuncio de contenido exclusivo en Meli+",
-        "competencia": "Rappi ofrece descuentos en suscripciones"
-      },
-      {
-        "mes": "May 25",
-        "detractores": "30%",
-        "motivosDet": "Demoras en la entrega",
-        "promotores": "30%",
-        "motivosPro": "Garantía de satisfacción",
-        "eventos": "Implementación de sistema de seguimiento de paquetes",
-        "competencia": "Uber ofrece descuentos en entregas"
-      },
-      {
-        "mes": "Jun 25",
-        "detractores": "26%",
-        "motivosDet": "Falta de promociones relevantes",
-        "promotores": "35%",
-        "motivosPro": "Variedad de productos disponibles",
-        "eventos": "Lanzamiento de promociones de temporada",
-        "competencia": "Tiendanube ofrece descuentos en tiendas online"
-      },
-      {
-        "mes": "Jul 25",
-        "detractores": "23%",
-        "motivosDet": "Quejas sobre el servicio al cliente",
-        "promotores": "38%",
-        "motivosPro": "Beneficios para suscriptores de Meli+",
-        "eventos": "Programa de lealtad de Meli+",
-        "competencia": "Smiles ofrece descuentos en viajes"
-      },
-      {
-        "mes": "Aug 25",
-        "detractores": "21%",
-        "motivosDet": "Dificultad para navegar la plataforma",
-        "promotores": "40%",
-        "motivosPro": "Atención al cliente receptiva",
-        "eventos": "Mejoras en la interfaz de usuario de Meli+",
-        "competencia": "Globoplay ofrece contenido exclusivo"
-      },
-      {
-        "mes": "Sep 25",
-        "detractores": "25%",
-        "motivosDet": "Precios más altos que la competencia",
-        "promotores": "35%",
-        "motivosPro": "Entrega rápida y confiable",
-        "eventos": "Campañas de descuento de Meli+",
-        "competencia": "Nubank Ultravioleta ofrece beneficios exclusivos"
-      },
-      {
-        "mes": "Oct 25",
-        "detractores": "28%",
-        "motivosDet": "Restricciones en el uso de cupones",
-        "promotores": "33%",
-        "motivosPro": "Amplia gama de productos disponibles",
-        "eventos": "Programa de recompensas de Meli+",
-        "competencia": "Ualá ofrece descuentos en compras"
-      },
-      {
-        "mes": "Nov 25",
-        "detractores": "30%",
-        "motivosDet": "Costos de envío elevados para compras pequeñas",
-        "promotores": "30%",
-        "motivosPro": "Beneficios adicionales en Meli+",
-        "eventos": "Reajuste de tarifas de envío de Meli+",
-        "competencia": "Cablevisión Flow ofrece paquetes de descuento"
-      },
-      {
-        "mes": "Dec 25",
-        "detractores": "29%",
-        "motivosDet": "Falta de opciones de pago flexibles",
-        "promotores": "32%",
-        "motivosPro": "Experiencia de compra sin complicaciones",
-        "eventos": "Campaña de compras navideñas de Meli+",
-        "competencia": "Amazon Prime Video ofrece promociones especiales"
-      }
-    ],
-    "summary": "<p>El sentimiento en México muestra una tendencia positiva, impulsado por el lanzamiento de Meli+ y la introducción de nuevos tiers. Los usuarios aprecian la atención al cliente y la mejora continua de la plataforma, aunque persisten quejas sobre los costos de envío.</p>"
-  },
-  "Chile": {
-    "labels": ["Sep 24", "Oct 24", "Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25"],
-    "sentimentIndex": [50, 48, 51, 53, 55, 52, 49, 46, 49, 52, 54, 51, 48, 45, 48, 50],
-    "events": [
-      { "month": "Dec 24", "text": "Campaña de Navidad con descuentos para Meli+" },
-      { "month": "Mar 25", "text": "Ajuste en los precios de suscripción" }
-    ],
-    "table": [
-      {
-        "mes": "Sep 24",
-        "detractores": "36%",
-        "motivosDet": "Altos costos de envío",
-        "promotores": "30%",
-        "motivosPro": "Variedad de productos",
-        "eventos": "Anuncio de Meli+",
-        "competencia": "Descuentos agresivos de Amazon"
-      },
-      {
-        "mes": "Oct 24",
-        "detractores": "34%",
-        "motivosDet": "Problemas con la interfaz",
-        "promotores": "32%",
-        "motivosPro": "Envío rápido",
-        "eventos": "Lanzamiento Meli+",
-        "competencia": "Mejora en la logística de Amazon"
-      },
-      {
-        "mes": "Nov 24",
+    });
+  }
+
+  function renderSentimentTable(rows){
+    sentimentTableBody.innerHTML='';
+    rows.forEach(r=>{
+      const tr=document.createElement('tr');
+      tr.className='hover:bg-gray-50';
+      tr.innerHTML = `
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${r.mes}</td>
+        <td class="px-6 py-4 text-sm text-gray-500">${r.detractores}</td>
+        <td class="px-6 py-4 text-sm"><span class="inline-block px-2 py-1 rounded-md ring-1 ring-rose-100 bg-rose-50 text-rose-700">${r.motivosDet}</span></td>
+        <td class="px-6 py-4 text-sm text-gray-500">${r.promotores}</td>
+        <td class="px-6 py-4 text-sm"><span class="inline-block px-2 py-1 rounded-md ring-1 ring-emerald-100 bg-emerald-50 text-emerald-700">${r.motivosPro}</span></td>
+        <td class="px-6 py-4 text-sm text-gray-500">${r.eventos}</td>
+        <td class="px-6 py-4 text-sm text-gray-500">${r.competencia}</td>`;
+      sentimentTableBody.appendChild(tr);
+    });
+  }
+
+  function renderSummary(html){ sentimentSummary.innerHTML = html; }
+
+  function updateSentimentContent(country){
+    const data = sentimentData[country]; if(!data) return;
+    countryName.textContent = country;
+    renderChart(data);
+    renderSentimentTable(data.table);
+    renderSummary(data.summary);
+  }
+
+  function getCategoryTag(c){
+    switch(c){
+      case 'Sanción Legal': return `<span class="bg-red-100 text-red-800 text-xs font-medium mr-
